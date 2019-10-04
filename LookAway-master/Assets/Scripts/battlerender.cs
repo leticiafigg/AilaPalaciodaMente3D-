@@ -7,13 +7,17 @@ public class battlerender : MonoBehaviour
 {
     //public int index;
     public string EnemyType; //Vamos Definir o tipo de combate pela Cena 
+    string ActualScene;
+
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            
+            PlayerPrefsX.SetVector3("OldPlayerPosition", other.transform.position - other.transform.forward * 2);
+            GameInformation.LastPos = other.transform.position;
+            GameInformation.LastScene = "mapa1";
             SceneManager.LoadScene(EnemyType);
         }
     }

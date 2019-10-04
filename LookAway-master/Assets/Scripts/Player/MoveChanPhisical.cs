@@ -24,8 +24,16 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       // if(transform.position != GameInformation.LastPos)
+       // {
+       //
+       //     transform.position = GameInformation.LastPos + new Vector3(0.0f, 0.0f, -1.0f);
+       //
+       // }
+
+
       
-        if (SceneManager.GetActiveScene().name.Equals("Land"))
+        if (SceneManager.GetActiveScene().name.Equals("mapa1"))     //maneira antiga de carregar a posição anterior
         {
             if (PlayerPrefs.HasKey("OldPlayerPosition"))
             {

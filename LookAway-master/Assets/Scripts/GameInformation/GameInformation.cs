@@ -9,7 +9,8 @@ public class GameInformation : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
     }
 
-    public Vector3 LastPos;
+    public static Vector3 LastPos;
+    public static string  LastScene;
 
 
     public static BasePlayer Aila { get; set;}
