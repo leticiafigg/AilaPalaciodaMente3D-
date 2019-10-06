@@ -13,14 +13,17 @@ public class MoveChanPhisical : MonoBehaviour
     public float gravity = 20;
 
     float jumptime;
-    //float flyvelocity = 3;
-    //public GameObject wing;
-    public Transform rightHandObj, leftHandObj;
     bool jumpbtn = false;
     bool jumpbtndown = false;
     bool jumpbtnrelease = false;
+
+    public Transform rightHandObj, leftHandObj;
     GameObject closeThing;
+    GameObject grablable;
     float weight;
+    bool canhold;
+    bool holding;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -83,7 +86,14 @@ public class MoveChanPhisical : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-            anim.SetTrigger("PunchA");
+
+            //anim.SetTrigger("PunchA");
+            holding = true;
+        }
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            holding = false;
         }
 
       
@@ -104,9 +114,6 @@ public class MoveChanPhisical : MonoBehaviour
                 return;
             }
             
-
-           
-
         }
 
         
@@ -139,31 +146,51 @@ public class MoveChanPhisical : MonoBehaviour
            
             anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
             anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.1f);
+            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.2f);
             anim.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.identity);
 
             anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, weight);
             anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position- transform.right*0.1f);
+            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right*0.2f);
             anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
 
             if (weight <= 0)
             {
+                canhold = false;
+                grablable.transform.parent = null;
                 Destroy(closeThing);
             }
-           
+
+            if (canhold && holding)
+            {
+                grablable.transform.parent = rightHandObj.transform;
+
+            }
+            if(!holding)
+            {
+                grablable.transform.parent = null;
+            }
+
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.position.y > transform.position.y + .05f) {
-            if(!closeThing)
-            closeThing = new GameObject("Handpos");
+        if (collision.transform.position.y + 0.5f > transform.position.y)
+        {
+            if (!closeThing)
+            {
+                closeThing = new GameObject("Handpos");
+                canhold = true;
+                grablable = collision.gameObject;
 
-            weight = 0;
+            }
+
+            weight = 1;
             closeThing.transform.parent = collision.gameObject.transform;
             closeThing.transform.position= collision.GetContact(0).point;
+
+           
 
         }
 
