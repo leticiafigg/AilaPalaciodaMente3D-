@@ -50,7 +50,7 @@ public class MoveChanPhisical : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && !holding)
         {
             jumpbtn = true;
             jumpbtndown = true;
