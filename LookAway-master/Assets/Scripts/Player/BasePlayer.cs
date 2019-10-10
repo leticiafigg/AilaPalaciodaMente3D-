@@ -7,7 +7,7 @@ public class BasePlayer
     private string playerName;
    // private PlayerClasses basePlayerClass;
     private int playerLevel;
-    private int poder;        // valor total que determina quantos pontos de dano físico são ccausados com ataques
+    private int poder;        // valor total que determina quantos pontos de dano físico são causados com ataques
     private int imaginacao;   // valor total que determina quantos PF o personagem possui, e quão boas são suas "Magias"
     private int determinacao; // Valor total que determina quanta vida e resistência a efeitos incomuns
     private int armadura;     // Valor total que determina a redução do dano recebido (nunca reduzirá um valor a 0)
