@@ -5,7 +5,10 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
 
-    public string Nome;
+    private string Nome;
+
+    public int Enemylvl = 1;
+
     public int totalHp; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
     public int totalSP;
     public int Armadura;
@@ -20,6 +23,7 @@ public class Inimigo : MonoBehaviour
 
     private void Start()
     {
+        Nome = inimigoobj.name;
         agiu = false;
         derrotado = false;
         hpatual = totalHp;
@@ -31,9 +35,7 @@ public class Inimigo : MonoBehaviour
     {
       if(hpatual <= 0)
       {
-            Destroy(inimigoobj);
-            
-           
+            Destroy(inimigoobj);  
       }
     }
 

@@ -5,13 +5,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BattleHandler : MonoBehaviour
-{   
-    public GameObject inimigo1obj;
-    private Inimigo inim1Stats;
+{
 
+    public GameObject[] enemyFabs; // Possíveis inimigos a serem encontrados
+   
+
+    private BattleStart battleStartscript = new BattleStart();
+
+    private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
+    private Inimigo inim1Stats;
+    public GameObject inimigo1start;
   
-    public GameObject inimigo2obj;
+    private GameObject inimigo2obj;
     private Inimigo inim2Stats;
+    public GameObject inimigo2start;
+
+    private GameObject inimigo3obj;
+    private Inimigo inim3Stats;
+    public GameObject inimigo3start;
 
     private GameObject inimigodavez;
 
@@ -38,12 +49,13 @@ public class BattleHandler : MonoBehaviour
     void Start()
     {
         xprecebido = false;
+        
         SetEnemies();
         currentState = BattleStates.START; 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         switch(currentState){
 
@@ -54,8 +66,7 @@ public class BattleHandler : MonoBehaviour
                 break;
 
             case (BattleStates.PLAYERCHOICE):
-                inim1Stats.agiu = false;
-                inim2Stats.agiu = false;
+                
 
                 break;
 
@@ -71,6 +82,10 @@ public class BattleHandler : MonoBehaviour
                 {
                     Debug.Log("Inimigo " + inimigodavez.name + " usou SPLASH!");
                     currentState = BattleStates.ENEMYANIM;
+                }
+                else
+                {
+                    currentState = BattleStates.PLAYERCHOICE;
                 }
                 break;
 
@@ -109,10 +124,12 @@ public class BattleHandler : MonoBehaviour
     {
         if (!inim1Stats.agiu && inim1Stats != null)
         {
+            inim1Stats.agiu = true;
             return inim1Stats.inimigoobj;
         }
         else if (!inim2Stats.agiu && inim2Stats != null)
         {
+            inim2Stats.agiu = true;
             return inim2Stats.inimigoobj;
         }
         else
@@ -121,11 +138,31 @@ public class BattleHandler : MonoBehaviour
 
     private void SetEnemies()
     {
-        //  Instantiate(inim1, inimigo1Start.transform.position, Quaternion.identity);
-        //  Instantiate(inim2, inimigo2Start.transform.position, Quaternion.identity);
-        inim1Stats = inimigo1obj.GetComponent<Inimigo>();
-        inim2Stats = inimigo2obj.GetComponent<Inimigo>();
+        GameObject[] inims = battleStartscript.PrepareEnemies(enemyFabs);
+
+
+        if (inims != null)
+        {
+
+
+            Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity);
+            Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity);
+            Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity);
+
+          //  myPrefabA.transform.position = inimigo1start.transform.position;
+          //  myPrefabB.transform.position = inimigo2start.transform.position;
+          //  myPrefabC.transform.position = inimigo3start.transform.position;
+
+            inim1Stats = inims[0].GetComponent<Inimigo>();
+            inim2Stats = inims[1].GetComponent<Inimigo>();
+            inim3Stats = inims[2].GetComponent<Inimigo>();
+
+          
+        }
+        
     }
+
+   
 
     public void Ataque()
     {

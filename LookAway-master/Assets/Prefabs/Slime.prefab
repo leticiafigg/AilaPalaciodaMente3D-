@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8881179664632267859}
   - component: {fileID: 8747819409074478600}
   - component: {fileID: 7841123143463560417}
-  - component: {fileID: 4353485530145484573}
   - component: {fileID: 8734663210469206082}
   m_Layer: 0
   m_Name: Slime
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4353485530145484573
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2543504585326729937}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8734663210469206082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,12 +88,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2543504585326729937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a42185779fbda418d8a12a0a8d9bf3, type: 3}
+  m_Script: {fileID: 11500000, guid: 79c650bfbaec53e42b22f94debacc7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nome: Slime
-  totalHp: 60
-  totalSP: 120
-  Defesa: 10
+  Enemylvl: 1
+  totalHp: 8
+  totalSP: 0
+  Armadura: 1
   hpatual: 0
+  agiu: 1
+  derrotado: 1
   inimigoobj: {fileID: 2543504585326729937}
