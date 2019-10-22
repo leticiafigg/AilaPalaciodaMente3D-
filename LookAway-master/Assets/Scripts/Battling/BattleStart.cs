@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BattleStart
 {
+    private Inimigo inimstats;
+    private StatCalc statCalculations = new StatCalc();
+    
+
+
+
     public GameObject[] PrepareEnemies(GameObject[] inims)
     {
         GameObject[] inimigos = new GameObject[3];
@@ -16,10 +23,12 @@ public class BattleStart
 
             if(inimigos[i].GetComponent<Inimigo>() != null)
             {
-                Inimigo inimstats = inimigos[i].GetComponent<Inimigo>();
-
-                inimstats.Enemylvl = 2;
-                inimstats.totalHp = inimstats.Enemylvl * 10;
+                inimstats = inimigos[i].GetComponent<Inimigo>();
+                
+                CreateNewEnemy();
+                
+                
+                //inimstats.totalHp = inimstats.Enemylvl * 10;
             }
         }
 
@@ -27,7 +36,26 @@ public class BattleStart
         return inimigos;
     }
 
+
+
     public void CreateNewEnemy()
+    {
+        if(GameInformation.Aila.PlayerLevel <= inimstats.maxlvl) // caso o nível do jogador não seja maior que o nível máximo do inimigo, ele escolhe u nível aleatório.
+        { 
+         inimstats.EnemyLevel = Random.Range(GameInformation.Aila.PlayerLevel - 2, inimstats.maxlvl);
+        }
+        else //se não, o inimigo sempre estará no nível máximo
+        {
+            inimstats.EnemyLevel = inimstats.maxlvl;
+        }
+
+        inimstats.poder = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
+        inimstats.imaginacao = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
+        inimstats.determinacao = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
+        inimstats.sorte = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
+    }
+
+    private void DeterminarVitalidade()
     {
 
 

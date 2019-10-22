@@ -11,6 +11,7 @@ public class BattleHandler : MonoBehaviour
    
 
     private BattleStart battleStartscript = new BattleStart();
+    private BaseAction baseActscript = new BaseAction();
 
     private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
     private Inimigo inim1Stats;
@@ -66,7 +67,7 @@ public class BattleHandler : MonoBehaviour
                 break;
 
             case (BattleStates.PLAYERCHOICE):
-                
+               
 
                 break;
 
@@ -139,7 +140,7 @@ public class BattleHandler : MonoBehaviour
     private void SetEnemies()
     {
         GameObject[] inims = battleStartscript.PrepareEnemies(enemyFabs);
-
+        
 
         if (inims != null)
         {
@@ -163,7 +164,7 @@ public class BattleHandler : MonoBehaviour
     }
 
    
-
+    /*
     public void Ataque()
     {
         if (currentState == BattleStates.PLAYERCHOICE)
@@ -190,7 +191,7 @@ public class BattleHandler : MonoBehaviour
 
             currentState = BattleStates.ENEMYCHOICE;
         }
-    }
+    } */
 
     public void Fuga()
     {

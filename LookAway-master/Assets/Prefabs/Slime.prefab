@@ -91,11 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c650bfbaec53e42b22f94debacc7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemylvl: 1
   totalHp: 8
   totalSP: 0
-  Armadura: 1
   hpatual: 0
+  maxlvl: 8
+  armadura: 2
   agiu: 1
   derrotado: 1
   inimigoobj: {fileID: 2543504585326729937}
