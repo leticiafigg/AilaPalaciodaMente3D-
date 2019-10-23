@@ -14,6 +14,11 @@ public class GameInformation : MonoBehaviour
 
 
     public static BasePlayer Aila { get; set;}
+    public static int AilaPV { get; set; }
+    public static int AilaPF { get; set; }
+    public static int AilaPVatual { get; set; }
+    public static int AilaPFatual { get; set; }
+
 
 
 

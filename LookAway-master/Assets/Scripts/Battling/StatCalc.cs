@@ -17,7 +17,7 @@ public class StatCalc
         SORTE
     }
 
-    public int CalcularStats(int statVal, StatType statType, int level)
+    public int CalcularInimStats(int statVal, StatType statType, int level) //Modifica os status pessoais fornecidos de acordo com o nível e o modificador atribuído
     {
         float modifier;
         if(statType == StatType.PODER)
@@ -43,5 +43,24 @@ public class StatCalc
         return 0;
     }
 
+
+    public int CalcularPV(int statValue)
+    {
+        int resultPV;
+
+        resultPV = (int)(statValue * 10.5f); //simplesmente usando o valor do status e multiplicando por 10 e meio
+
+        return resultPV;
+
+    }
+
+    public int CalcularPF(int statValue) 
+    {
+        int resultPF;
+
+        resultPF = statValue * 4; //o mesmo que os PV, porém reduzido
+
+        return resultPF;
+    }
 
 }

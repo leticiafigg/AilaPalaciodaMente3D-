@@ -9,6 +9,8 @@ public class PlayerCreation : MonoBehaviour
     public GameObject informationStore;
     private GameInformation informationAdd;
 
+    private StatCalc statCalcScript;
+
     private void Start()
     {
         newPlayer = new BasePlayer();
@@ -23,7 +25,12 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.XPAtual = 0;
         newPlayer.XPNecessario = 300;
 
-        GameInformation.Aila = newPlayer;
+        GameInformation.Aila = newPlayer;                                                                   //
+        GameInformation.AilaPV = statCalcScript.CalcularPV(GameInformation.Aila.Determinacao);              // Armazenam os dados do jogador, assim como setam o máximo de vida/fantasia da Aila assim que ela é criada
+        GameInformation.AilaPF = statCalcScript.CalcularPF(GameInformation.Aila.Determinacao);              //
+        GameInformation.AilaPVatual = GameInformation.AilaPV;
+        GameInformation.AilaPFatual = GameInformation.AilaPF;
+
         SaveInformation.SaveAll();
     }
 

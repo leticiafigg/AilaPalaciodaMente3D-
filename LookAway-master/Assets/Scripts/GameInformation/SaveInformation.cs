@@ -15,6 +15,8 @@ public class SaveInformation
         PlayerPrefs.SetInt("DETERMINACAO", GameInformation.Aila.Determinacao);
         PlayerPrefs.SetInt("ARMADURA", GameInformation.Aila.Armadura);
         PlayerPrefs.SetInt("SORTE", GameInformation.Aila.Sorte);
+        PlayerPrefs.SetInt("PVTOTAL", GameInformation.AilaPV);
+        PlayerPrefs.SetInt("PFTOTAL", GameInformation.AilaPF);
 
         Debug.Log("Saved All Information!");
     }

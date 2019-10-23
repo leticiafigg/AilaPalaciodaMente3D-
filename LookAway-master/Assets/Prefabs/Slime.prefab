@@ -95,7 +95,11 @@ MonoBehaviour:
   totalSP: 0
   hpatual: 0
   maxlvl: 8
+  poder: 2
+  imaginacao: 4
+  determinacao: 3
   armadura: 2
+  sorte: 1
   agiu: 1
   derrotado: 1
   inimigoobj: {fileID: 2543504585326729937}

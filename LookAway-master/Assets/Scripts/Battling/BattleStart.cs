@@ -7,8 +7,9 @@ public class BattleStart
 {
     private Inimigo inimstats;
     private StatCalc statCalculations = new StatCalc();
-    
 
+    private int PlayerMaxPV;
+    private int PlayerMaxPF;
 
 
     public GameObject[] PrepareEnemies(GameObject[] inims)
@@ -49,16 +50,16 @@ public class BattleStart
             inimstats.EnemyLevel = inimstats.maxlvl;
         }
 
-        inimstats.poder = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
-        inimstats.imaginacao = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
-        inimstats.determinacao = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
-        inimstats.sorte = statCalculations.CalcularStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
+        inimstats.poder = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
+        inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
+        inimstats.determinacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
+        inimstats.sorte = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
     }
 
     private void DeterminarVitalidade()
     {
-
-
+        PlayerMaxPV = statCalculations.CalcularPV(GameInformation.Aila.Determinacao);
+        PlayerMaxPF = statCalculations.CalcularPF(GameInformation.Aila.Imaginacao);
     }
 
 
