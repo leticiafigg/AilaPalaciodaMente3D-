@@ -9,6 +9,8 @@ public class StatCalc
     private float determinacaoModifier = 0.2f; // 20%
     private float sorteModifier = 0.2f;
 
+    private BaseAction baseactionScript;
+
     public enum StatType
     {
         PODER,
@@ -16,6 +18,15 @@ public class StatCalc
         DETERMINACAO,
         SORTE
     }
+
+    
+
+   /* public enum AilaArchetype // Estes arquétipos irão determinar os modificadores do jogador
+    {
+        CONSCIENTE,
+        IMAGINATIVA,
+        AVOADA
+    }*/
 
     public int CalcularInimStats(int statVal, StatType statType, int level) //Modifica os status pessoais fornecidos de acordo com o nível e o modificador atribuído
     {
@@ -48,7 +59,7 @@ public class StatCalc
     {
         int resultPV;
 
-        resultPV = (int)(statValue * 10.5f); //simplesmente usando o valor do status e multiplicando por 10 e meio
+        resultPV = (int)(statValue * 10); //simplesmente usando o valor do status e multiplicando por 10 
 
         return resultPV;
 
@@ -63,4 +74,29 @@ public class StatCalc
         return resultPF;
     }
 
+
+    public int GetActionAffinity(StatType statAff)
+    {
+        float Affnitymodifier = 0.5f;
+
+        if (statAff == StatType.PODER)
+        {          
+            return  (int)(GameInformation.Aila.Poder * Affnitymodifier);
+        }
+        if (statAff == StatType.IMAGINACAO)
+        {    
+            return (int)(GameInformation.Aila.Imaginacao * Affnitymodifier);
+        }
+        if (statAff == StatType.DETERMINACAO)
+        {        
+           return  (int)(GameInformation.Aila.Determinacao * Affnitymodifier);
+        }
+        if (statAff == StatType.SORTE)
+        {
+            return  (int)(GameInformation.Aila.Sorte * Affnitymodifier);
+        }
+
+        return 1;
+    }
+    
 }

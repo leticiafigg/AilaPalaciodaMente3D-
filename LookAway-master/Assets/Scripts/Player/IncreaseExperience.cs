@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IncreaseExperience 
 {
-   
+    private static LevelUp lvlup;
 
     public static void AddExperience(int cd)  // CD = Classe de Dificuldade
     {
@@ -23,6 +23,8 @@ public class IncreaseExperience
             GameInformation.Aila.PlayerLevel += 1; //Ainda só passa de nível apenas uma vez não importando a quantidade de XP
             GameInformation.Aila.XPNecessario = GameInformation.Aila.XPNecessario * 3;
             GameInformation.Aila.XPAtual = 0;
+
+            lvlup.LevelUP(GameInformation.Aila.PlayerLevel, GameInformation.Aila.AilaClass);
         }
     }
 }

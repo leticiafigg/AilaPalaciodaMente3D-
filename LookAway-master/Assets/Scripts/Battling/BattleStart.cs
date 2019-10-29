@@ -12,6 +12,14 @@ public class BattleStart
     private int PlayerMaxPF;
 
 
+    public void PrepareBattle()
+    {
+        EscolherOPrimeiro();  //decide quem é o primeiro a agir no combate, baseado na sorte
+
+        DeterminarVitalidade(); // determina os pontos de vida 
+
+    }
+
     public GameObject[] PrepareEnemies(GameObject[] inims)
     {
         GameObject[] inimigos = new GameObject[3];
@@ -37,7 +45,7 @@ public class BattleStart
         return inimigos;
     }
 
-
+    
 
     public void CreateNewEnemy()
     {
@@ -54,12 +62,29 @@ public class BattleStart
         inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
         inimstats.determinacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
         inimstats.sorte = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
+        inimstats.totalHp = statCalculations.CalcularPV(inimstats.determinacao);
+        inimstats.hpatual = inimstats.totalHp;
+    }
+
+    public void EscolherOPrimeiro() 
+    {
+        if (GameInformation.Aila.Sorte >= inimstats.sorte)
+        {
+            BattleHandler.currentState = BattleHandler.BattleStates.PLAYERCHOICE;
+        }
+        else
+        {
+            BattleHandler.currentState = BattleHandler.BattleStates.ENEMYCHOICE;
+        }
+
     }
 
     private void DeterminarVitalidade()
     {
+        //determina a vitalidade do jogador sempre que uma batalha começa, para que esteja atualizada caso ela seja alterada por algum efeito qualquer nos status do jogador
         PlayerMaxPV = statCalculations.CalcularPV(GameInformation.Aila.Determinacao);
         PlayerMaxPF = statCalculations.CalcularPF(GameInformation.Aila.Imaginacao);
+        // A vitalidade dos inimigos é determinada quando são criados, acima ^
     }
 
 

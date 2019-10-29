@@ -9,7 +9,7 @@ public class PlayerCreation : MonoBehaviour
     public GameObject informationStore;
     private GameInformation informationAdd;
 
-    private StatCalc statCalcScript;
+    private StatCalc statCalcScript = new StatCalc();
 
     private void Start()
     {
@@ -17,19 +17,21 @@ public class PlayerCreation : MonoBehaviour
 
         newPlayer.PlayerName = "Aila";
         newPlayer.PlayerLevel = 1;
-        newPlayer.Poder = 10;
-        newPlayer.Imaginacao = 10;
+        newPlayer.Poder = 15;
+        newPlayer.Imaginacao = 12;
         newPlayer.Determinacao = 10;
         newPlayer.Armadura = 0;
         newPlayer.Sorte = 5;
         newPlayer.XPAtual = 0;
         newPlayer.XPNecessario = 300;
 
-        GameInformation.Aila = newPlayer;                                                                   //
-        GameInformation.AilaPV = statCalcScript.CalcularPV(GameInformation.Aila.Determinacao);              // Armazenam os dados do jogador, assim como setam o máximo de vida/fantasia da Aila assim que ela é criada
-        GameInformation.AilaPF = statCalcScript.CalcularPF(GameInformation.Aila.Determinacao);              //
+        GameInformation.Aila = newPlayer;
+        GameInformation.AilaPV = statCalcScript.CalcularPV(GameInformation.Aila.Determinacao);
+        GameInformation.AilaPF = statCalcScript.CalcularPF(GameInformation.Aila.Imaginacao);
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
+        GameInformation.Aila.AilaClass = newPlayer.AilaArch(BasePlayer.AilaArchetype.CORAJOSA);
+        
 
         SaveInformation.SaveAll();
     }

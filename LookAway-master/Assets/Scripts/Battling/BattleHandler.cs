@@ -11,7 +11,11 @@ public class BattleHandler : MonoBehaviour
    
 
     private BattleStart battleStartscript = new BattleStart();
+    private BattleCalculations battleCalcScript = new BattleCalculations();
     private BaseAction baseActscript = new BaseAction();
+
+    public static BaseAction playerUsedAction;
+
 
     private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
     private Inimigo inim1Stats;
@@ -27,6 +31,9 @@ public class BattleHandler : MonoBehaviour
 
     private GameObject inimigodavez;
 
+   
+
+
     bool xprecebido;
     public int cd; //Classe de dificuldade
 
@@ -39,31 +46,38 @@ public class BattleHandler : MonoBehaviour
         PLAYERANIM,
         ENEMYCHOICE,
         ENEMYANIM,
+        CALCDAMAGE,
+        ADDSTATUSEFFECT,
         WIN,
         LOSE
 
     }
 
-    private BattleStates currentState;
+    public static BattleStates currentState;
 
     // Start is called before the first frame update
     void Start()
     {
         xprecebido = false;
         
-        SetEnemies();
+        SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
+
         currentState = BattleStates.START; 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log(currentState);
+
         switch(currentState){
 
             case (BattleStates.START):
                 //Apresentar os inimigos, ativa o hud e tals
 
-               currentState = BattleStates.PLAYERCHOICE;
+                battleStartscript.PrepareBattle();
+               
+
                 break;
 
             case (BattleStates.PLAYERCHOICE):
@@ -77,28 +91,43 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.ENEMYCHOICE):
 
-                inimigodavez = DecidirAtor();
+                /* inimigodavez = DecidirAtor();
 
-                if (inimigodavez != null)
-                {
-                    Debug.Log("Inimigo " + inimigodavez.name + " usou SPLASH!");
-                    currentState = BattleStates.ENEMYANIM;
-                }
-                else
-                {
-                    currentState = BattleStates.PLAYERCHOICE;
-                }
+                 if (inimigodavez != null)
+                 {
+                     Debug.Log("Inimigo " + inimigodavez.name + " usou SPLASH!");
+                     currentState = BattleStates.ENEMYANIM;
+                 }
+                 else
+                 {
+                     currentState = BattleStates.PLAYERCHOICE;
+                 }*/
+
+                Debug.Log("Enemy choice Made");
+
+                currentState = BattleStates.PLAYERCHOICE;
+
                 break;
 
             case (BattleStates.ENEMYANIM):
                 
                 //faz os paranaue de animar la
 
-                if(inimigodavez = inim2Stats.inimigoobj)
-                {
-                    currentState = BattleStates.PLAYERCHOICE;
-                }
                
+                break;
+
+            case (BattleStates.CALCDAMAGE):
+                Debug.Log("CALCULANDO DANO");
+                battleCalcScript.CalculateUsedPlayerActionDMG(playerUsedAction);
+               
+
+                break;
+
+            case (BattleStates.ADDSTATUSEFFECT):
+
+              //Adicionar status no alvo, se houver algum
+
+
                 break;
 
             case (BattleStates.WIN):

@@ -4,14 +4,16 @@ public class AttackAction : BaseAction
 {
   public AttackAction()
     {
-        int StunPower; //A maioria dos ataques causará algum dano de stun
-
-        ActionName = "Ataque Basico";
+        //A maioria dos ataques causará algum dano de stun
+        ActionName = "Investida";
         ActionDesc = "Um ataque simples. Dano moderado, baixo Atordoamento";
         ActionID = 1 ;
-        ActionPower= 5 ;
+        ActionPower= 10 ;
         StunPower = 10 ;
         ActionCost = 0;
+
+        StatAffinity = StatCalc.StatType.PODER; 
+
     }
 
 }
