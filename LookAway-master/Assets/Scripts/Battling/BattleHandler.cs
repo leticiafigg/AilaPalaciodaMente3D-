@@ -13,6 +13,7 @@ public class BattleHandler : MonoBehaviour
     private BattleStart battleStartscript = new BattleStart();
     private BattleCalculations battleCalcScript = new BattleCalculations();
     private BaseAction baseActscript = new BaseAction();
+    private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
 
     public static BaseAction playerUsedAction;
 
@@ -125,6 +126,7 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.ADDSTATUSEFFECT):
 
+                battleAddEffectscript.CheckActionStatus(playerUsedAction);
               //Adicionar status no alvo, se houver algum
 
 

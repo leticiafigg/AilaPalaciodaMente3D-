@@ -25,6 +25,7 @@ public class GameInformation : MonoBehaviour
 
     public static BaseAction playerActionUm = new AttackAction(); // podem ser várias, e podemos adicionar outras dependendo do arquétipo/classe da Aila
     public static BaseAction playerActionDois = new Shove();
+    public static BaseAction playerActionTres = new Pat();
 
     private void Update()
     {

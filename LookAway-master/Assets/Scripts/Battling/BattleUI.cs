@@ -36,11 +36,11 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(BattleHandler.currentState == BattleHandler.BattleStates.ENEMYCHOICE) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
+       if(BattleHandler.currentState != BattleHandler.BattleStates.PLAYERCHOICE) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
        {
             panelActions.SetActive(false);
        }
-       if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.NEUTRALDISPLAY) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
+       if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
        {
             panelActions.SetActive(true);
        }
@@ -74,8 +74,9 @@ public class BattleUI : MonoBehaviour
             //colocar os cálculos de dano e o movimento que está sendo usado
             BattleHandler.playerUsedAction = GameInformation.playerActionUm;
 
+            currentDisplay = ScreenDisplays.NEUTRALDISPLAY; //cada botão volta ao display neutro quando pressionado
 
-            BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;
+            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
         }
 
         if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 50, 75, 30), GameInformation.playerActionDois.ActionName))
@@ -83,11 +84,22 @@ public class BattleUI : MonoBehaviour
             //colocar os cálculos de dano aqui
             BattleHandler.playerUsedAction = GameInformation.playerActionDois;
 
+            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
 
-            BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;
+            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
         }
 
-        if (GUI.Button(new Rect(Screen.width -10, Screen.height - 50, 45, 45),"Volta"))
+        if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 20, 75, 30), GameInformation.playerActionTres.ActionName))
+        {
+            //colocar os cálculos de dano aqui
+            BattleHandler.playerUsedAction = GameInformation.playerActionTres;
+
+            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
+
+            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+        }
+
+        if (GUI.Button(new Rect(Screen.width -1000, Screen.height - 50, 45, 45),"Volta"))
         {
             //colocar os cálculos de dano aqui
 

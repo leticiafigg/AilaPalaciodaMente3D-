@@ -1,4 +1,7 @@
-﻿[System.Serializable]
+﻿using System.Collections.Generic;
+
+[System.Serializable]
+
 public class BaseAction 
 {
     private string actionName; //Identificador por escrito do movimento
@@ -7,7 +10,7 @@ public class BaseAction
     private int actionPower; //Número a ser escalonado posteriormente, dependendo do status associado e seu efeito (Ex: Dano a ser causado)
     private int stunPower;
     private int actionCost; //Custo de recurso para o utilizador, tornar 0 caso não tenha custo.
-
+    private List<BaseStatusEffect> actionEffects = new List<BaseStatusEffect>();
     
 
     private StatCalc.StatType statAffinity;
@@ -51,6 +54,13 @@ public class BaseAction
     {
         get { return actionCost; }
         set { actionCost = value; }
+    }
+
+    public List<BaseStatusEffect> ActionEffects
+    {
+        get { return actionEffects; }
+        set { actionEffects = value; }
+
     }
 
 }
