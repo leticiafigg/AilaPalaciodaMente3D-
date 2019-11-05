@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerCreation : MonoBehaviour
 {
 
     private BasePlayer newPlayer;
     public GameObject informationStore;
+    public GameObject classTitleGameObj;
+    public GameObject classDescGameObj;
+    public GameObject confirmButton;
     private GameInformation informationAdd;
 
     private StatCalc statCalcScript = new StatCalc();
-    private string classDesc;
+    private static string classDesc;
 
     private void Start()
     {
@@ -19,7 +24,7 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.PlayerName = "Aila";
         newPlayer.PlayerLevel = 1;
 
-
+        classDesc = " ";
 
 
 
@@ -28,7 +33,8 @@ public class PlayerCreation : MonoBehaviour
 
     private void Update()
     {
-        
+         
+        classDescGameObj.GetComponent<Text>().text = classDesc; 
     }
 
     public void EscolherDestemida()
@@ -50,9 +56,11 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPF = statCalcScript.CalcularPF(GameInformation.Aila.Imaginacao);
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
-       
 
+        classTitleGameObj.GetComponent<Text>().text = "Destemida";
         classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propões a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
+
+        confirmButton.SetActive(true);
     }
 
     public void EscolherCriativa()
@@ -75,8 +83,10 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
-
+        classTitleGameObj.GetComponent<Text>().text = "Criativa";
         classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrado soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
+
+        confirmButton.SetActive(true);
     }
 
     public void EscolherAvoada()
@@ -99,8 +109,10 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
-
+        classTitleGameObj.GetComponent<Text>().text = "Avoada";
         classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado 'Não era pra ser' (Maior Sorte e status equilibrados) ";
+
+        confirmButton.SetActive(true);
     }
 
     public void ConfirmarDefinitivo()
