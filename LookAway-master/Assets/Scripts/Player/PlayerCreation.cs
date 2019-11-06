@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,11 @@ public class PlayerCreation : MonoBehaviour
     public GameObject informationStore;
     public GameObject classTitleGameObj;
     public GameObject classDescGameObj;
+
+    public GameObject classStartStats;
+    
+
+
     public GameObject confirmButton;
     private GameInformation informationAdd;
 
@@ -31,10 +37,12 @@ public class PlayerCreation : MonoBehaviour
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
          
-        classDescGameObj.GetComponent<Text>().text = classDesc; 
+        
+                                                    
+        
     }
 
     public void EscolherDestemida()
@@ -60,7 +68,7 @@ public class PlayerCreation : MonoBehaviour
         classTitleGameObj.GetComponent<Text>().text = "Destemida";
         classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propões a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
 
-        confirmButton.SetActive(true);
+        AtualizarHUDInfo();
     }
 
     public void EscolherCriativa()
@@ -86,7 +94,9 @@ public class PlayerCreation : MonoBehaviour
         classTitleGameObj.GetComponent<Text>().text = "Criativa";
         classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrado soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
 
-        confirmButton.SetActive(true);
+        AtualizarHUDInfo();
+
+        
     }
 
     public void EscolherAvoada()
@@ -110,9 +120,11 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
         classTitleGameObj.GetComponent<Text>().text = "Avoada";
-        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado 'Não era pra ser' (Maior Sorte e status equilibrados) ";
+        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado (Maior Sorte e status equilibrados) ";
 
-        confirmButton.SetActive(true);
+        AtualizarHUDInfo();
+
+        
     }
 
     public void ConfirmarDefinitivo()
@@ -123,4 +135,23 @@ public class PlayerCreation : MonoBehaviour
         SceneManager.LoadScene("mapa1");
     }
 
+    private void AtualizarHUDInfo()
+    {
+        classDescGameObj.GetComponent<Text>().text = classDesc;
+
+        classStartStats.GetComponent<Text>().text =
+            " Poder: " + GameInformation.Aila.Poder + " " +
+            " " +
+            " Imaginacao: " + GameInformation.Aila.Imaginacao + " " +
+            " " +
+            " Resistência: " + GameInformation.Aila.Resistencia + " " +
+            " " +
+            " Determinação: " + GameInformation.Aila.Determinacao + " " +
+            " " +
+            " Sorte: " + GameInformation.Aila.Sorte;
+
+        confirmButton.SetActive(true);
+        classStartStats.SetActive(true);
+
+    }
 }
