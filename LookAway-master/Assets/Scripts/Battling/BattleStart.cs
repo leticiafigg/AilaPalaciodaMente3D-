@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class BattleStart
 {
     private Inimigo inimstats;
@@ -82,7 +83,7 @@ public class BattleStart
     private void DeterminarVitalidade()
     {
         //determina a vitalidade do jogador sempre que uma batalha começa, para que esteja atualizada caso ela seja alterada por algum efeito qualquer nos status do jogador
-        PlayerMaxPV = statCalculations.CalcularPV(GameInformation.Aila.Determinacao);
+        PlayerMaxPV = statCalculations.CalcularPV(GameInformation.Aila.Resistencia);
         PlayerMaxPF = statCalculations.CalcularPF(GameInformation.Aila.Imaginacao);
         // A vitalidade dos inimigos é determinada quando são criados, acima ^
     }
