@@ -9,7 +9,7 @@ public class StatCalc
     private float determinacaoModifier = 0.2f; // 20%
     private float sorteModifier = 0.2f;
 
-    private BaseAction baseactionScript;
+    //private BaseAction baseactionScript;
 
     public enum StatType
     {
@@ -75,25 +75,25 @@ public class StatCalc
     }
 
 
-    public int GetActionAffinity(StatType statAff)
+    public float GetActionAffinity(StatType statAff)
     {
         float Affnitymodifier = 0.5f;
 
         if (statAff == StatType.PODER)
         {          
-            return  (int)(GameInformation.Aila.Poder * Affnitymodifier);
+            return  (GameInformation.Aila.Poder * Affnitymodifier);
         }
         if (statAff == StatType.IMAGINACAO)
         {    
-            return (int)(GameInformation.Aila.Imaginacao * Affnitymodifier);
+            return (GameInformation.Aila.Imaginacao * Affnitymodifier);
         }
         if (statAff == StatType.DETERMINACAO)
         {        
-           return  (int)(GameInformation.Aila.Determinacao * Affnitymodifier);
+           return  (GameInformation.Aila.Determinacao * Affnitymodifier);
         }
         if (statAff == StatType.SORTE)
         {
-            return  (int)(GameInformation.Aila.Sorte * Affnitymodifier);
+            return  (GameInformation.Aila.Sorte * Affnitymodifier);
         }
 
         return 1;

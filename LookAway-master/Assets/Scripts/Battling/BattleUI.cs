@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -19,6 +20,7 @@ public class BattleUI : MonoBehaviour
         NEUTRALDISPLAY,
         ATTACKSDISPLAY,
         FANTASYDISPLAY,
+        TARGETDISPLAY,  //Não apenas inicia o hud de escolha, como também exibe a descrição da ação selecionada
         ITEMDISPLAY,
 
     }
@@ -38,25 +40,34 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       if(BattleHandler.currentState != BattleHandler.BattleStates.PLAYERCHOICE || currentDisplay != ScreenDisplays.NEUTRALDISPLAY) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
-       {
-            panelActions.SetActive(false);
-       }
-       else if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.NEUTRALDISPLAY) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
-       {
-            panelActions.SetActive(true);
-       }
 
+        MainPanelHandle();     
+        
+    }
+
+    private void MainPanelHandle()
+    {
+        if (BattleHandler.currentState != BattleHandler.BattleStates.PLAYERCHOICE || currentDisplay != ScreenDisplays.NEUTRALDISPLAY) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
+        {
+            panelActions.SetActive(false);
+        }
+
+        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.NEUTRALDISPLAY) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
+        {
+            panelActions.SetActive(true);
+        }
     }
 
     public void showAttacks()
     {
         currentDisplay = ScreenDisplays.ATTACKSDISPLAY;
-
     }
 
+    public void showFantasia()
+    {
+        currentDisplay = ScreenDisplays.FANTASYDISPLAY;
 
-
+    }
 
     private void OnGUI()
     {
@@ -76,7 +87,7 @@ public class BattleUI : MonoBehaviour
             //colocar os cálculos de dano e o movimento que está sendo usado
             BattleHandler.playerUsedAction = GameInformation.playerActionUm;
 
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY; //cada botão volta ao display neutro quando pressionado
+            currentDisplay = ScreenDisplays.NEUTRALDISPLAY; 
 
             BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
         }

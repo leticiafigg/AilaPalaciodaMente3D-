@@ -16,7 +16,7 @@ public class BattleHandler : MonoBehaviour
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
 
     public static BaseAction playerUsedAction;
-
+    public static int statusEffectBaseDamage;
 
     private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
     private Inimigo inim1Stats;
@@ -119,7 +119,7 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.CALCDAMAGE):
                 Debug.Log("CALCULANDO DANO");
-                battleCalcScript.CalculateUsedPlayerActionDMG(playerUsedAction);
+                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
                
 
                 break;
