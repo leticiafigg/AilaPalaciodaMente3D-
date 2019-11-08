@@ -11,55 +11,41 @@ public class BattleCalculations
     private int actionPower;
     private int statusEffDmg;
     private int stunPower = 0;
-    private float totalActionPowerDMG;
+    
     
 
     private int totalActionDMG;
+    private int totalCriticalDMG;
+    private int totalEffectDMG;
     private float totalPlayerDMG; //agrega o valor de dano da ação com o efeito, só para deixar separado
     private int totalStunDMG; //stun é mais simples
 
-    private float dmgVariator = 0.05f; // 5%
+    private float dmgVariator = 0.025f; // 5%
 
     public void CalculateTotalPlayerDMG(BaseAction usedAction)
     {
         playerusedAction = usedAction;
         Debug.Log("Aila usou " + usedAction.ActionName);
-        //action dmg + crit - armor + statmod + equip
-        totalActionDMG = (int)CalculateActionDMG();
-
-        if (DecidirActionCriticalHit())
-        {
-            totalActionDMG = CalculateCriticalDMG();
-            totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
-            Debug.Log("Uau! Um golpe crítico!");
-        }
-
         
+        totalActionDMG = (int)CalculateActionDMG();
+        totalCriticalDMG = CalculateCriticalDMG();
+        totalEffectDMG = CalculateStatusEffectDMG();
 
-        totalPlayerDMG = totalActionDMG + CalculateStatusEffectDMG();
+        totalPlayerDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG; //Dano combinado do ataque em si, + o crítico, mais o status.
 
         totalPlayerDMG += (int)(Random.Range(-(totalPlayerDMG * dmgVariator), totalPlayerDMG * dmgVariator)); // adiciona uma variaçãod e 5% entre danos, afinal raramente um ataque de uma mesma pessoa causa exatamente o mesmo dano 
         Debug.Log("Causou " + totalPlayerDMG + " de dano total com o efeito");
+        BattleHandler.jogadorTerminouTurno = true;
 
         BattleHandler.currentState = BattleHandler.BattleStates.ENEMYCHOICE;
 
     }
 
-    public void CalculateUsedPlayerActionDMG()
-    {
-       
-        //usar uma ação
-        //calcular o dano
-        //checa status
-          //se tiver um status
-              //tentar acionar o feito
-              
-        //calcular total de dano com status juntos
-        
-    }
-
     private float CalculateActionDMG()
     {
+        float totalActionPowerDMG;
+
+
         actionPower = playerusedAction.ActionPower;
         stunPower = playerusedAction.StunPower;
        
@@ -81,16 +67,28 @@ public class BattleCalculations
     private int CalculateCriticalDMG()
     {
         int criticalDMG;
-              //O crítico causa 100% + uma porcentagem retirada da determinação de dano extra
-        criticalDMG = (int)(totalActionDMG + totalActionDMG + (totalActionDMG * (0.1f + (GameInformation.Aila.Determinacao * 0.1f) ) ) );
 
-        return criticalDMG;
+        if(DecidirActionCriticalHit())
+        {
+            //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
+            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (GameInformation.Aila.Determinacao * 0.1f))));
+            totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
+            Debug.Log("Uau! Um golpe crítico!");
+            return criticalDMG;
+        }
+
+        return 0;
+       
     }
 
     private bool DecidirActionCriticalHit()
     {
         int randomTemp = Random.Range(0, 100);
-        if(randomTemp <= playerusedAction.ActionCritChance)
+
+        //chance alterada pelo valor de Sorte do jogador = 10% da sorte;
+        int chanceModificada = (int)(playerusedAction.ActionCritChance + (GameInformation.Aila.Sorte * 0.1f));
+
+        if(randomTemp <= chanceModificada)
         {
             return true;
         }

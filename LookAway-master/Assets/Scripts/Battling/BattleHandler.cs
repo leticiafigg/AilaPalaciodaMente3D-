@@ -14,9 +14,13 @@ public class BattleHandler : MonoBehaviour
     private BattleCalculations battleCalcScript = new BattleCalculations();
     private BaseAction baseActscript = new BaseAction();
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
-
+    private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
+    
     public static BaseAction playerUsedAction;
     public static int statusEffectBaseDamage;
+    public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
+    public static bool jogadorTerminouTurno;
+    public static bool inimigoTerminouTurno;
 
     private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
     private Inimigo inim1Stats;
@@ -30,10 +34,8 @@ public class BattleHandler : MonoBehaviour
     private Inimigo inim3Stats;
     public GameObject inimigo3start;
 
-    private GameObject inimigodavez;
-
+    public List<Inimigo> inimStatsList;
    
-
 
     bool xprecebido;
     public int cd; //Classe de dificuldade
@@ -47,6 +49,7 @@ public class BattleHandler : MonoBehaviour
         PLAYERANIM,
         ENEMYCHOICE,
         ENEMYANIM,
+        ENDROUND,
         CALCDAMAGE,
         ADDSTATUSEFFECT,
         WIN,
@@ -60,7 +63,7 @@ public class BattleHandler : MonoBehaviour
     void Start()
     {
         xprecebido = false;
-        
+        totalRoundCounter = 1;
         SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
 
         currentState = BattleStates.START; 
@@ -71,18 +74,16 @@ public class BattleHandler : MonoBehaviour
     {
         Debug.Log(currentState);
 
-        switch(currentState){
+        switch (currentState) {
 
             case (BattleStates.START):
                 //Apresentar os inimigos, ativa o hud e tals
 
                 battleStartscript.PrepareBattle();
-               
 
                 break;
 
             case (BattleStates.PLAYERCHOICE):
-               
 
                 break;
 
@@ -91,45 +92,32 @@ public class BattleHandler : MonoBehaviour
                 break;
 
             case (BattleStates.ENEMYCHOICE):
-
-                /* inimigodavez = DecidirAtor();
-
-                 if (inimigodavez != null)
-                 {
-                     Debug.Log("Inimigo " + inimigodavez.name + " usou SPLASH!");
-                     currentState = BattleStates.ENEMYANIM;
-                 }
-                 else
-                 {
-                     currentState = BattleStates.PLAYERCHOICE;
-                 }*/
-
-                Debug.Log("Enemy choice Made");
-
-                currentState = BattleStates.PLAYERCHOICE;
-
+                //colocar IA aqui
+                battleStateEnemyChoicescript.EnemyCompleteTurn(inimStatsList);
+                
+                DecidirProximoAtor();
                 break;
 
             case (BattleStates.ENEMYANIM):
-                
                 //faz os paranaue de animar la
-
-               
                 break;
 
             case (BattleStates.CALCDAMAGE):
                 Debug.Log("CALCULANDO DANO");
                 battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
-               
-
+                DecidirProximoAtor();
                 break;
 
             case (BattleStates.ADDSTATUSEFFECT):
-
+                //Adicionar status no alvo, se houver algum
                 battleAddEffectscript.CheckActionStatus(playerUsedAction);
-              //Adicionar status no alvo, se houver algum
+                break;
 
-
+            case (BattleStates.ENDROUND):
+                totalRoundCounter += 1;
+                jogadorTerminouTurno = false;
+                inimigoTerminouTurno = false;
+                DecidirProximoAtor();
                 break;
 
             case (BattleStates.WIN):
@@ -138,34 +126,55 @@ public class BattleHandler : MonoBehaviour
                     IncreaseExperience.AddExperience(cd);
                     xprecebido = true;
                 }
-
                 SceneManager.LoadScene(cenaACarregar);
-
                 break;
 
             case (BattleStates.LOSE):
 
                 break;
         }
-        
-
-
     }
 
-    private GameObject DecidirAtor()
+    private void DecidirProximoAtor()
     {
-        if (!inim1Stats.agiu && inim1Stats != null)
+        if(jogadorTerminouTurno && !inimigoTerminouTurno)
         {
-            inim1Stats.agiu = true;
-            return inim1Stats.inimigoobj;
+            //Vez do inimigo
+            currentState = BattleStates.ENEMYCHOICE;
         }
-        else if (!inim2Stats.agiu && inim2Stats != null)
+        if(!jogadorTerminouTurno && inimigoTerminouTurno)
         {
-            inim2Stats.agiu = true;
-            return inim2Stats.inimigoobj;
+            //vez do jogador
+            currentState = BattleStates.PLAYERCHOICE;
         }
-        else
-        return null;
+        if(jogadorTerminouTurno && inimigoTerminouTurno)
+        {
+            //terminar a rodada
+            currentState = BattleStates.ENDROUND;
+            foreach (Inimigo inim in inimStatsList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
+            {
+                inim.agiu = false;
+            }
+
+        }
+
+        if(!jogadorTerminouTurno && !inimigoTerminouTurno)
+        {
+           foreach(Inimigo inim in inimStatsList)
+            {
+                if(GameInformation.Aila.Sorte >= inim.sorte)
+                {
+                    currentState = BattleStates.PLAYERCHOICE;
+                }
+                else
+                {
+                    currentState = BattleStates.ENEMYCHOICE;
+                }
+
+            }
+
+        }
+
     }
 
     private void SetEnemies()
@@ -189,46 +198,16 @@ public class BattleHandler : MonoBehaviour
             inim2Stats = inims[1].GetComponent<Inimigo>();
             inim3Stats = inims[2].GetComponent<Inimigo>();
 
-          
+            inimStatsList.Add(inim1Stats);
+            inimStatsList.Add(inim2Stats);
+            inimStatsList.Add(inim3Stats);
         }
         
     }
-
-   
-    /*
-    public void Ataque()
-    {
-        if (currentState == BattleStates.PLAYERCHOICE)
-        {
-            Inimigo alvo;
-
-            if (inim1Stats.hpatual >= 0)
-            {
-                alvo = inim1Stats;
-            }
-            else
-            {
-                alvo = inim2Stats;
-            }
-
-            alvo.TakeDamage(20);
-
-            if(inim1Stats.derrotado && inim2Stats.derrotado)
-            {
-                currentState = BattleStates.WIN;
-
-            }
-
-
-            currentState = BattleStates.ENEMYCHOICE;
-        }
-    } */
-
+  
     public void Fuga()
     {
-
         SceneManager.LoadScene(GameInformation.LastScene);
-
     }
     
 

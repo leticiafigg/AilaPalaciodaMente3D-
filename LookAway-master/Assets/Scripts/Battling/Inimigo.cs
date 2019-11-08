@@ -22,9 +22,20 @@ public class Inimigo : MonoBehaviour
     public int sorte;
     
     public bool agiu;
+    public bool atordoado;
     public bool derrotado;
 
+    public enum EnemyState
+    {
+        BEM,
+        AGRESSIVO,
+        MORRENDO
+    }
+
+    private EnemyState estadoAtual;
+
     public GameObject inimigoobj;
+     
 
     public int EnemyLevel
     {
@@ -32,7 +43,11 @@ public class Inimigo : MonoBehaviour
         set { enemylvl = value; }
     }
 
-
+    public EnemyState EstadoAtual
+    {
+        get { return estadoAtual; }
+        set { estadoAtual = value; }
+    }
 
     private void Start()
     {
@@ -50,6 +65,23 @@ public class Inimigo : MonoBehaviour
       {
             Destroy(inimigoobj);  
       }
+
+
+      if(this.hpatual <= this.totalHp/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
+      {
+            this.EstadoAtual = EnemyState.AGRESSIVO;
+
+            if (this.hpatual <= this.totalHp / 4)
+            {
+                this.EstadoAtual = EnemyState.MORRENDO;
+            }
+      }
+      else
+      {
+            this.EstadoAtual = EnemyState.BEM;
+      }
+      
+
     }
 
     public void TakeDamage(int dmg)

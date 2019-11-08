@@ -100,6 +100,7 @@ MonoBehaviour:
   determinacao: 3
   armadura: 2
   sorte: 1
-  agiu: 1
-  derrotado: 1
+  agiu: 0
+  derrotado: 0
   inimigoobj: {fileID: 2543504585326729937}
+  enemyactions: []
