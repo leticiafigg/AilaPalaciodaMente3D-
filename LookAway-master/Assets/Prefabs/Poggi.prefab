@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c650bfbaec53e42b22f94debacc7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHp: 0
+  totalHp: 8
   totalSP: 0
   hpatual: 0
   maxlvl: 5
@@ -103,3 +103,4 @@ MonoBehaviour:
   agiu: 0
   derrotado: 0
   inimigoobj: {fileID: 7794726186957210736}
+  enemyactions: []

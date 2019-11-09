@@ -176,7 +176,7 @@ public class MoveChanPhisical : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.position.y + 0.5f > transform.position.y)
+        if (collision.transform.position.y + 0.5f > transform.position.y && collision.gameObject.tag == "Grabbable")
         {
             if (!closeThing)
             {

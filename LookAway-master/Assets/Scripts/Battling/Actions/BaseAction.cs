@@ -10,6 +10,7 @@ public class BaseAction
     private int actionPower; //Número a ser escalonado posteriormente, dependendo do status associado e seu efeito (Ex: Dano a ser causado)
     private int stunPower;
     private int actionCost; //Custo de recurso para o utilizador, tornar 0 caso não tenha custo.
+    private int actionCritChance; //Chance de 0 a 100 de causar um dano crítico. 
     private List<BaseStatusEffect> actionEffects = new List<BaseStatusEffect>();
     
 
@@ -54,6 +55,12 @@ public class BaseAction
     {
         get { return actionCost; }
         set { actionCost = value; }
+    }
+
+    public int ActionCritChance
+    {
+        get { return actionCritChance; }
+        set { actionCritChance = value; }
     }
 
     public List<BaseStatusEffect> ActionEffects

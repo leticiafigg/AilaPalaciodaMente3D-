@@ -11,6 +11,7 @@ public class AttackAction : BaseAction
         ActionPower= 10 ;
         StunPower = 10 ;
         ActionCost = 0;
+        ActionCritChance = 30;
 
         StatAffinity = StatCalc.StatType.PODER; 
 
