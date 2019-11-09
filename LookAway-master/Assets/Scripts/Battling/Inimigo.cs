@@ -17,6 +17,7 @@ public class Inimigo : MonoBehaviour
     public int maxlvl;     //Status gerais (Exceto a Armadura) mudarão de acordo com o nível do inimigo,
     public int poder;      // - mas serão baseados numa predefinição dada no prefab, para facilitar implementação
     public int imaginacao;
+    public int resistencia;
     public int determinacao;
     public int armadura;   // A armadura é específica para cada tipo de inimigo
     public int sorte;

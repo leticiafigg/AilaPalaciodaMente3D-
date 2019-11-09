@@ -8,7 +8,7 @@ public class BattleStateEnemyChoice
     public BaseAction acaoDoInimigo;
     private int inimIndex;
 
-    private Inimigo inimigodavez;
+    
 
 
     public void EnemyCompleteTurn(List<Inimigo> inimList)
@@ -32,14 +32,16 @@ public class BattleStateEnemyChoice
         //escolher uma ação
         if (inimIndex < inimList.Count)
         {
-            inimigodavez = inimList[inimIndex];
+            BattleHandler.inimigodavez = inimList[inimIndex]; //Salva o inimigo que vai agir em "inimigodavez" do BattleHandler, o script central, que vai por sua vez mandar os status do inimigo junto com a ação escolhida 
 
-            if (!inimigodavez.atordoado)
+            if (!BattleHandler.inimigodavez.atordoado) //Apenas vai escolher uma ação se não estiver atordoado. Se estiver, não faz nada
             {
-                acaoDoInimigo = enemyActionChooseScript.ChooseEnemyAction(inimigodavez);
+                acaoDoInimigo = enemyActionChooseScript.ChooseEnemyAction(BattleHandler.inimigodavez);
+                BattleHandler.enemyUsedAction = acaoDoInimigo;
             }
         }
         //calcular dano
+        BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;
         //fim de turno
 
         

@@ -17,6 +17,9 @@ public class BattleHandler : MonoBehaviour
     private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
     
     public static BaseAction playerUsedAction;
+    public static BaseAction enemyUsedAction;
+    public static Inimigo inimigodavez;
+
     public static int statusEffectBaseDamage;
     public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
     public static bool jogadorTerminouTurno;
@@ -35,7 +38,7 @@ public class BattleHandler : MonoBehaviour
     public GameObject inimigo3start;
 
     public List<Inimigo> inimStatsList;
-   
+    
 
     bool xprecebido;
     public int cd; //Classe de dificuldade
@@ -58,7 +61,7 @@ public class BattleHandler : MonoBehaviour
     }
 
     public static BattleStates currentState;
-
+    public static BattleStates currentActor; //uma instância de BattleStates apenas para armazenar quem está agindo
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +87,7 @@ public class BattleHandler : MonoBehaviour
                 break;
 
             case (BattleStates.PLAYERCHOICE):
-
+                currentActor = BattleStates.PLAYERCHOICE; //armazenando que o ator é o jogador
                 break;
 
             case (BattleStates.PLAYERANIM):
@@ -93,9 +96,11 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.ENEMYCHOICE):
                 //colocar IA aqui
+                currentActor = BattleStates.ENEMYCHOICE;
+
                 battleStateEnemyChoicescript.EnemyCompleteTurn(inimStatsList);
                 
-                DecidirProximoAtor();
+                //DecidirProximoAtor();
                 break;
 
             case (BattleStates.ENEMYANIM):
@@ -104,7 +109,12 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.CALCDAMAGE):
                 Debug.Log("CALCULANDO DANO");
+                if(currentActor == BattleStates.PLAYERCHOICE)
                 battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
+
+                if(currentActor == BattleStates.ENEMYCHOICE)
+                battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction , inimigodavez);
+
                 DecidirProximoAtor();
                 break;
 

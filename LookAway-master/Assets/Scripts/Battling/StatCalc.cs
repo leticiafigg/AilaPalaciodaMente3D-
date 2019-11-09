@@ -16,6 +16,7 @@ public class StatCalc
         PODER,
         IMAGINACAO,
         DETERMINACAO,
+        RESISTENCIA,
         SORTE
     }
 
@@ -77,7 +78,7 @@ public class StatCalc
 
     public float GetActionAffinity(StatType statAff)
     {
-        float Affnitymodifier = 0.5f;
+        float Affnitymodifier = 0.6f;
 
         if (statAff == StatType.PODER)
         {          
@@ -98,5 +99,33 @@ public class StatCalc
 
         return 1;
     }
-    
+
+    public float GetEnemyActionAffinity(StatType statAff , Inimigo inim)
+    {
+        float Affnitymodifier = 0.20f;
+
+        if (statAff == StatType.PODER)
+        {
+            return (inim.poder * Affnitymodifier);
+        }
+        if (statAff == StatType.IMAGINACAO)
+        {
+            return (inim.imaginacao * Affnitymodifier);
+        }
+        if(statAff == StatType.RESISTENCIA)
+        {
+            return (inim.resistencia * Affnitymodifier);
+        }
+        if (statAff == StatType.DETERMINACAO)
+        {
+            return (inim.determinacao * Affnitymodifier);
+        }
+        if (statAff == StatType.SORTE)
+        {
+            return (inim.sorte * Affnitymodifier);
+        }
+
+        return 1;
+    }
+
 }
