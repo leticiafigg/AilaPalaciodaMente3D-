@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class BattleUI : MonoBehaviour
 {
-    //Ernergia, recurso usado para algumas ações
     private BaseAction standbyAction;
     private bool pressedBtn;
     private KeyCode pressedKey;
@@ -81,44 +80,42 @@ public class BattleUI : MonoBehaviour
 
     private void TargetDisplayHandle()
     {
-        
+        //Ativar painéis relevantes e desativar os irrelevantes
         cursorUI.Cursor.SetActive(true);
         panelConfirmAttack.SetActive(true);
+        panelActions.SetActive(false);
 
         //procurar o que o jogador está pressionando
-        
+
             if (Input.GetKeyDown(KeyCode.A))
             {
               pressedBtn = true;
             }
             if (Input.GetKeyUp(KeyCode.A) && pressedBtn)
             {
-                    inimigoAlvo = cursorUI.SelecionarInimigo(KeyCode.A);
+                    cursorUI.SelecionarInimigo(KeyCode.A);
                     pressedBtn = false;
             }
-            else if(Input.GetKeyDown(KeyCode.D))
+
+            if (Input.GetKeyDown(KeyCode.D))
             {
-               pressedBtn = true;
+                   pressedBtn = true;
             }
             if (Input.GetKeyUp(KeyCode.D) && pressedBtn)
             {
-                inimigoAlvo = cursorUI.SelecionarInimigo(KeyCode.D);
-                pressedBtn = false;
-            }
-
-
-        //Atualizar o alvo
-
-
-        //Desativar painéis não utilizados
-        panelActions.SetActive(false);
+                    cursorUI.SelecionarInimigo(KeyCode.D);
+                    pressedBtn = false;
+            }  
     }
 
     public void ConfirmaAtaque()
     {
         currentDisplay = ScreenDisplays.NEUTRALDISPLAY; //depois de confirmar um ataque, vamos direto ao calculo de dano e voltamos ao display neutro
 
-        BattleHandler.playerUsedAction = standbyAction;
+        inimigoAlvo = cursorUI.RetornarAlvo();          //adquire o status do inimigo destacado no momento da confirmação 
+
+        BattleHandler.playerUsedAction = standbyAction; //ação selecionada durante o showattacks
+
         BattleHandler.inimAlvo = inimigoAlvo;
         BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
 
@@ -126,8 +123,8 @@ public class BattleUI : MonoBehaviour
 
     public void showAttacks()
     {
-        currentDisplay = ScreenDisplays.ATTACKSDISPLAY;
-    } //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
+        currentDisplay = ScreenDisplays.ATTACKSDISPLAY; //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
+    } 
 
     public void showFantasia()
     {
@@ -146,7 +143,7 @@ public class BattleUI : MonoBehaviour
 
     }
 
-    public void PlayerAttackDisplay() //cria os botõe em GUI de movimentos que o jogador pode usar
+    public void PlayerAttackDisplay() //cria os botões em GUI de movimentos que o jogador pode usar
     {
         if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX , panelActions.transform.position.y + adjustY, 75, 30), GameInformation.playerActionUm.ActionName))
         {

@@ -44,7 +44,7 @@ public class BattleCalculations
 
         totalPlayerDMG = calculateEnemyResistance(inimAlvo);
 
-        inimAlvo.TakeDamage((int)totalPlayerDMG); //Chama o método de tomar dnao dentro do script do inimigo alvo
+        inimAlvo.TakeDamage((int)totalPlayerDMG , totalStunDMG); //Chama o método de tomar dano dentro do script do inimigo alvo
 
         BattleHandler.jogadorTerminouTurno = true;
     }
@@ -60,11 +60,15 @@ public class BattleCalculations
 
         totalEnemyDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG;
 
+        totalEnemyDMG = calculatePlayerResistance();
+
         if(DecidirEvasion())
         {
             totalEnemyDMG = 0;
             Debug.Log("Desviou!");
         }
+
+        GameInformation.AilaPVatual -= (int)totalEnemyDMG;
 
     }
 
@@ -93,7 +97,7 @@ public class BattleCalculations
         stunPower = 0;
 
         //ações possuem uma afinidade com algum status, o qual torna o movimento mais poderoso quanto maior for o valor
-        totalActionPowerDMG = actionPower * (statCalcScript.GetEnemyActionAffinity(enemyusedAction.StatAffinity, inimigoAgindo));
+        totalActionPowerDMG = actionPower * (statCalcScript.GetEnemyActionAffinity(enemyusedAction.StatAffinity, inimigoAgindo) * 0.8f);
 
         totalStunDMG = 0;
 
@@ -191,4 +195,18 @@ public class BattleCalculations
         return resistedDMG;
     
    }
+
+    private float calculatePlayerResistance()
+    {
+        float resistedDMG = 0.0f;
+
+        resistedDMG = totalEnemyDMG - (int)((GameInformation.Aila.Determinacao * 0.25) + (GameInformation.Aila.Resistencia * 0.5) + GameInformation.Aila.Armadura);
+        Debug.Log("Dano que o jogador recebeu depois da defesa " + resistedDMG);
+
+        if (resistedDMG <= 0)
+            resistedDMG = 0;
+
+        return resistedDMG;
+
+    }
 }

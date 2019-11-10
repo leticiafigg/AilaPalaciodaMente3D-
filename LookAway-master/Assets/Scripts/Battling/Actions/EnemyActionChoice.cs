@@ -22,7 +22,7 @@ public class EnemyActionChoice
         }
 
         inim.Agiu = true;
-        Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
+       //Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
         return AcaoEscolhida;
     }
 }

@@ -22,7 +22,7 @@ public class Inimigo : MonoBehaviour
     public int armadura;   // A armadura é específica para cada tipo de inimigo
     public int sorte;
 
-    public int PosInArray; //O próprio Inimigo salva a sua posição no array criado com BattleHandler>BattleStart
+    public int PosInList; //O próprio Inimigo salva a sua posição no array criado com BattleHandler>BattleStart
 
     private bool agiu;
     private bool atordoado;
@@ -38,9 +38,6 @@ public class Inimigo : MonoBehaviour
     }
 
     private EnemyState estadoAtual;
-
-    
-     
 
     public int EnemyLevel
     {
@@ -78,13 +75,27 @@ public class Inimigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(pvAtual <= 0 && !derrotado)
-      {
-            BattleHandler.inimStatsList.RemoveAt(this.PosInArray); // quando morre é retirado da lista(por precaução) e também destrói o gameobject
-            derrotado = true;
-            Destroy(inimigoobj);  
+        if (this.pvAtual <= 0 && !derrotado)
+        {
 
-      }
+            if (BattleHandler.inimigosList.Count > 0)
+            {
+                BattleHandler.inimigosList.Remove(this); // quando morre é retirado da lista(por precaução) e também destrói o gameobject
+                BattleHandler.inimObjList.Remove(this.gameObject);
+            }
+
+            derrotado = true;
+
+            if(BattleHandler.inimigosList.Count == 0)  //Toda vez que um inimigo morrer ele checa se há outro inimigo na lista, e se ela estiver vazia, o jogador venceu
+            {
+                BattleHandler.currentState = BattleHandler.BattleStates.WIN;
+            }
+
+            Destroy(inimigoobj); 
+            
+            
+
+        }
 
 
       if(this.pvAtual <= this.pvTotal/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
@@ -107,5 +118,12 @@ public class Inimigo : MonoBehaviour
     public void TakeDamage(int dmg)
     {
        pvAtual = pvAtual - dmg; 
+    }
+
+    public void TakeDamage(int dmg , int stun)
+    {
+        pvAtual = pvAtual - dmg;
+
+        stunAtual = stunAtual + stun;
     }
 }

@@ -34,7 +34,7 @@ public class BattleStart
             if(inimigos[i].GetComponent<Inimigo>() != null)
             {
                 inimstats = inimigos[i].GetComponent<Inimigo>();
-                inimstats.PosInArray = i;
+                inimstats.PosInList = i;
 
                 CreateNewEnemy();
                 
@@ -65,7 +65,9 @@ public class BattleStart
         inimstats.determinacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
         inimstats.sorte = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
         inimstats.pvTotal = statCalculations.CalcularPV(inimstats.determinacao);
-        inimstats.pvAtual = inimstats.pvTotal;   
+        inimstats.pvAtual = inimstats.pvTotal;
+        inimstats.stunTotal = 100;
+        inimstats.stunAtual = 0;
 
     }
 

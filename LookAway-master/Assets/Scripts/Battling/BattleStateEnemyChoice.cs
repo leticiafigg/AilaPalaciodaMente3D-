@@ -15,9 +15,9 @@ public class BattleStateEnemyChoice
     {
         inimIndex = 0; //sempre reseta para o primeiro, porém ...
 
-        if (BattleHandler.inimStatsList.Count > 0)
+        if (BattleHandler.inimigosList.Count > 0)
         {
-            foreach (Inimigo inimstat in BattleHandler.inimStatsList)
+            foreach (Inimigo inimstat in BattleHandler.inimigosList)
             {
                 if (inimstat.Agiu)
                 {
@@ -32,9 +32,9 @@ public class BattleStateEnemyChoice
                 }
             }
             //escolher uma ação
-            if (inimIndex < BattleHandler.inimStatsList.Count)
+            if (inimIndex < BattleHandler.inimigosList.Count)
             {
-                BattleHandler.inimigodavez = BattleHandler.inimStatsList[inimIndex]; //Salva o inimigo que vai agir em "inimigodavez" do BattleHandler, o script central, que vai por sua vez mandar os status do inimigo junto com a ação escolhida 
+                BattleHandler.inimigodavez = BattleHandler.inimigosList[inimIndex]; //Salva o inimigo que vai agir em "inimigodavez" do BattleHandler, o script central, que vai por sua vez mandar os status do inimigo junto com a ação escolhida 
 
                 if (!BattleHandler.inimigodavez.Atordoado) //Apenas vai escolher uma ação se não estiver atordoado. Se estiver, não faz nada
                 {
