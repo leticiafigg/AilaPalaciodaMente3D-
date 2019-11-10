@@ -15,10 +15,11 @@ public class BattleHandler : MonoBehaviour
     private BaseAction baseActscript = new BaseAction();
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
     private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
-    
+
     public static BaseAction playerUsedAction;
     public static BaseAction enemyUsedAction;
     public static Inimigo inimigodavez;
+    public static List<Inimigo> inimStatsList;
 
     public static int statusEffectBaseDamage;
     public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
@@ -37,7 +38,7 @@ public class BattleHandler : MonoBehaviour
     private Inimigo inim3Stats;
     public GameObject inimigo3start;
 
-    public List<Inimigo> inimStatsList;
+    
     
 
     bool xprecebido;
@@ -65,6 +66,7 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inimStatsList = new List<Inimigo>(0);
         xprecebido = false;
         totalRoundCounter = 1;
         SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
@@ -98,7 +100,7 @@ public class BattleHandler : MonoBehaviour
                 //colocar IA aqui
                 currentActor = BattleStates.ENEMYCHOICE;
 
-                battleStateEnemyChoicescript.EnemyCompleteTurn(inimStatsList);
+                battleStateEnemyChoicescript.EnemyCompleteTurn();
                 
                 //DecidirProximoAtor();
                 break;
@@ -163,7 +165,7 @@ public class BattleHandler : MonoBehaviour
             currentState = BattleStates.ENDROUND;
             foreach (Inimigo inim in inimStatsList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
             {
-                inim.agiu = false;
+                inim.Agiu = false;
             }
 
         }
@@ -194,25 +196,25 @@ public class BattleHandler : MonoBehaviour
 
         if (inims != null)
         {
+            GameObject[] inimSave= new GameObject[3];
 
+            inimSave[0] = Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity);
+            inimSave[1] = Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity);
+            inimSave[2] = Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity);
 
-            Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity);
-            Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity);
-            Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity);
-
-          //  myPrefabA.transform.position = inimigo1start.transform.position;
-          //  myPrefabB.transform.position = inimigo2start.transform.position;
-          //  myPrefabC.transform.position = inimigo3start.transform.position;
-
-            inim1Stats = inims[0].GetComponent<Inimigo>();
-            inim2Stats = inims[1].GetComponent<Inimigo>();
-            inim3Stats = inims[2].GetComponent<Inimigo>();
+            inim1Stats = inimSave[0].GetComponent<Inimigo>();
+            inim2Stats = inimSave[1].GetComponent<Inimigo>();
+            inim3Stats = inimSave[2].GetComponent<Inimigo>();
 
             inimStatsList.Add(inim1Stats);
             inimStatsList.Add(inim2Stats);
             inimStatsList.Add(inim3Stats);
+
+            BattleUICursor.SetCursorEnemies(inimSave);
         }
         
+        
+
     }
   
     public void Fuga()

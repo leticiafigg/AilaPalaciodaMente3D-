@@ -34,7 +34,8 @@ public class BattleStart
             if(inimigos[i].GetComponent<Inimigo>() != null)
             {
                 inimstats = inimigos[i].GetComponent<Inimigo>();
-                
+                inimstats.PosInArray = i;
+
                 CreateNewEnemy();
                 
                 
@@ -63,8 +64,9 @@ public class BattleStart
         inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
         inimstats.determinacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
         inimstats.sorte = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
-        inimstats.totalHp = statCalculations.CalcularPV(inimstats.determinacao);
-        inimstats.hpatual = inimstats.totalHp;
+        inimstats.pvTotal = statCalculations.CalcularPV(inimstats.determinacao);
+        inimstats.pvAtual = inimstats.pvTotal;   
+
     }
 
     public void EscolherOPrimeiro() 

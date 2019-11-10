@@ -8,10 +8,10 @@ public class Inimigo : MonoBehaviour
     private string Nome;
     
 
-    public int totalHp; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
-    public int totalSP;
-    public int hpatual;
-    private int spatual;
+    public int pvTotal; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
+    public int stunTotal;
+    public int pvAtual;
+    public int stunAtual;
 
     private int enemylvl;
     public int maxlvl;     //Status gerais (Exceto a Armadura) mudarão de acordo com o nível do inimigo,
@@ -21,10 +21,14 @@ public class Inimigo : MonoBehaviour
     public int determinacao;
     public int armadura;   // A armadura é específica para cada tipo de inimigo
     public int sorte;
-    
-    public bool agiu;
-    public bool atordoado;
+
+    public int PosInArray; //O próprio Inimigo salva a sua posição no array criado com BattleHandler>BattleStart
+
+    private bool agiu;
+    private bool atordoado;
     public bool derrotado;
+
+    public GameObject inimigoobj;
 
     public enum EnemyState
     {
@@ -35,7 +39,7 @@ public class Inimigo : MonoBehaviour
 
     private EnemyState estadoAtual;
 
-    public GameObject inimigoobj;
+    
      
 
     public int EnemyLevel
@@ -50,29 +54,44 @@ public class Inimigo : MonoBehaviour
         set { estadoAtual = value; }
     }
 
+    public bool Agiu
+    {
+        get { return agiu; }
+        set { agiu = value; }
+    }
+
+    public bool Atordoado
+    {
+        get { return atordoado; }
+        set { atordoado = value; }
+    }
+
     private void Start()
     {
         Nome = inimigoobj.name;
         agiu = false;
         derrotado = false;
-        hpatual = totalHp;
-        spatual = totalSP;
+        pvAtual = pvTotal;
+        stunAtual = stunTotal;
     } 
 
     // Update is called once per frame
     void Update()
     {
-      if(hpatual <= 0)
+      if(pvAtual <= 0 && !derrotado)
       {
+            BattleHandler.inimStatsList.RemoveAt(this.PosInArray); // quando morre é retirado da lista(por precaução) e também destrói o gameobject
+            derrotado = true;
             Destroy(inimigoobj);  
+
       }
 
 
-      if(this.hpatual <= this.totalHp/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
+      if(this.pvAtual <= this.pvTotal/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
       {
             this.EstadoAtual = EnemyState.AGRESSIVO;
 
-            if (this.hpatual <= this.totalHp / 4)
+            if (this.pvAtual <= this.pvTotal / 4)
             {
                 this.EstadoAtual = EnemyState.MORRENDO;
             }
@@ -87,7 +106,7 @@ public class Inimigo : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-       hpatual = hpatual - (int)(dmg - ((determinacao * 0.5 ) + armadura) ); //O dano é reduzido por metade da determinação , mais a armadura
+       pvAtual = pvAtual - (int)(dmg - ((determinacao * 0.5 ) + armadura) ); //O dano é reduzido por metade da determinação , mais a armadura
         derrotado = true;
     }
 }

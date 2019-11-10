@@ -12,6 +12,7 @@ public class BattleUI : MonoBehaviour
     private int playerPE; //Ernergia, recurso usado para algumas ações
     
     public GameObject panelActions;
+    public BattleUICursor cursorUI;
     public int adjustX = 0;
     public int adjustY = 0;
 
@@ -40,9 +41,7 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        MainPanelHandle();     
-        
+        MainPanelHandle();       
     }
 
     private void MainPanelHandle()
