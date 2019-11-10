@@ -18,11 +18,13 @@ public class BattleHandler : MonoBehaviour
 
     public static BaseAction playerUsedAction;
     public static BaseAction enemyUsedAction;
+    public static Inimigo inimAlvo;
     public static Inimigo inimigodavez;
     public static List<Inimigo> inimStatsList;
 
     public static int statusEffectBaseDamage;
     public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
+
     public static bool jogadorTerminouTurno;
     public static bool inimigoTerminouTurno;
 
@@ -38,7 +40,7 @@ public class BattleHandler : MonoBehaviour
     private Inimigo inim3Stats;
     public GameObject inimigo3start;
 
-    
+
     
 
     bool xprecebido;
@@ -67,6 +69,7 @@ public class BattleHandler : MonoBehaviour
     void Start()
     {
         inimStatsList = new List<Inimigo>(0);
+        
         xprecebido = false;
         totalRoundCounter = 1;
         SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
@@ -111,8 +114,8 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.CALCDAMAGE):
                 Debug.Log("CALCULANDO DANO");
-                if(currentActor == BattleStates.PLAYERCHOICE)
-                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
+                if(currentActor == BattleStates.PLAYERCHOICE ) //se é o turno do jogador e ele escolheu alguma ação
+                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction , inimAlvo);
 
                 if(currentActor == BattleStates.ENEMYCHOICE)
                 battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction , inimigodavez);
@@ -127,6 +130,8 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.ENDROUND):
                 totalRoundCounter += 1;
+
+              
                 jogadorTerminouTurno = false;
                 inimigoTerminouTurno = false;
                 DecidirProximoAtor();

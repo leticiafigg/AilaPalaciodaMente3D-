@@ -106,7 +106,6 @@ public class Inimigo : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-       pvAtual = pvAtual - (int)(dmg - ((determinacao * 0.5 ) + armadura) ); //O dano é reduzido por metade da determinação , mais a armadura
-        derrotado = true;
+       pvAtual = pvAtual - dmg; 
     }
 }

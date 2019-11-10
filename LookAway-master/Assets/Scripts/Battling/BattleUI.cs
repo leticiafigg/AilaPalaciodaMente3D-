@@ -6,12 +6,15 @@ using UnityEngine.UIElements;
 
 public class BattleUI : MonoBehaviour
 {
-    private string playerName;
-    private int playerLvl;
-    private int playerPV;
-    private int playerPE; //Ernergia, recurso usado para algumas ações
-    
+    //Ernergia, recurso usado para algumas ações
+    private BaseAction standbyAction;
+    private bool pressedBtn;
+    private KeyCode pressedKey;
+
+    public static Inimigo inimigoAlvo;
+
     public GameObject panelActions;
+    public GameObject panelConfirmAttack;
     public BattleUICursor cursorUI;
     public int adjustX = 0;
     public int adjustY = 0;
@@ -32,35 +35,99 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerName = GameInformation.Aila.PlayerName;
-        playerLvl = GameInformation.Aila.PlayerLevel;
+        //playerName = GameInformation.Aila.PlayerName;
+        // playerLvl = GameInformation.Aila.PlayerLevel;
+        pressedBtn = false;
         currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
         //playerPV 
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        MainPanelHandle();       
+    { 
+        switch(currentDisplay)
+        {
+            case (ScreenDisplays.NEUTRALDISPLAY):
+
+                NeutralDisplayHandle();
+
+                break;
+
+            case (ScreenDisplays.TARGETDISPLAY):
+
+                TargetDisplayHandle();
+
+                break;
+
+        }
     }
 
-    private void MainPanelHandle()
+    private void NeutralDisplayHandle()
     {
-        if (BattleHandler.currentState != BattleHandler.BattleStates.PLAYERCHOICE || currentDisplay != ScreenDisplays.NEUTRALDISPLAY) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
+        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE) //caso o display seja do menu neutro, *E* estamos no estado "escolha do jogador" ativa o painel neutro
+        {
+            panelActions.SetActive(true);
+        }
+        else
         {
             panelActions.SetActive(false);
         }
 
-        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.NEUTRALDISPLAY) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
-        {
-            panelActions.SetActive(true);
-        }
+        //desativar todos os outros painéis irrelevantes
+
+        cursorUI.Cursor.SetActive(false);
+        panelConfirmAttack.SetActive(false);
+    }
+
+    private void TargetDisplayHandle()
+    {
+        
+        cursorUI.Cursor.SetActive(true);
+        panelConfirmAttack.SetActive(true);
+
+        //procurar o que o jogador está pressionando
+        
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+              pressedBtn = true;
+            }
+            if (Input.GetKeyUp(KeyCode.A) && pressedBtn)
+            {
+                    inimigoAlvo = cursorUI.SelecionarInimigo(KeyCode.A);
+                    pressedBtn = false;
+            }
+            else if(Input.GetKeyDown(KeyCode.D))
+            {
+               pressedBtn = true;
+            }
+            if (Input.GetKeyUp(KeyCode.D) && pressedBtn)
+            {
+                inimigoAlvo = cursorUI.SelecionarInimigo(KeyCode.D);
+                pressedBtn = false;
+            }
+
+
+        //Atualizar o alvo
+
+
+        //Desativar painéis não utilizados
+        panelActions.SetActive(false);
+    }
+
+    public void ConfirmaAtaque()
+    {
+        currentDisplay = ScreenDisplays.NEUTRALDISPLAY; //depois de confirmar um ataque, vamos direto ao calculo de dano e voltamos ao display neutro
+
+        BattleHandler.playerUsedAction = standbyAction;
+        BattleHandler.inimAlvo = inimigoAlvo;
+        BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+
     }
 
     public void showAttacks()
     {
         currentDisplay = ScreenDisplays.ATTACKSDISPLAY;
-    }
+    } //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
 
     public void showFantasia()
     {
@@ -84,31 +151,27 @@ public class BattleUI : MonoBehaviour
         if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX , panelActions.transform.position.y + adjustY, 75, 30), GameInformation.playerActionUm.ActionName))
         {
             //colocar os cálculos de dano e o movimento que está sendo usado
-            BattleHandler.playerUsedAction = GameInformation.playerActionUm;
+            standbyAction = GameInformation.playerActionUm;
 
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY; 
+            currentDisplay = ScreenDisplays.TARGETDISPLAY; 
 
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+            
         }
 
         if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
         {
             //colocar os cálculos de dano aqui
-            BattleHandler.playerUsedAction = GameInformation.playerActionDois;
+            standbyAction = GameInformation.playerActionDois;
 
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+            currentDisplay = ScreenDisplays.TARGETDISPLAY;
         }
 
         if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 100, 75, 30), GameInformation.playerActionTres.ActionName))
         {
             //colocar os cálculos de dano aqui
-            BattleHandler.playerUsedAction = GameInformation.playerActionTres;
+            standbyAction = GameInformation.playerActionTres;
 
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+            currentDisplay = ScreenDisplays.TARGETDISPLAY;    
         }
 
         if (GUI.Button(new Rect(Screen.width -1000, Screen.height - 50, 45, 45),"Volta"))
@@ -118,4 +181,7 @@ public class BattleUI : MonoBehaviour
             currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
         }
     }
+
+  
+
 }

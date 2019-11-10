@@ -16,22 +16,32 @@ public class BattleUICursor : MonoBehaviour
     private float stunInimMax;
     private float stunInimMin;
 
-    private static GameObject inimDestacado;
+    private static int destaqueIndex;
+
+    public  static  GameObject   inimDestacado;
     public  static List<Inimigo> inimListados;
-    public  static GameObject[] inimsFabricados;
-    //public static GameObject[] inimigosCriados;
+    public  static GameObject[]  inimsFabricados;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        destaqueIndex = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //atualiza os valores máximos e atuais
+       
+        if (destaqueIndex < inimsFabricados.Length && destaqueIndex >= 0)
+        {
+            inimDestacado = inimsFabricados[destaqueIndex];
+        }
+        else
+        {
+            destaqueIndex = 0;
+        }
 
+        //atualiza os valores máximos e atuais
         sliderInimPvObj.GetComponent<Slider>().minValue = 0;
         sliderInimPvObj.GetComponent<Slider>().maxValue = inimDestacado.GetComponent<Inimigo>().pvTotal;
 
@@ -43,7 +53,9 @@ public class BattleUICursor : MonoBehaviour
         sliderInimPvObj.GetComponent<Slider>().value = inimDestacado.GetComponent<Inimigo>().pvAtual;
         sliderInimStunObj.GetComponent<Slider>().value = inimDestacado.GetComponent<Inimigo>().stunAtual;
 
-        Cursor.transform.SetParent(inimDestacado.transform);
+        Cursor.transform.SetParent(inimDestacado.transform, false);
+
+
 
     }
 
@@ -51,7 +63,27 @@ public class BattleUICursor : MonoBehaviour
     {
         inimListados = BattleHandler.inimStatsList;  // armazenando os inimigos na lista passada para referência futura 
         inimsFabricados = inims;
-        inimDestacado = inimsFabricados[0];
+        inimDestacado = inimsFabricados[destaqueIndex];
+    }
+
+    public Inimigo SelecionarInimigo(KeyCode tecla)
+    {
+
+        switch(tecla)
+        {
+            case (KeyCode.A):
+                destaqueIndex--;
+                break;
+            case (KeyCode.D):
+                destaqueIndex++;
+                break;
+            case (KeyCode.None):
+
+                break;
+        }
+        
+        return inimDestacado.GetComponent<Inimigo>();
+
     }
     
         
