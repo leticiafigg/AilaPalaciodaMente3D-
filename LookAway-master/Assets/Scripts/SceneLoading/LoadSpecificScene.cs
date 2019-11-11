@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadSpecificScene : MonoBehaviour
 {
-    public string SceneName;
+    public string SceneName; //Onde se escreve a sena específia a ser carrregada quando entrar no trigger
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,8 @@ public class LoadSpecificScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameInformation.LastScene = SceneManager.GetActiveScene().name;
+
             SceneManager.LoadScene(SceneName);
         }
     }

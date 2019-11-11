@@ -72,13 +72,13 @@ public class BaseHUDHandler : MonoBehaviour
         sliderPvObj.GetComponent<Slider>().minValue = pvMin;
         sliderPvObj.GetComponent<Slider>().maxValue = pvMax;
 
-        sliderPvObj.GetComponent<Slider>().value = GameInformation.AilaPVatual % pvMax;
+        sliderPvObj.GetComponent<Slider>().value = GameInformation.AilaPVatual;
 
         //set de Pontos de Fantasia
         sliderPfObj.GetComponent<Slider>().minValue = pfMin;
         sliderPfObj.GetComponent<Slider>().maxValue = pfMax;
 
-        sliderPfObj.GetComponent<Slider>().value = GameInformation.AilaPFatual % pfMax;
+        sliderPfObj.GetComponent<Slider>().value = GameInformation.AilaPFatual;
     }
 
     public void AtivarPrompt(String interactionName)

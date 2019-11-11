@@ -26,9 +26,9 @@ public class BattleCalculations
 
     private float totalEnemyDMG;//segue regras semelhantes ao jogador, porém com algumas alterações
 
-    private float dmgVariator = 0.025f; // 5%
+    private float dmgVariator = 0.05f; // 5%
 
-    public void CalculateTotalPlayerDMG(BaseAction usedAction)
+    public void CalculateTotalPlayerDMG(BaseAction usedAction, Inimigo inimAlvo)
     {
         playerusedAction = usedAction;
         Debug.Log("Aila usou " + usedAction.ActionName);
@@ -40,8 +40,11 @@ public class BattleCalculations
         totalPlayerDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG; //Dano combinado do ataque em si, + o crítico, mais o status.
 
         totalPlayerDMG += (int)(Random.Range(-(totalPlayerDMG * dmgVariator), totalPlayerDMG * dmgVariator)); // adiciona uma variaçãod e 5% entre danos, afinal raramente um ataque de uma mesma pessoa causa exatamente o mesmo dano 
-        Debug.Log("Causou " + totalPlayerDMG + " de dano total com o efeito");
+        Debug.Log("Aila causou " + totalPlayerDMG + " de dano total com o efeito");
 
+        totalPlayerDMG = calculateEnemyResistance(inimAlvo);
+
+        inimAlvo.TakeDamage((int)totalPlayerDMG , totalStunDMG); //Chama o método de tomar dano dentro do script do inimigo alvo
 
         BattleHandler.jogadorTerminouTurno = true;
     }
@@ -57,17 +60,19 @@ public class BattleCalculations
 
         totalEnemyDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG;
 
-        if(DecidirEvasion())
+        totalEnemyDMG = calculatePlayerResistance();
+
+        totalEnemyDMG += (int)(Random.Range(-(totalEnemyDMG * dmgVariator), totalEnemyDMG * dmgVariator));
+
+        if (DecidirEvasion())
         {
             totalEnemyDMG = 0;
             Debug.Log("Desviou!");
         }
 
-
+        GameInformation.AilaPVatual -= (int)totalEnemyDMG;
 
     }
-
-    
 
     private float CalculateActionDMG()
     {
@@ -94,7 +99,7 @@ public class BattleCalculations
         stunPower = 0;
 
         //ações possuem uma afinidade com algum status, o qual torna o movimento mais poderoso quanto maior for o valor
-        totalActionPowerDMG = actionPower * (statCalcScript.GetEnemyActionAffinity(enemyusedAction.StatAffinity, inimigoAgindo));
+        totalActionPowerDMG = actionPower * (statCalcScript.GetEnemyActionAffinity(enemyusedAction.StatAffinity, inimigoAgindo) * 0.8f);
 
         totalStunDMG = 0;
 
@@ -115,9 +120,9 @@ public class BattleCalculations
         if(DecidirActionCriticalHit())
         {
             //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
-            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (inimigoAgindo.determinacao * 0.1f))));
+            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (GameInformation.Aila.Determinacao * 0.1f))));
             totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
-            Debug.Log("Uau! Um golpe crítico!");
+            Debug.Log("Uau! Um ataque crítico!");
             return criticalDMG;
         }
 
@@ -132,9 +137,9 @@ public class BattleCalculations
         if (DecidirEnemyActionCriticalHit())
         {
             //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
-            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (GameInformation.Aila.Determinacao * 0.1f))));
+            criticalDMG = (int)(totalActionDMG + totalActionDMG);
             totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
-            Debug.Log("Uau! Um golpe crítico!");
+            Debug.Log("Ouch! Um golpe crítico do inimigo!");
             return criticalDMG;
         }
 
@@ -181,5 +186,29 @@ public class BattleCalculations
         }
 
         return false;
+    }
+
+   private float calculateEnemyResistance(Inimigo inim)
+   {
+        float resistedDMG = 0.0f;
+
+        resistedDMG = totalPlayerDMG - (int)((inim.determinacao * 0.25) + (inim.resistencia * 0.50 + inim.armadura));
+        Debug.Log("Dano total  depois da defesa " + resistedDMG);
+        return resistedDMG;
+    
+   }
+
+    private float calculatePlayerResistance()
+    {
+        float resistedDMG = 0.0f;
+
+        resistedDMG = totalEnemyDMG - (int)((GameInformation.Aila.Determinacao * 0.25) + (GameInformation.Aila.Resistencia * 0.5) + GameInformation.Aila.Armadura);
+        Debug.Log("Dano que o jogador recebeu depois da defesa " + resistedDMG);
+
+        if (resistedDMG <= 0)
+            resistedDMG = 0;
+
+        return resistedDMG;
+
     }
 }

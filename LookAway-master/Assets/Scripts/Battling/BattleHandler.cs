@@ -15,30 +15,32 @@ public class BattleHandler : MonoBehaviour
     private BaseAction baseActscript = new BaseAction();
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
     private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
-    
+
     public static BaseAction playerUsedAction;
     public static BaseAction enemyUsedAction;
+    public static Inimigo inimAlvo;
     public static Inimigo inimigodavez;
 
     public static int statusEffectBaseDamage;
     public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
+
     public static bool jogadorTerminouTurno;
     public static bool inimigoTerminouTurno;
 
-    private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
-    private Inimigo inim1Stats;
-    public GameObject inimigo1start;
-  
-    private GameObject inimigo2obj;
-    private Inimigo inim2Stats;
-    public GameObject inimigo2start;
+    //private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
+    //private Inimigo inim1Stats;
+    //private GameObject inimigo2obj;
+    //private Inimigo inim2Stats;
+    //private GameObject inimigo3obj;
+    //private Inimigo inim3Stats;
 
-    private GameObject inimigo3obj;
-    private Inimigo inim3Stats;
+    public GameObject inimigo1start;
+    public GameObject inimigo2start;
     public GameObject inimigo3start;
 
-    public List<Inimigo> inimStatsList;
-    
+    public static List<GameObject> inimObjList;
+    public static List<Inimigo> inimigosList;
+
 
     bool xprecebido;
     public int cd; //Classe de dificuldade
@@ -65,6 +67,9 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inimigosList = new List<Inimigo>();
+        inimObjList = new List<GameObject>();
+
         xprecebido = false;
         totalRoundCounter = 1;
         SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
@@ -98,7 +103,7 @@ public class BattleHandler : MonoBehaviour
                 //colocar IA aqui
                 currentActor = BattleStates.ENEMYCHOICE;
 
-                battleStateEnemyChoicescript.EnemyCompleteTurn(inimStatsList);
+                battleStateEnemyChoicescript.EnemyCompleteTurn();
                 
                 //DecidirProximoAtor();
                 break;
@@ -109,8 +114,8 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.CALCDAMAGE):
                 Debug.Log("CALCULANDO DANO");
-                if(currentActor == BattleStates.PLAYERCHOICE)
-                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
+                if(currentActor == BattleStates.PLAYERCHOICE ) //se é o turno do jogador e ele escolheu alguma ação
+                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction , inimAlvo);
 
                 if(currentActor == BattleStates.ENEMYCHOICE)
                 battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction , inimigodavez);
@@ -125,18 +130,23 @@ public class BattleHandler : MonoBehaviour
 
             case (BattleStates.ENDROUND):
                 totalRoundCounter += 1;
+
                 jogadorTerminouTurno = false;
                 inimigoTerminouTurno = false;
                 DecidirProximoAtor();
                 break;
 
             case (BattleStates.WIN):
+
+                //Código que mostra resultados da batalha como XP e itens aqui
+
                 if (!xprecebido)
                 {
                     IncreaseExperience.AddExperience(cd);
                     xprecebido = true;
                 }
-                SceneManager.LoadScene(cenaACarregar);
+                GameInformation.returningFromBattle = true;
+                SceneManager.LoadScene(GameInformation.LastScene);
                 break;
 
             case (BattleStates.LOSE):
@@ -161,16 +171,16 @@ public class BattleHandler : MonoBehaviour
         {
             //terminar a rodada
             currentState = BattleStates.ENDROUND;
-            foreach (Inimigo inim in inimStatsList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
+            foreach (Inimigo inim in inimigosList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
             {
-                inim.agiu = false;
+                inim.Agiu = false;
             }
 
         }
 
         if(!jogadorTerminouTurno && !inimigoTerminouTurno)
         {
-           foreach(Inimigo inim in inimStatsList)
+           foreach(Inimigo inim in inimigosList)
             {
                 if(GameInformation.Aila.Sorte >= inim.sorte)
                 {
@@ -194,25 +204,22 @@ public class BattleHandler : MonoBehaviour
 
         if (inims != null)
         {
+            
+
+            inimObjList.Add(Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity));
+            inimObjList.Add(Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity));
+            inimObjList.Add(Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity));
+
+            inimigosList.Add(inimObjList[0].GetComponent<Inimigo>());
+            inimigosList.Add(inimObjList[1].GetComponent<Inimigo>());
+            inimigosList.Add(inimObjList[2].GetComponent<Inimigo>());
 
 
-            Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity);
-            Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity);
-            Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity);
-
-          //  myPrefabA.transform.position = inimigo1start.transform.position;
-          //  myPrefabB.transform.position = inimigo2start.transform.position;
-          //  myPrefabC.transform.position = inimigo3start.transform.position;
-
-            inim1Stats = inims[0].GetComponent<Inimigo>();
-            inim2Stats = inims[1].GetComponent<Inimigo>();
-            inim3Stats = inims[2].GetComponent<Inimigo>();
-
-            inimStatsList.Add(inim1Stats);
-            inimStatsList.Add(inim2Stats);
-            inimStatsList.Add(inim3Stats);
+            BattleUICursor.SetCursorEnemies();
         }
         
+        
+
     }
   
     public void Fuga()

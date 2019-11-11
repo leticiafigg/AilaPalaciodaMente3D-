@@ -6,8 +6,10 @@ public class StatCalc
 {
     private float poderModifier = 0.25f; //25%
     private float imaginacaoModifier = 0.25f;
+    private float resistenciaModifier = 0.20f;
     private float determinacaoModifier = 0.2f; // 20%
     private float sorteModifier = 0.2f;
+    
 
     //private BaseAction baseactionScript;
 
@@ -35,22 +37,27 @@ public class StatCalc
         if(statType == StatType.PODER)
         {
             modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            return (statVal + (int)(statVal + modifier * level/2));
         }
         if (statType == StatType.IMAGINACAO)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = imaginacaoModifier;
+            return (statVal + (int)(statVal + modifier * level/2));
+        }
+        if (statType == StatType.RESISTENCIA)
+        {
+            modifier = resistenciaModifier;
+            return (statVal + (int)(statVal + modifier * level/2));
         }
         if (statType == StatType.DETERMINACAO)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = determinacaoModifier;
+            return (statVal + (int)(statVal + modifier * level/2));
         }
         if (statType == StatType.SORTE)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = sorteModifier;
+            return (statVal + (int)(statVal + modifier * level/2));
         }
         return 0;
     }
@@ -87,6 +94,10 @@ public class StatCalc
         if (statAff == StatType.IMAGINACAO)
         {    
             return (GameInformation.Aila.Imaginacao * Affnitymodifier);
+        }
+        if (statAff == StatType.RESISTENCIA)
+        {
+            return (GameInformation.Aila.Resistencia * Affnitymodifier);
         }
         if (statAff == StatType.DETERMINACAO)
         {        

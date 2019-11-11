@@ -21,8 +21,8 @@ public class EnemyActionChoice
                 break;
         }
 
-        inim.agiu = true;
-        Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
+        inim.Agiu = true;
+       //Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
         return AcaoEscolhida;
     }
 }

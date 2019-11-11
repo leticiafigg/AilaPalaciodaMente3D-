@@ -8,7 +8,7 @@ public class PowerUps : MonoBehaviour
     public bool HealthPU;
     public bool JumpPU;
     public GameObject player;
-
+    public int PontosDeVida;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,14 @@ public class PowerUps : MonoBehaviour
 
     private void PlayerEnhance()
     {
-        if (JumpPU)
+        if(JumpPU)
         {
             player.GetComponent<MoveChanPhisical>().jumpspeed = 20000;
+        }
+
+        if(HealthPU)
+        {
+            GameInformation.AilaPVatual += PontosDeVida;
         }
     }
 }
