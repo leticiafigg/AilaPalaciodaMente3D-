@@ -11,18 +11,19 @@ public class battlerender : MonoBehaviour
 
 
 
-    void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             GameInformation.LastScene = SceneManager.GetActiveScene().name;
-            PlayerPrefsX.SetVector3("OldPlayerPosition", other.transform.position - other.transform.forward * 2);
+            PlayerPrefsX.SetVector3("OldPlayerPosition", collision.transform.position - collision.transform.forward * 2);
 
             GameInformation.LastPos = PlayerPrefsX.GetVector3("OldPlayerPosition");
-            
+
             SceneManager.LoadScene(EnemyType);
         }
     }
+
 
 
     // Start is called before the first frame update

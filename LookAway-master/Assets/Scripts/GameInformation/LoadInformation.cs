@@ -25,7 +25,8 @@ public class LoadInformation : MonoBehaviour
             GameInformation.AilaPF = PlayerPrefs.GetInt("PFTOTAL");
             GameInformation.AilaPFatual = PlayerPrefs.GetInt("PFATUAL");
             GameInformation.LastScene = PlayerPrefs.GetString("LASTSCENE");
+            GameInformation.LastPos = PlayerPrefsX.GetVector3("SavePlayerPos");
 
         }
-    }
+     }
 }
