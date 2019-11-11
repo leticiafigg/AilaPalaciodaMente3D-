@@ -27,24 +27,22 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // if(transform.position != GameInformation.LastPos)
-       // {
-       //
-       //     transform.position = GameInformation.LastPos + new Vector3(0.0f, 0.0f, -1.0f);
-       //
-       // }
-
-
-      
-        if (SceneManager.GetActiveScene().name.Equals("mapa1"))     //maneira antiga de carregar a posição anterior
+        if(GameInformation.returningFromBattle)
         {
-            if (PlayerPrefs.HasKey("OldPlayerPosition"))
-            {
-                print("movendo "+ PlayerPrefsX.GetVector3("OldPlayerPosition"));
-                transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");
-               
-            }
+       
+            transform.position = GameInformation.LastPos;
+            GameInformation.returningFromBattle = false;
+       
         }
+      
+        //if (SceneManager.GetActiveScene().name.Equals("mapa1"))     //maneira antiga de carregar a posição anterior
+        //{
+        //   if (PlayerPrefs.HasKey("OldPlayerPosition"))
+        //   {
+        //     print("movendo "+ PlayerPrefsX.GetVector3("OldPlayerPosition"));
+        //     transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");       
+        //   }
+        // }
         currentCamera = Camera.main.gameObject;
        
     }
@@ -130,7 +128,6 @@ public class MoveChanPhisical : MonoBehaviour
 
     }
 
-
     //a callback for calculating IK
     void OnAnimatorIK()
     {
@@ -195,9 +192,15 @@ public class MoveChanPhisical : MonoBehaviour
         }
 
     }
+
     private void OnCollisionExit(Collision collision)
     {
 
 
+    }
+
+    public Vector3 GetPlayerPos()
+    {
+        return transform.position;
     }
 }

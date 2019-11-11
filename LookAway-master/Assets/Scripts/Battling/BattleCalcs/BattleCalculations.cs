@@ -26,7 +26,7 @@ public class BattleCalculations
 
     private float totalEnemyDMG;//segue regras semelhantes ao jogador, porém com algumas alterações
 
-    private float dmgVariator = 0.025f; // 5%
+    private float dmgVariator = 0.05f; // 5%
 
     public void CalculateTotalPlayerDMG(BaseAction usedAction, Inimigo inimAlvo)
     {
@@ -62,7 +62,9 @@ public class BattleCalculations
 
         totalEnemyDMG = calculatePlayerResistance();
 
-        if(DecidirEvasion())
+        totalEnemyDMG += (int)(Random.Range(-(totalEnemyDMG * dmgVariator), totalEnemyDMG * dmgVariator));
+
+        if (DecidirEvasion())
         {
             totalEnemyDMG = 0;
             Debug.Log("Desviou!");
@@ -135,7 +137,7 @@ public class BattleCalculations
         if (DecidirEnemyActionCriticalHit())
         {
             //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
-            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (inimigoAgindo.determinacao * 0.1f))));
+            criticalDMG = (int)(totalActionDMG + totalActionDMG);
             totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
             Debug.Log("Ouch! Um golpe crítico do inimigo!");
             return criticalDMG;

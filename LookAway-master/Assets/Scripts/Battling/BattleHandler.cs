@@ -145,7 +145,8 @@ public class BattleHandler : MonoBehaviour
                     IncreaseExperience.AddExperience(cd);
                     xprecebido = true;
                 }
-                SceneManager.LoadScene(cenaACarregar);
+                GameInformation.returningFromBattle = true;
+                SceneManager.LoadScene(GameInformation.LastScene);
                 break;
 
             case (BattleStates.LOSE):

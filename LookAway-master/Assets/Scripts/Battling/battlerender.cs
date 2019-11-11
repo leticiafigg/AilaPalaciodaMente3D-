@@ -15,9 +15,11 @@ public class battlerender : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameInformation.LastScene = SceneManager.GetActiveScene().name;
             PlayerPrefsX.SetVector3("OldPlayerPosition", other.transform.position - other.transform.forward * 2);
-            GameInformation.LastPos = other.transform.position;
-            GameInformation.LastScene = "mapa1";
+
+            GameInformation.LastPos = PlayerPrefsX.GetVector3("OldPlayerPosition");
+            
             SceneManager.LoadScene(EnemyType);
         }
     }
