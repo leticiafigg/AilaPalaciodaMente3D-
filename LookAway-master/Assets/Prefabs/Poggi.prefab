@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7794726186957210731}
   - component: {fileID: 7794726186957210732}
   - component: {fileID: 7794726186957210733}
-  - component: {fileID: 7794726186957210734}
   - component: {fileID: 7794726186957210730}
   m_Layer: 0
   m_Name: Poggi
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7794726186957210734
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7794726186957210736}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7794726186957210730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,12 +88,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7794726186957210736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a42185779fbda418d8a12a0a8d9bf3, type: 3}
+  m_Script: {fileID: 11500000, guid: 79c650bfbaec53e42b22f94debacc7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nome: Poggi
-  totalHp: 50
-  totalSP: 100
-  Defesa: 5
+  totalHp: 8
+  totalSP: 0
   hpatual: 0
+  maxlvl: 5
+  poder: 3
+  imaginacao: 5
+  determinacao: 3
+  armadura: 0
+  sorte: 1
+  agiu: 0
+  derrotado: 0
   inimigoobj: {fileID: 7794726186957210736}
+  enemyactions: []
