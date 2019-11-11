@@ -21,7 +21,7 @@ public class SaveInformation
         PlayerPrefs.SetInt("PFATUAL", GameInformation.AilaPFatual);
 
         PlayerPrefs.SetString("LASTSCENE", GameInformation.LastScene);
-        PlayerPrefsX.SetVector3("OldPlayerPosition", GameInformation.LastPos);
+        PlayerPrefsX.SetVector3("SavePlayerPosition", GameInformation.LastPos);
 
         Debug.Log("Saved All Information!");
     }
