@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DMGHazard : MonoBehaviour
 {
-    public GameObject perigoObj;
+   //public GameObject perigoObj;
     public int danocausado;
 
     // Start is called before the first frame update

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,6 +15,8 @@ public class BattleUI : MonoBehaviour
 
     public GameObject panelActions;
     public GameObject panelConfirmAttack;
+    public GameObject cancelPanelObj;
+    public GameObject descriptionTxtObj;
     public BattleUICursor cursorUI;
     public int adjustX = 0;
     public int adjustY = 0;
@@ -73,7 +76,7 @@ public class BattleUI : MonoBehaviour
         }
 
         //desativar todos os outros painéis irrelevantes
-
+        cancelPanelObj.SetActive(false);
         cursorUI.Cursor.SetActive(false);
         panelConfirmAttack.SetActive(false);
     }
@@ -83,6 +86,7 @@ public class BattleUI : MonoBehaviour
         //Ativar painéis relevantes e desativar os irrelevantes
         cursorUI.Cursor.SetActive(true);
         panelConfirmAttack.SetActive(true);
+        cancelPanelObj.SetActive(true);
         panelActions.SetActive(false);
 
         //procurar o que o jogador está pressionando
@@ -99,7 +103,7 @@ public class BattleUI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                   pressedBtn = true;
+                    pressedBtn = true;
             }
             if (Input.GetKeyUp(KeyCode.D) && pressedBtn)
             {
@@ -124,12 +128,22 @@ public class BattleUI : MonoBehaviour
     public void showAttacks()
     {
         currentDisplay = ScreenDisplays.ATTACKSDISPLAY; //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
+        cancelPanelObj.SetActive(true);
+        panelActions.SetActive(false);
     } 
 
     public void showFantasia()
     {
         currentDisplay = ScreenDisplays.FANTASYDISPLAY;
+        cancelPanelObj.SetActive(true);
+        panelActions.SetActive(false);
+    }
 
+    public void showNeutral()
+    {
+        currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
+        cancelPanelObj.SetActive(false);
+        panelActions.SetActive(true);
     }
 
     private void OnGUI()
@@ -149,17 +163,15 @@ public class BattleUI : MonoBehaviour
         {
             //colocar os cálculos de dano e o movimento que está sendo usado
             standbyAction = GameInformation.playerActionUm;
-
-            currentDisplay = ScreenDisplays.TARGETDISPLAY; 
-
-            
+            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
+            currentDisplay = ScreenDisplays.TARGETDISPLAY;       
         }
 
         if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
         {
             //colocar os cálculos de dano aqui
             standbyAction = GameInformation.playerActionDois;
-
+            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
             currentDisplay = ScreenDisplays.TARGETDISPLAY;
         }
 
@@ -167,16 +179,10 @@ public class BattleUI : MonoBehaviour
         {
             //colocar os cálculos de dano aqui
             standbyAction = GameInformation.playerActionTres;
-
+            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
             currentDisplay = ScreenDisplays.TARGETDISPLAY;    
         }
 
-        if (GUI.Button(new Rect(Screen.width -1000, Screen.height - 50, 45, 45),"Volta"))
-        {
-            //colocar os cálculos de dano aqui
-
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-        }
     }
 
   
