@@ -5,14 +5,15 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
 
-    private string Nome;
-    
+
+    public GameObject cameraPos;
 
     public int pvTotal; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
-    public int stunTotal;
     public int pvAtual;
-    public int stunAtual;
+    private int stuntotal;
+    private int stunatual;
 
+    private string nome;
     private int enemylvl;
     public int maxlvl;     //Status gerais (Exceto a Armadura) mudarão de acordo com o nível do inimigo,
     public int poder;      // - mas serão baseados numa predefinição dada no prefab, para facilitar implementação
@@ -22,6 +23,7 @@ public class Inimigo : MonoBehaviour
     public int armadura;   // A armadura é específica para cada tipo de inimigo
     public int sorte;
 
+    public List<BaseAction> moveList;
     public int PosInList; //O próprio Inimigo salva a sua posição no array criado com BattleHandler>BattleStart
 
     private bool agiu;
@@ -39,28 +41,46 @@ public class Inimigo : MonoBehaviour
 
     private EnemyState estadoAtual;
 
+    public string Nome
+    {
+        get { return nome; }
+        set { nome = value; }
+    }
+
     public int EnemyLevel
     {
-        get { return enemylvl; }
-        set { enemylvl = value; }
+        get { return this.enemylvl; }
+        set { this.enemylvl = value; }
+    }
+
+    public int StunTotal
+    {
+        get { return this.stuntotal; }
+        set { this.stuntotal = value; }
+    }
+
+    public int StunAtual
+    {
+        get { return this.stunatual; }
+        set { this.stunatual = value; }
     }
 
     public EnemyState EstadoAtual
     {
-        get { return estadoAtual; }
-        set { estadoAtual = value; }
+        get { return this.estadoAtual; }
+        set { this.estadoAtual = value; }
     }
 
     public bool Agiu
     {
-        get { return agiu; }
-        set { agiu = value; }
+        get { return this.agiu; }
+        set { this.agiu = value; }
     }
 
     public bool Atordoado
     {
-        get { return atordoado; }
-        set { atordoado = value; }
+        get { return this.atordoado; }
+        set { this.atordoado = value; }
     }
 
     private void Start()
@@ -69,13 +89,13 @@ public class Inimigo : MonoBehaviour
         agiu = false;
         derrotado = false;
         pvAtual = pvTotal;
-        stunAtual = stunTotal;
+        stunatual = stuntotal;
     } 
 
     // Update is called once per frame
     void Update()
     {
-        if (this.pvAtual <= 0 && !derrotado)
+        if (this.pvAtual <= 0 && !this.derrotado)
         {
 
             if (BattleHandler.inimigosList.Count > 0)
@@ -84,7 +104,7 @@ public class Inimigo : MonoBehaviour
                 BattleHandler.inimObjList.Remove(this.gameObject);
             }
 
-            derrotado = true;
+            this.derrotado = true;
 
             if(BattleHandler.inimigosList.Count == 0)  //Toda vez que um inimigo morrer ele checa se há outro inimigo na lista, e se ela estiver vazia, o jogador venceu
             {
@@ -93,16 +113,25 @@ public class Inimigo : MonoBehaviour
 
             Destroy(inimigoobj); 
             
-            
+        }
 
+        if(this.StunAtual >= 100)
+        {
+            this.Atordoado = true;
+        }
+
+        if(this.StunAtual < 100)
+        {
+            this.Atordoado = false;
         }
 
 
-      if(this.pvAtual <= this.pvTotal/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
-      {
-            this.EstadoAtual = EnemyState.AGRESSIVO;
 
-            if (this.pvAtual <= this.pvTotal / 4)
+      if(pvAtual <= this.pvTotal/2 || GameInformation.AilaPVatual <= GameInformation.AilaPV/2)
+      {
+            EstadoAtual = EnemyState.AGRESSIVO;
+
+            if (pvAtual <= pvTotal / 4)
             {
                 this.EstadoAtual = EnemyState.MORRENDO;
             }
@@ -117,13 +146,13 @@ public class Inimigo : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-       pvAtual = pvAtual - dmg; 
+        this.pvAtual = pvAtual - dmg; 
     }
 
     public void TakeDamage(int dmg , int stun)
     {
-        pvAtual = pvAtual - dmg;
+        this.pvAtual = this.pvAtual - dmg;
 
-        stunAtual = stunAtual + stun;
+        this.stunatual = this.stunatual + stun;
     }
 }
