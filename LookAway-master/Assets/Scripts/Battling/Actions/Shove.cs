@@ -10,7 +10,7 @@ public class Shove : BaseAction
         ActionPower = 2;
         StunPower = 30;
         ActionCost = 0;
-        ActionCritChance = 35;
+        ActionCritChance = 85;
 
         StatAffinity = StatCalc.StatType.PODER;
 
