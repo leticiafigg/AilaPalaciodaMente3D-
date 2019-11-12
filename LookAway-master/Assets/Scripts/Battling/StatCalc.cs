@@ -6,11 +6,10 @@ public class StatCalc
 {
     private float poderModifier = 0.25f; //25%
     private float imaginacaoModifier = 0.25f;
-    private float resistenciaModifier = 0.20f;
-    private float determinacaoModifier = 0.2f; // 20%
-    private float sorteModifier = 0.2f;
+    private float resistenciaModifier = 0.1f;
+    private float determinacaoModifier = 0.1f; // 20%
+    private float sorteModifier = 0.1f;
     
-
     //private BaseAction baseactionScript;
 
     public enum StatType
@@ -21,15 +20,6 @@ public class StatCalc
         RESISTENCIA,
         SORTE
     }
-
-    
-
-   /* public enum AilaArchetype // Estes arquétipos irão determinar os modificadores do jogador
-    {
-        CONSCIENTE,
-        IMAGINATIVA,
-        AVOADA
-    }*/
 
     public int CalcularInimStats(int statVal, StatType statType, int level) //Modifica os status pessoais fornecidos de acordo com o nível e o modificador atribuído
     {
