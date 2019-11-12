@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AilaIsBorn.unity
     guid: daeafefb2289a6743ba800355b49e698
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: ad72e218a4cb7cc4ebceeaa0c1dffbcd
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
