@@ -24,6 +24,8 @@ public class GameInformation : MonoBehaviour
     public static int AilaPVatual { get; set; }
     public static int AilaPFatual { get; set; }
 
+    public static List<BaseAction> AcoesAprendidas {get; set;}
+
     public static BaseAction playerActionUm = new AttackAction(); // podem ser várias, e podemos adicionar outras dependendo do arquétipo/classe da Aila
     public static BaseAction playerActionDois = new Shove();
     public static BaseAction playerActionTres = new Pat();

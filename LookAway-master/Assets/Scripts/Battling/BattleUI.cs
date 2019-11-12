@@ -14,6 +14,7 @@ public class BattleUI : MonoBehaviour
     public static Inimigo inimigoAlvo;
 
     public GameObject panelActions;
+    public GameObject panelAttacks;
     public GameObject panelConfirmAttack;
     public GameObject cancelPanelObj;
     public GameObject descriptionTxtObj;
@@ -79,6 +80,7 @@ public class BattleUI : MonoBehaviour
         cancelPanelObj.SetActive(false);
         cursorUI.Cursor.SetActive(false);
         panelConfirmAttack.SetActive(false);
+        panelAttacks.SetActive(false);
     }
 
     private void TargetDisplayHandle()
@@ -88,10 +90,11 @@ public class BattleUI : MonoBehaviour
         panelConfirmAttack.SetActive(true);
         cancelPanelObj.SetActive(true);
         panelActions.SetActive(false);
+        panelAttacks.SetActive(false);
 
         //procurar o que o jogador está pressionando
 
-            if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             {
               pressedBtn = true;
             }
@@ -129,6 +132,7 @@ public class BattleUI : MonoBehaviour
     {
         currentDisplay = ScreenDisplays.ATTACKSDISPLAY; //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
         cancelPanelObj.SetActive(true);
+        panelAttacks.SetActive(true);
         panelActions.SetActive(false);
     } 
 
@@ -146,28 +150,20 @@ public class BattleUI : MonoBehaviour
         panelActions.SetActive(true);
     }
 
-    private void OnGUI()
-    {
 
-        if(BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.ATTACKSDISPLAY)
+    public void PlayerAttackChoice(string attackAction) //cria os botões em GUI de movimentos que o jogador pode usar
+    {
+        foreach (BaseAction learnedActions in GameInformation.AcoesAprendidas)
         {
-            PlayerAttackDisplay();
+            if (learnedActions.ActionName == attackAction)
+            {
+                standbyAction = learnedActions;
+                descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
+                currentDisplay = ScreenDisplays.TARGETDISPLAY;
+            }
         }
 
-
-    }
-
-    public void PlayerAttackDisplay() //cria os botões em GUI de movimentos que o jogador pode usar
-    {
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX , panelActions.transform.position.y + adjustY, 75, 30), GameInformation.playerActionUm.ActionName))
-        {
-            //colocar os cálculos de dano e o movimento que está sendo usado
-            standbyAction = GameInformation.playerActionUm;
-            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
-            currentDisplay = ScreenDisplays.TARGETDISPLAY;       
-        }
-
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
+        /*if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
         {
             //colocar os cálculos de dano aqui
             standbyAction = GameInformation.playerActionDois;
@@ -181,7 +177,7 @@ public class BattleUI : MonoBehaviour
             standbyAction = GameInformation.playerActionTres;
             descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
             currentDisplay = ScreenDisplays.TARGETDISPLAY;    
-        }
+        }*/
 
     }
 
