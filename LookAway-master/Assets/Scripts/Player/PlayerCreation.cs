@@ -20,9 +20,8 @@ public class PlayerCreation : MonoBehaviour
 
     public GameObject confirmButton;
     private GameInformation informationAdd;
-    private List<BaseAction> actionsToAdd;
+
     private StatCalc statCalcScript = new StatCalc();
-   
     private static string classDesc;
 
     private void Start()
@@ -30,16 +29,12 @@ public class PlayerCreation : MonoBehaviour
         newPlayer = new BasePlayer();
         newPlayer.PlayerName = "Aila";
         newPlayer.PlayerLevel = 1;
+
         classDesc = " ";
 
-        actionsToAdd = new List<BaseAction>();
 
-        actionsToAdd.Add(new AttackAction());
-        actionsToAdd.Add(new Shove());
-        actionsToAdd.Add(new Pat());
 
-        GameInformation.AcoesAprendidas = actionsToAdd;
-
+        
     }
 
     private void FixedUpdate()
@@ -69,7 +64,6 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPF = statCalcScript.CalcularPF(GameInformation.Aila.Imaginacao);
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
-
 
         classTitleGameObj.GetComponent<Text>().text = "Destemida";
         classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propões a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
