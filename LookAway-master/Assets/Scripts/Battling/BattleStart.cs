@@ -18,7 +18,6 @@ public class BattleStart
         EscolherOPrimeiro();  //decide quem é o primeiro a agir no combate, baseado na sorte
 
         DeterminarVitalidade(); // determina os pontos de vida 
-
     }
 
     public GameObject[] PrepareEnemies(GameObject[] inims)
@@ -71,22 +70,23 @@ public class BattleStart
 
     }
 
-    public void EscolherOPrimeiro() 
+    public void EscolherOPrimeiro() //Escolhe quem age primeiro baseado no status Sorte. É chamado sempre que uma nova rodada começa para que, caso algum efeito aumente a sorte de qualquer partido, este tenha utilidade em combate
     {
-        if (GameInformation.Aila.Sorte >= inimstats.sorte)
+        foreach (Inimigo inim in BattleHandler.inimigosList) //checa uma vez para cada inimigo na lista
         {
-            BattleHandler.currentState = BattleHandler.BattleStates.PLAYERCHOICE;
-        }
-        else
-        {
-            BattleHandler.currentState = BattleHandler.BattleStates.ENEMYCHOICE;
-        }
-
-    }
+            if (GameInformation.Aila.Sorte * 1.5 >= inimstats.sorte)
+            {
+                BattleHandler.currentState = BattleHandler.BattleStates.PLAYERCHOICE;
+            }
+            else
+            {
+                BattleHandler.currentState = BattleHandler.BattleStates.ENEMYCHOICE;
+            }
+        }    }
 
     private void DeterminarVitalidade()
     {
-        //determina a vitalidade do jogador sempre que uma batalha começa, para que esteja atualizada caso ela seja alterada por algum efeito qualquer nos status do jogador
+        //determina a vitalidade máxima do jogador sempre que uma batalha começa, para que esteja atualizada caso ela seja alterada por algum efeito qualquer nos status do jogador
         PlayerMaxPV = statCalculations.CalcularPV(GameInformation.Aila.Resistencia);
         PlayerMaxPF = statCalculations.CalcularPF(GameInformation.Aila.Imaginacao);
         // A vitalidade dos inimigos é determinada quando são criados, acima ^
