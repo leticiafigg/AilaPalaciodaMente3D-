@@ -67,7 +67,7 @@ public class BattleUI : MonoBehaviour
 
     private void NeutralDisplayHandle()
     {
-        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE) //caso o display seja do menu neutro, *E* estamos no estado "escolha do jogador" ativa o painel neutro
+        if (BattleHandler.currentActor == BattleHandler.BattleStates.PLAYERCHOICE) //caso o display seja do menu neutro, *E* estamos no estado "escolha do jogador" ativa o painel neutro
         {
             panelActions.SetActive(true);
         }
@@ -158,26 +158,20 @@ public class BattleUI : MonoBehaviour
             if (learnedActions.ActionName == attackAction)
             {
                 standbyAction = learnedActions;
-                descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
-                currentDisplay = ScreenDisplays.TARGETDISPLAY;
+
+                if(GameInformation.AilaPFatual - standbyAction.ActionCost >= 0) //Se o custo da ação não deixaria Aila com PF negativos, então ela executa normalmente
+                {
+                    GameInformation.AilaPFatual -= standbyAction.ActionCost;
+                    descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
+                    currentDisplay = ScreenDisplays.TARGETDISPLAY;
+                }
+                else
+                {
+                    BattleHandler.turnLogText = "PF insuficiente!";
+
+                }
             }
         }
-
-        /*if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
-        {
-            //colocar os cálculos de dano aqui
-            standbyAction = GameInformation.playerActionDois;
-            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
-            currentDisplay = ScreenDisplays.TARGETDISPLAY;
-        }
-
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 100, 75, 30), GameInformation.playerActionTres.ActionName))
-        {
-            //colocar os cálculos de dano aqui
-            standbyAction = GameInformation.playerActionTres;
-            descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
-            currentDisplay = ScreenDisplays.TARGETDISPLAY;    
-        }*/
 
     }
 

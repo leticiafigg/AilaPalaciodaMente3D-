@@ -52,7 +52,11 @@ public class BattleStart
     {
         if(GameInformation.Aila.PlayerLevel <= inimstats.maxlvl) // caso o nível do jogador não seja maior que o nível máximo do inimigo, ele escolhe u nível aleatório.
         { 
-         inimstats.EnemyLevel = Random.Range(GameInformation.Aila.PlayerLevel - 2, inimstats.maxlvl);
+            inimstats.EnemyLevel = Random.Range(GameInformation.Aila.PlayerLevel - 2, inimstats.maxlvl);
+            if(inimstats.EnemyLevel <=0)
+            {
+                inimstats.EnemyLevel = 1;
+            }
         }
         else //se não, o inimigo sempre estará no nível máximo
         {
@@ -61,12 +65,15 @@ public class BattleStart
 
         inimstats.poder = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
         inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);
+        inimstats.resistencia = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.RESISTENCIA, inimstats.EnemyLevel);
         inimstats.determinacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.DETERMINACAO, inimstats.EnemyLevel);
         inimstats.sorte = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.SORTE, inimstats.EnemyLevel);
-        inimstats.pvTotal = statCalculations.CalcularPV(inimstats.determinacao);
+
+        inimstats.pvTotal = statCalculations.CalcularPV(inimstats.resistencia);
         inimstats.pvAtual = inimstats.pvTotal;
-        inimstats.stunTotal = 100;
-        inimstats.stunAtual = 0;
+
+        inimstats.StunTotal = 100;
+        inimstats.StunAtual = 0;
 
     }
 

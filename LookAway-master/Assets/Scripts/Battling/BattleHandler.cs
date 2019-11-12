@@ -10,17 +10,16 @@ public class BattleHandler : MonoBehaviour
 {
 
     public GameObject[] enemyFabs; // Possíveis inimigos a serem encontrados
-    public GameObject playerCamera;
-    public GameObject enemyActionCamera;
-    private GameObject activeCamera;
+    public Camera playerCamera;
+    public Camera enemyActionCamera;
+    //private Camera activeCamera;
 
     private BattleStart battleStartscript = new BattleStart();
     private BattleCalculations battleCalcScript = new BattleCalculations();
     private BaseAction baseActscript = new BaseAction();
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
     private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
-    
-
+   
     public static BaseAction playerUsedAction;
     public static BaseAction enemyUsedAction;
     public static Inimigo inimAlvo;
@@ -72,6 +71,9 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerCamera.enabled = true;
+        enemyActionCamera.enabled = false;
+
         inimigosList = new List<Inimigo>();
         inimObjList = new List<GameObject>();
 
@@ -97,10 +99,12 @@ public class BattleHandler : MonoBehaviour
                   //Apresentar os inimigos, ativa o hud e tals
           
                   battleStartscript.PrepareBattle();
-          
+                    turnLogText = "Falsas memórias foram encontradas!";
+                    waitActive = true;
                   break;
           
               case (BattleStates.PLAYERCHOICE):
+                  CameraParaJogador();
                   turnLogText = "Sua vez!";
                   currentActor = BattleStates.PLAYERCHOICE; //armazenando que o ator é o jogador
                   break;
@@ -124,16 +128,22 @@ public class BattleHandler : MonoBehaviour
           
               case (BattleStates.CALCDAMAGE):
                   Debug.Log("CALCULANDO DANO");
-                  if(currentActor == BattleStates.PLAYERCHOICE ) //se é o turno do jogador e ele escolheu alguma ação
-                  battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction , inimAlvo);
+                    if (currentActor == BattleStates.PLAYERCHOICE) //se é o turno do jogador e ele escolheu alguma ação
+                    {
+                        battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction, inimAlvo);
+                        turnLogText = "Aila usou" + playerUsedAction.ActionName ;
+                    }
 
-                    if (currentActor == BattleStates.ENEMYCHOICE)
+                    if (currentActor == BattleStates.ENEMYCHOICE) //calcula o dano se o inimigo ainda não agiu
                     {
                         battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction, inimigodavez);
                         turnLogText = inimigodavez.name + " usou " + enemyUsedAction.ActionName;
+                        enemyActionCamera.transform.position = inimigodavez.cameraPos.transform.position;
+                        CameraParaInimigo();
+                        inimigodavez.Agiu = true;
                         waitActive = true;
                     }
-                  DecidirProximoAtor();
+                  DecidirProximoAtor(); // Depois de calcular todo o dano, vai retornar para o turno dos inimigos se algum deles não terminou o turno;
                   break;
           
               case (BattleStates.ADDSTATUSEFFECT):
@@ -185,19 +195,32 @@ public class BattleHandler : MonoBehaviour
         turnLogBox.GetComponent<TextMeshProUGUI>().text = turnLogText;
     }
 
+    private void CameraParaJogador() //desativa a camera do inimigo e ativa a camera do jogador
+    {
+        playerCamera.enabled = true;
+        enemyActionCamera.enabled = false;
+    }
+
+    private void CameraParaInimigo() //desativa a camera do inimigo e ativa a camera do jogador
+    {
+        playerCamera.enabled = false;
+        enemyActionCamera.enabled = true;
+
+    }
+
     private void DecidirProximoAtor()
     {
-        if(jogadorTerminouTurno && !inimigoTerminouTurno)
+        if(jogadorTerminouTurno && !inimigoTerminouTurno) //Se o jogador terminou  turno, mas o inimigo não... 
         {
-            //Vez do inimigo
-            currentState = BattleStates.ENEMYCHOICE;
+            //..vez do inimigo
+            currentState = BattleStates.ENEMYCHOICE;          
         }
-        if(!jogadorTerminouTurno && inimigoTerminouTurno)
+        if(!jogadorTerminouTurno && inimigoTerminouTurno) //Se o jogador não terminou o turno, mas o inimigo sim...
         {
-            //vez do jogador
-            currentState = BattleStates.PLAYERCHOICE;
+            //...vez do jogador
+            currentState = BattleStates.PLAYERCHOICE;           
         }
-        if(jogadorTerminouTurno && inimigoTerminouTurno)
+        if(jogadorTerminouTurno && inimigoTerminouTurno) //Se tanto o jogador quanto o inimigo terminaram seus turnos
         {
             //terminar a rodada
             currentState = BattleStates.ENDROUND;
@@ -205,37 +228,21 @@ public class BattleHandler : MonoBehaviour
             {
                 inim.Agiu = false;
             }
-
         }
-
         if(!jogadorTerminouTurno && !inimigoTerminouTurno)
         {
-           foreach(Inimigo inim in inimigosList)
-            {
-                if(GameInformation.Aila.Sorte >= inim.sorte)
-                {
-                    currentState = BattleStates.PLAYERCHOICE;
-                }
-                else
-                {
-                    currentState = BattleStates.ENEMYCHOICE;
-                }
-
-            }
-
+            battleStartscript.EscolherOPrimeiro();
         }
 
     }
 
-    private void SetEnemies()
+    private void SetEnemies() //chama o método que cria os inimigos no Script BattleStart e então os armazena na lista de objetos e na lista de inimigos 
     {
         GameObject[] inims = battleStartscript.PrepareEnemies(enemyFabs);
         
 
         if (inims != null)
-        {
-            
-
+        {           
             inimObjList.Add(Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity));
             inimObjList.Add(Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity));
             inimObjList.Add(Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity));
@@ -244,12 +251,8 @@ public class BattleHandler : MonoBehaviour
             inimigosList.Add(inimObjList[1].GetComponent<Inimigo>());
             inimigosList.Add(inimObjList[2].GetComponent<Inimigo>());
 
-
             BattleUICursor.SetCursorEnemies();
-        }
-        
-        
-
+        }      
     }
   
     public void Fuga()
