@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac5d8653fbc1e5448909bdc5953bf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudSpeed: 100
+  hudSpeed: 1000
   sliderPvObj: {fileID: 3345850295844844112}
   pvText: {fileID: 3345850295202865033}
   sliderPfObj: {fileID: 3345850295944100709}
