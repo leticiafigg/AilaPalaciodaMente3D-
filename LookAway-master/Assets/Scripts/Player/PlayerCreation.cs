@@ -134,12 +134,12 @@ public class PlayerCreation : MonoBehaviour
         
     }
 
-    public void ConfirmarDefinitivo()
+    public void ConfirmarDefinitivo(string primeiracena)
     {
 
         SaveInformation.SaveAll();
 
-        SceneManager.LoadScene("mapa1");
+        SceneManager.LoadScene(primeiracena);
     }
 
     private void AtualizarHUDInfo()
