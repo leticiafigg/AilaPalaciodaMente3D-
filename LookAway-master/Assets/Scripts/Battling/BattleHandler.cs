@@ -136,7 +136,7 @@ public class BattleHandler : MonoBehaviour
                         turnLogText = "Aila usou " + playerUsedAction.ActionName ;
                     }
 
-                    if (currentActor == BattleStates.ENEMYCHOICE) //calcula o dano se o inimigo ainda não agiu
+                    if (currentActor == BattleStates.ENEMYCHOICE && inimigodavez != null) //calcula o dano se o inimigo ainda não agiu
                     {
                         battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction, inimigodavez);
                         turnLogText = inimigodavez.name + " usou " + enemyUsedAction.ActionName;

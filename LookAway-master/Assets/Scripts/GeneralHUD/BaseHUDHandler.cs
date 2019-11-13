@@ -113,7 +113,7 @@ public class BaseHUDHandler : MonoBehaviour
 
     private void AtualizarTabBox() //Sempre que for chamado atualiza o que deve estar escrito
     {
-        playerLvlTxt.text = "Lv." + GameInformation.Aila.PlayerLevel;
+        playerLvlTxt.text = "Aila Lv." + GameInformation.Aila.PlayerLevel;
         poderStatTxt.text = "Poder: " + GameInformation.Aila.Poder;
         imaginacaoStatTxt.text = "Imaginação: " + GameInformation.Aila.Imaginacao;
         resitenciaStatTxt.text = "Resistência: " + GameInformation.Aila.Resistencia;

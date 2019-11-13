@@ -63,7 +63,7 @@ public class EnemyPatrol : MonoBehaviour
     private void PatrulharPontos()
     {
         transform.position = Vector3.MoveTowards(transform.position, pontosDePatrulha[randomPonto].position, speed * Time.deltaTime);
-
+        transform.LookAt(pontosDePatrulha[randomPonto]);
         if (Vector3.Distance(transform.position, pontosDePatrulha[randomPonto].position) < 0.3f)
         {
             if (waitTime <= 0)
@@ -83,7 +83,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         speed = chaseSpeed;
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
+        transform.LookAt(target);
         if (foraDeAlcance) //
         {
             if (chaseTime <= 0)
