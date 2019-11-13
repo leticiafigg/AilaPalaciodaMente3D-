@@ -32,11 +32,12 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.PlayerLevel = 1;
         classDesc = " ";
 
-        actionsToAdd = new List<BaseAction>();
+        actionsToAdd = new List<BaseAction>(); // estão sendo adicionados manualmente, então por ora devem ser carregados manualmente, também
 
         actionsToAdd.Add(new AttackAction());
         actionsToAdd.Add(new Shove());
         actionsToAdd.Add(new Pat());
+        actionsToAdd.Add(new ToqueChocante());
 
         GameInformation.AcoesAprendidas = actionsToAdd;
 
@@ -53,11 +54,11 @@ public class PlayerCreation : MonoBehaviour
     public void EscolherDestemida()
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
-        newPlayer.Poder = 15;   
-        newPlayer.Imaginacao = 8;
-        newPlayer.Resistencia = 13;
+        newPlayer.Poder = 18;   
+        newPlayer.Imaginacao = 9;
+        newPlayer.Resistencia = 15;
         newPlayer.Determinacao = 10;
-        newPlayer.Sorte = 4;
+        newPlayer.Sorte = 10;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
         newPlayer.XPNecessario = 300;
@@ -80,11 +81,11 @@ public class PlayerCreation : MonoBehaviour
     public void EscolherCriativa()
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
-        newPlayer.Poder = 8;
-        newPlayer.Imaginacao = 16;
-        newPlayer.Resistencia = 6;
-        newPlayer.Determinacao = 12;
-        newPlayer.Sorte = 6;
+        newPlayer.Poder = 9;
+        newPlayer.Imaginacao = 20;
+        newPlayer.Resistencia = 10;
+        newPlayer.Determinacao = 14;
+        newPlayer.Sorte = 11;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
         newPlayer.XPNecessario = 300;

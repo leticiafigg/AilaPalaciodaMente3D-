@@ -96,9 +96,11 @@ public class BattleHandler : MonoBehaviour
           switch (currentState) {
           
               case (BattleStates.START):
-                  //Apresentar os inimigos, ativa o hud e tals
+                    //Apresentar os inimigos, ativa o hud e tals
           
-                  battleStartscript.PrepareBattle();
+                    battleStartscript.PrepareBattle();
+                    //A CD aumenta para cada inimigo na lista. por enquanto sempre vai ser 3
+                    cd = inimigosList.Count;
                     turnLogText = "Falsas memórias foram encontradas!";
                     waitActive = true;
                   break;
@@ -131,7 +133,7 @@ public class BattleHandler : MonoBehaviour
                     if (currentActor == BattleStates.PLAYERCHOICE) //se é o turno do jogador e ele escolheu alguma ação
                     {
                         battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction, inimAlvo);
-                        turnLogText = "Aila usou" + playerUsedAction.ActionName ;
+                        turnLogText = "Aila usou " + playerUsedAction.ActionName ;
                     }
 
                     if (currentActor == BattleStates.ENEMYCHOICE) //calcula o dano se o inimigo ainda não agiu
@@ -157,7 +159,8 @@ public class BattleHandler : MonoBehaviour
                   jogadorTerminouTurno = false;
                   inimigoTerminouTurno = false;
                   DecidirProximoAtor();
-
+                  CameraParaJogador();
+                  turnLogText = "Fim da rodada";
                     waitActive = true;
 
                   break;

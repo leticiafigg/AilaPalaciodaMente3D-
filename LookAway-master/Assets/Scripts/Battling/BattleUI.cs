@@ -15,6 +15,7 @@ public class BattleUI : MonoBehaviour
 
     public GameObject panelActions;
     public GameObject panelAttacks;
+    public GameObject panelFantasias;
     public GameObject panelConfirmAttack;
     public GameObject cancelPanelObj;
     public GameObject descriptionTxtObj;
@@ -81,6 +82,7 @@ public class BattleUI : MonoBehaviour
         cursorUI.Cursor.SetActive(false);
         panelConfirmAttack.SetActive(false);
         panelAttacks.SetActive(false);
+        panelFantasias.SetActive(false);
     }
 
     private void TargetDisplayHandle()
@@ -91,6 +93,7 @@ public class BattleUI : MonoBehaviour
         cancelPanelObj.SetActive(true);
         panelActions.SetActive(false);
         panelAttacks.SetActive(false);
+        panelFantasias.SetActive(false);
 
         //procurar o que o jogador está pressionando
 
@@ -141,6 +144,7 @@ public class BattleUI : MonoBehaviour
         currentDisplay = ScreenDisplays.FANTASYDISPLAY;
         cancelPanelObj.SetActive(true);
         panelActions.SetActive(false);
+        panelFantasias.SetActive(true);
     }
 
     public void showNeutral()

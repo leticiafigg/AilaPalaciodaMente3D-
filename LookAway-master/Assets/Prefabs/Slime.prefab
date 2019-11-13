@@ -95,15 +95,13 @@ MonoBehaviour:
   cameraPos: {fileID: 3585031930748518693}
   pvTotal: 0
   pvAtual: 0
-  stuntotal: 100
-  stunatual: 0
-  maxlvl: 8
-  poder: 8
+  maxlvl: 4
+  poder: 5
   imaginacao: 10
   resistencia: 15
   determinacao: 10
   armadura: 2
-  sorte: 16
+  sorte: 10
   moveList: []
   PosInList: 1
   derrotado: 0

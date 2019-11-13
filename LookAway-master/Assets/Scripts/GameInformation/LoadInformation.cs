@@ -24,9 +24,19 @@ public class LoadInformation : MonoBehaviour
             GameInformation.AilaPVatual = PlayerPrefs.GetInt("PVATUAL");
             GameInformation.AilaPF = PlayerPrefs.GetInt("PFTOTAL");
             GameInformation.AilaPFatual = PlayerPrefs.GetInt("PFATUAL");
+            GameInformation.FragmentosDeMemoria = PlayerPrefs.GetInt("FRAGMENTOSDEMEMORIA");
             GameInformation.LastScene = PlayerPrefs.GetString("LASTSCENE");
             GameInformation.LastPos = PlayerPrefsX.GetVector3("SavePlayerPos");
 
+
+            List<BaseAction> AcoesSave = new List<BaseAction>(); //Estamos carregando uma lista específica manualmente por enquanto
+            AcoesSave.Add(new AttackAction());
+            AcoesSave.Add(new Shove());
+            AcoesSave.Add(new Pat());
+            AcoesSave.Add(new ToqueChocante());
+
+            GameInformation.AcoesAprendidas = AcoesSave;
+            
         }
      }
 }
