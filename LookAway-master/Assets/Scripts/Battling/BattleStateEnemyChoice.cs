@@ -8,8 +8,6 @@ public class BattleStateEnemyChoice
     public BaseAction acaoDoInimigo;
     private int inimIndex;
 
-    
-
 
     public void EnemyCompleteTurn()
     {
@@ -26,7 +24,6 @@ public class BattleStateEnemyChoice
                 }
                 else
                 {
-
                     //e quando encontra um que não agiu, significa que o turno dos inimigos ainda não acabou
                     BattleHandler.inimigoTerminouTurno = false;
                 }
@@ -40,15 +37,19 @@ public class BattleStateEnemyChoice
                 {
                     acaoDoInimigo = enemyActionChooseScript.ChooseEnemyAction(BattleHandler.inimigodavez);
                     BattleHandler.enemyUsedAction = acaoDoInimigo;
+                    //calcular dano
+                   
+                }
+                else
+                {
+                    BattleHandler.inimigodavez.Agiu = true;
+                    BattleHandler.inimigodavez.Atordoado = false;
+                    BattleHandler.enemyUsedAction = new Zonzar();            
                 }
             }
         }
 
-            //calcular dano
-            BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;
-            //fim de turno
-        
-        
+             BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;              
     }
 
 }

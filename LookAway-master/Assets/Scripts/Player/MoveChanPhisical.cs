@@ -27,7 +27,7 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameInformation.returningFromBattle)
+        if(GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
         {
        
             transform.position = GameInformation.LastPos;

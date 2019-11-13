@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class BaseHUDHandler : MonoBehaviour
 {
+    public float hudSpeed;
+    private bool statMenuligado;
+    private bool pressedBtn;
+
     public GameObject sliderPvObj;
     public GameObject pvText;
     private string pvMinMaxstrg;
@@ -24,6 +29,18 @@ public class BaseHUDHandler : MonoBehaviour
     public string interactionName;
     public bool interactOn;
 
+    public GameObject tabMenuPanel;
+    public GameObject tabTraslatePoint;
+    public GameObject tabOriginalPoint;
+    public TextMeshProUGUI playerLvlTxt;
+    public TextMeshProUGUI poderStatTxt;
+    public TextMeshProUGUI imaginacaoStatTxt;
+    public TextMeshProUGUI resitenciaStatTxt;
+    public TextMeshProUGUI determinacaoStatTxt;
+    public TextMeshProUGUI sorteStatTxt;
+
+    public TextMeshProUGUI xpAtualTxt;
+    public TextMeshProUGUI xpParaoProximo;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +53,11 @@ public class BaseHUDHandler : MonoBehaviour
         pfMin = 0;
 
         SetSlider();
-       
 
+        AtualizarTabBox();
     }
+
+    
 
     // Update is called once per frame
     void FixedUpdate()
@@ -62,7 +81,47 @@ public class BaseHUDHandler : MonoBehaviour
         {
             interactPrompt.SetActive(false);
         }
- 
+
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            pressedBtn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Tab) && pressedBtn)
+        { 
+            ToggleUpMenu();
+            pressedBtn = false;
+        }
+       
+        if(statMenuligado)
+        {
+            tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position,tabTraslatePoint.transform.position , hudSpeed * Time.deltaTime);
+        }
+        else
+        {
+            tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position, tabOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
+        }
+        
+
+    }
+
+    private void ToggleUpMenu() //alternar entre ligar e desligar o menu de status
+    {
+        statMenuligado = !statMenuligado;
+        AtualizarTabBox();       
+    }
+
+    private void AtualizarTabBox() //Sempre que for chamado atualiza o que deve estar escrito
+    {
+        playerLvlTxt.text = "Aila Lv." + GameInformation.Aila.PlayerLevel;
+        poderStatTxt.text = "Poder: " + GameInformation.Aila.Poder;
+        imaginacaoStatTxt.text = "Imaginação: " + GameInformation.Aila.Imaginacao;
+        resitenciaStatTxt.text = "Resistência: " + GameInformation.Aila.Resistencia;
+        determinacaoStatTxt.text = "Determinação: " + GameInformation.Aila.Determinacao;
+        sorteStatTxt.text = "Sorte: " + GameInformation.Aila.Sorte;
+
+        xpAtualTxt.text = "Exp. atual: " + GameInformation.Aila.XPAtual;
+        xpParaoProximo.text = "Próximo nível: " + GameInformation.Aila.XPNecessario;
     }
 
     private void SetSlider()
