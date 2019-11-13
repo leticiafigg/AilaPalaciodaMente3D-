@@ -23,6 +23,7 @@ public class GameInformation : MonoBehaviour
     public static int AilaPF { get; set; }
     public static int AilaPVatual { get; set; }
     public static int AilaPFatual { get; set; }
+    public static int FragmentosDeMemoria { get; set; }
 
     public static List<BaseAction> AcoesAprendidas {get; set;}
 

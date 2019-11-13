@@ -27,22 +27,22 @@ public class StatCalc
         if(statType == StatType.PODER)
         {
             modifier = poderModifier;
-            return (statVal + (int)((statVal * modifier) * level * 0.5));
+            return (statVal +(int)((statVal * modifier) * (level * 0.3)));
         }
         if (statType == StatType.IMAGINACAO)
         {
             modifier = imaginacaoModifier;
-            return (statVal + (int)((statVal * modifier) * level * 0.5));
+            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
         }
         if (statType == StatType.RESISTENCIA)
         {
             modifier = resistenciaModifier;
-            return (statVal + (int)((statVal * modifier) * level * 0.5));
+            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
         }
         if (statType == StatType.DETERMINACAO)
         {
             modifier = determinacaoModifier;
-            return (statVal + (int)((statVal * modifier) * level * 0.5));
+            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
         }
         if (statType == StatType.SORTE)
         {
@@ -57,7 +57,7 @@ public class StatCalc
     {
         int resultPV;
 
-        resultPV = (int)(statValue * 10); //simplesmente usando o valor do status e multiplicando por 10 
+        resultPV = (int)(statValue * 15); //simplesmente usando o valor do status e multiplicando por 10 
 
         return resultPV;
 
