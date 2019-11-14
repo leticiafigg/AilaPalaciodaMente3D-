@@ -72,8 +72,8 @@ public class BattleStart
         inimstats.pvTotal = statCalculations.CalcularPV(inimstats.resistencia);
         inimstats.pvAtual = inimstats.pvTotal;
 
-        inimstats.StunTotal = 100;
-        inimstats.StunAtual = 0;
+        inimstats.stunTotal = 100;
+        inimstats.stunAtual = 0;
 
     }
 

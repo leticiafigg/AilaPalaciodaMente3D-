@@ -5,9 +5,9 @@ public class ToqueChocante : BaseAction
     public ToqueChocante()
     {
         ActionName = "Toque Chocante";
-        ActionDesc = "Toca o inimigo toca o inimigo com mão eletrizadas, atordoamento considerável";
+        ActionDesc = "Toca o inimigo com mãos eletrizadas, atordoamento considerável";
         ActionID = 5;
-        ActionPower = 30;
+        ActionPower = 20;
         StunPower = 30;
         ActionCost = 8;
         ActionCritChance = 20;

@@ -82,7 +82,7 @@ public class PlayerCreation : MonoBehaviour
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
         newPlayer.Poder = 9;
-        newPlayer.Imaginacao = 20;
+        newPlayer.Imaginacao = 18;
         newPlayer.Resistencia = 10;
         newPlayer.Determinacao = 14;
         newPlayer.Sorte = 11;

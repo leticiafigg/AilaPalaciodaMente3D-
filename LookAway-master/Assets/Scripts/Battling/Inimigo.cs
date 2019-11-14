@@ -10,8 +10,8 @@ public class Inimigo : MonoBehaviour
 
     public int pvTotal; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
     public int pvAtual;
-    private int stuntotal;
-    private int stunatual;
+    public int stunTotal;
+    public int stunAtual;
 
     private string nome;
     private int enemylvl;
@@ -53,18 +53,6 @@ public class Inimigo : MonoBehaviour
         set { this.enemylvl = value; }
     }
 
-    public int StunTotal
-    {
-        get { return this.stuntotal; }
-        set { this.stuntotal = value; }
-    }
-
-    public int StunAtual
-    {
-        get { return this.stunatual; }
-        set { this.stunatual = value; }
-    }
-
     public EnemyState EstadoAtual
     {
         get { return this.estadoAtual; }
@@ -88,8 +76,7 @@ public class Inimigo : MonoBehaviour
         Nome = inimigoobj.name;
         agiu = false;
         derrotado = false;
-        pvAtual = pvTotal;
-        stunatual = stuntotal;
+        pvAtual = pvTotal;    
     } 
 
     // Update is called once per frame
@@ -115,12 +102,12 @@ public class Inimigo : MonoBehaviour
             
         }
 
-        if(this.StunAtual >= 100)
+        if(this.stunAtual >= 100)
         {
             this.Atordoado = true;
         }
 
-        if(this.StunAtual < 100)
+        if(this.stunAtual < 100)
         {
             this.Atordoado = false;
         }
@@ -153,6 +140,6 @@ public class Inimigo : MonoBehaviour
     {
         this.pvAtual = this.pvAtual - dmg;
 
-        this.stunatual = this.stunatual + stun;
+        this.stunAtual = this.stunAtual + stun;
     }
 }

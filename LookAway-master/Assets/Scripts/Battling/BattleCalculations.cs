@@ -15,8 +15,9 @@ public class BattleCalculations
     private int actionPower;
     private int statusEffDmg;
     private int stunPower = 0;
-    
-    
+
+    private bool foicritico; //serve apenas para dizer ao jogador se o ataque dele foi crítico ou não
+    private bool foicriticoInim;
 
     private int totalActionDMG;
     private int totalCriticalDMG;
@@ -40,13 +41,23 @@ public class BattleCalculations
         totalPlayerDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG; //Dano combinado do ataque em si, + o crítico, mais o status.
 
         totalPlayerDMG += (int)(Random.Range(-(totalPlayerDMG * dmgVariator), totalPlayerDMG * dmgVariator)); // adiciona uma variaçãod e 5% entre danos, afinal raramente um ataque de uma mesma pessoa causa exatamente o mesmo dano 
-        Debug.Log("Aila causou " + totalPlayerDMG + " de dano total com o efeito");
+
+       
 
         totalPlayerDMG = calculateEnemyResistance(inimAlvo);
 
         inimAlvo.TakeDamage((int)totalPlayerDMG , totalStunDMG); //Chama o método de tomar dano dentro do script do inimigo alvo
 
         BattleHandler.jogadorTerminouTurno = true;
+        if (foicritico)
+        {
+            BattleHandler.turnLogText = "Uau! Um golpe crítico! Causou " + totalPlayerDMG + " de dano!";
+        }
+        else
+        {
+            BattleHandler.turnLogText = "Causou " + totalPlayerDMG + " de dano";
+        }
+        BattleHandler.waitActive = true;
     }
 
     public void CalculateTotalEnemyDMG(BaseAction usedAction , Inimigo inim)
@@ -64,11 +75,21 @@ public class BattleCalculations
 
         totalEnemyDMG += (int)(Random.Range(-(totalEnemyDMG * dmgVariator), totalEnemyDMG * dmgVariator));
 
-        if (DecidirEvasion())
+        if (DecidirEvasion()) //se Aila desviou...
         {
             totalEnemyDMG = 0;
-            Debug.Log("Desviou!");
+            BattleHandler.turnLogText = "Aila desviou do ataque";
         }
+        else if (foicriticoInim) //se não desviou, e na verdade tomou um crítico.... 
+        {
+            BattleHandler.turnLogText = "Ouch! um crítico inimigo! Causou " + totalEnemyDMG + " de dano!";
+        }
+        else //se nenhum destes ocorreu, então foi dano normal
+        {
+            BattleHandler.turnLogText = "Causou " + totalEnemyDMG + " de dano";
+        }
+
+        BattleHandler.waitActive = true;
 
         GameInformation.AilaPVatual -= (int)totalEnemyDMG;
 
@@ -155,8 +176,11 @@ public class BattleCalculations
 
         if(randomTemp <= chanceModificada)
         {
+            foicritico = true;
             return true;
         }
+
+        foicritico = false;
         return false;
     }
 
@@ -169,8 +193,12 @@ public class BattleCalculations
 
         if (randomTemp <= chanceModificada)
         {
+            foicriticoInim = true;
             return true;
         }
+
+        foicriticoInim = false;
+
         return false;
     }
 

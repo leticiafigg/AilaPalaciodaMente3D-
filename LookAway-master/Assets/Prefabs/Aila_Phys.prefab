@@ -2198,7 +2198,7 @@ MonoBehaviour:
   anim: {fileID: 8891037091917188700}
   currentCamera: {fileID: 0}
   jumpspeed: 10000
-  gravity: 20
+  gravity: 1000
   rightHandObj: {fileID: 0}
   leftHandObj: {fileID: 0}
 --- !u!1 &2576337494474386181

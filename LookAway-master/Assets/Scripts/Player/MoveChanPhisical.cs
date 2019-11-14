@@ -11,6 +11,8 @@ public class MoveChanPhisical : MonoBehaviour
     public GameObject currentCamera;
     public float jumpspeed = 8;
     public float gravity = 20;
+    
+    
 
     float jumptime;
     bool jumpbtn = false;
@@ -27,7 +29,9 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
         {
        
             transform.position = GameInformation.LastPos;
@@ -35,14 +39,6 @@ public class MoveChanPhisical : MonoBehaviour
        
         }
       
-        //if (SceneManager.GetActiveScene().name.Equals("mapa1"))     //maneira antiga de carregar a posição anterior
-        //{
-        //   if (PlayerPrefs.HasKey("OldPlayerPosition"))
-        //   {
-        //     print("movendo "+ PlayerPrefsX.GetVector3("OldPlayerPosition"));
-        //     transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");       
-        //   }
-        // }
         currentCamera = Camera.main.gameObject;
        
     }
@@ -51,12 +47,12 @@ public class MoveChanPhisical : MonoBehaviour
         if(Input.GetButtonDown("Jump") && !holding)
         {
             jumpbtn = true;
-            jumpbtndown = true;
         }
         if (Input.GetButtonUp("Jump"))
         {
             jumpbtn = false;
-            jumptime = 0;
+           
+            jumptime = 0;     
         }
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -64,7 +60,6 @@ public class MoveChanPhisical : MonoBehaviour
 
     void FixedUpdate()
     {
-
    
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis);
         relativedirection = new Vector3(relativedirection.x, jumptime, relativedirection.z);
@@ -76,7 +71,6 @@ public class MoveChanPhisical : MonoBehaviour
         anim.SetFloat("Speed", rdb.velocity.magnitude);
 
        
-        
             rdb.velocity = relativeDirectionWOy*5 + new Vector3(0,rdb.velocity.y,0);
             //rdb.AddForce(relativeDirectionWOy * 1000);
             Quaternion rottogo = Quaternion.LookRotation(relativeDirectionWOy * 2 + transform.forward);
@@ -84,7 +78,6 @@ public class MoveChanPhisical : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-
             //anim.SetTrigger("PunchA");
             holding = true;
         }
@@ -121,7 +114,10 @@ public class MoveChanPhisical : MonoBehaviour
             jumptime -= Time.fixedDeltaTime;
             jumptime = Mathf.Clamp01(jumptime);
             rdb.AddForce(Vector3.up * jumptime * jumpspeed);
-
+        }
+        if(jumptime<=0)
+        {
+            rdb.AddForce(Vector3.down * gravity);
         }
 
         jumpbtndown = false;
