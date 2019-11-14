@@ -144,7 +144,7 @@ public class BaseHUDHandler : MonoBehaviour
     {
        interactOn = true;
        
-       interactionNameText.GetComponent<Text>().text = interactionName;
+       interactionNameText.GetComponent<TextMeshProUGUI>().text = interactionName;
     }
 
     public void DesativarPrompt()
