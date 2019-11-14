@@ -31,14 +31,18 @@ public class BattleHandler : MonoBehaviour
     public static bool jogadorTerminouTurno;
     public static bool inimigoTerminouTurno;
     public static bool waitActive;
+    public static bool jogPassouNivel;  // será usado para avisar se o jogador passou algum nível ao receber xp
     
 
     public GameObject inimigo1start;
     public GameObject inimigo2start;
     public GameObject inimigo3start;
 
+    public TextMeshProUGUI expPointsDados; //
+    public GameObject battleResultsPanel;  // Aviso de vitória e resultados de batalha (Exp recebido)
+    public GameObject lvlupwarnTxt;        //
     public GameObject turnLogBox;
-    public static string turnLogText; //alterar essa string para cada coisa que acontecer nos turnos do inimigos
+    public static string turnLogText; //alterar essa string para cada coisa que acontecer entre os estados
     public float startWaitTime;
     private float waitTime;
 
@@ -73,12 +77,16 @@ public class BattleHandler : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
 
-        playerCamera.enabled = true;
-        enemyActionCamera.enabled = false;
+        playerCamera.enabled = true;        // Torna a camera ativa a do Jogador, por padrão, ao começar a batalha
+        enemyActionCamera.enabled = false;  //
+
+        battleResultsPanel.SetActive(false);     //
+        jogPassouNivel = false;                 // desativam o aviso no começo da cena
+        lvlupwarnTxt.SetActive(false);          //
 
         inimigosList = new List<Inimigo>();
         inimObjList = new List<GameObject>();
-
+        
         waitActive = false;
         waitTime = startWaitTime;
         xprecebido = false;
@@ -193,11 +201,17 @@ public class BattleHandler : MonoBehaviour
           
                   if (!xprecebido)
                   {
-                      IncreaseExperience.AddExperience(cd);
-                      xprecebido = true;
+                        battleResultsPanel.SetActive(true);
+                        int xpDado = IncreaseExperience.AddExperience(cd);
+                        xprecebido = true;
+                        expPointsDados.text = " " + xpDado;
+
+                        if(jogPassouNivel)
+                        {
+                            lvlupwarnTxt.SetActive(true);
+                        }
                   }
-                  GameInformation.returningFromBattle = true;
-                  SceneManager.LoadScene(GameInformation.LastScene);
+                 
                   break;
           
               case (BattleStates.LOSE):
@@ -279,7 +293,13 @@ public class BattleHandler : MonoBehaviour
             BattleUICursor.SetCursorEnemies();
         }      
     }
-  
+
+    public void BattleReturn()
+    {
+        GameInformation.returningFromBattle = true;
+        SceneManager.LoadScene(GameInformation.LastScene);
+    }
+
     public void Fuga()
     {
         SceneManager.LoadScene(GameInformation.LastScene);

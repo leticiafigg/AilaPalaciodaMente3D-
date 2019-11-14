@@ -20,8 +20,6 @@ public class BattleUI : MonoBehaviour
     public GameObject cancelPanelObj;
     public GameObject descriptionTxtObj;
     public BattleUICursor cursorUI;
-    public int adjustX = 0;
-    public int adjustY = 0;
 
     private enum ScreenDisplays
     {
@@ -157,7 +155,6 @@ public class BattleUI : MonoBehaviour
         panelActions.SetActive(true);
     }
 
-
     public void PlayerAttackChoice(string attackAction) //cria os botões em GUI de movimentos que o jogador pode usar
     {
         foreach (BaseAction learnedActions in GameInformation.AcoesAprendidas)
@@ -181,6 +178,6 @@ public class BattleUI : MonoBehaviour
 
     }
 
-  
+   
 
 }
