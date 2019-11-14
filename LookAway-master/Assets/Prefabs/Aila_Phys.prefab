@@ -2108,6 +2108,7 @@ GameObject:
   - component: {fileID: 5806257229435160611}
   - component: {fileID: 5806257229435160610}
   - component: {fileID: 5806257229435160608}
+  - component: {fileID: 7192289746575469702}
   m_Layer: 0
   m_Name: Aila_Phys
   m_TagString: Player
@@ -2199,8 +2200,20 @@ MonoBehaviour:
   currentCamera: {fileID: 0}
   jumpspeed: 10000
   gravity: 1000
-  rightHandObj: {fileID: 0}
-  leftHandObj: {fileID: 0}
+  sonTranform: {fileID: 1578877675544470310}
+--- !u!135 &7192289746575469702
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572141674373943605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.039023113
+  m_Center: {x: 0, y: 0.15491953, z: 0.014903927}
 --- !u!1 &2576337494474386181
 GameObject:
   m_ObjectHideFlags: 0

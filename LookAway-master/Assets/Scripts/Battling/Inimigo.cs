@@ -13,7 +13,7 @@ public class Inimigo : MonoBehaviour
     public int stunTotal;
     public int stunAtual;
 
-    private string nome;
+    public string Nome;
     private int enemylvl;
     public int maxlvl;     //Status gerais (Exceto a Armadura) mudarão de acordo com o nível do inimigo,
     public int poder;      // - mas serão baseados numa predefinição dada no prefab, para facilitar implementação
@@ -41,11 +41,7 @@ public class Inimigo : MonoBehaviour
 
     private EnemyState estadoAtual;
 
-    public string Nome
-    {
-        get { return nome; }
-        set { nome = value; }
-    }
+  
 
     public int EnemyLevel
     {
@@ -73,7 +69,7 @@ public class Inimigo : MonoBehaviour
 
     private void Start()
     {
-        Nome = inimigoobj.name;
+        
         agiu = false;
         derrotado = false;
         pvAtual = pvTotal;    

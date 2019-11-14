@@ -14,14 +14,15 @@ public class MoveChanPhisical : MonoBehaviour
     
     
 
-    float jumptime;
-    bool jumpbtn = false;
-    bool jumpbtndown = false;
-    bool jumpbtnrelease = false;
+    private float jumptime;
+    private bool jumpbtn = false;
+    private bool jumpbtndown = false;
+    private bool grounded = true;
 
-    public Transform rightHandObj, leftHandObj;
+    //Variáveis para agarragens
+    public Transform sonTranform;
     GameObject closeThing;
-    GameObject grablable;
+    GameObject grabbable;
     float weight;
     bool canhold;
     bool holding;
@@ -150,18 +151,18 @@ public class MoveChanPhisical : MonoBehaviour
             if (weight <= 0)
             {
                 canhold = false;
-                grablable.transform.parent = null;
+                grabbable.transform.SetParent(null);
                 Destroy(closeThing);
             }
 
             if (canhold && holding)
             {
-                grablable.transform.parent = rightHandObj.transform;
+                grabbable.transform.SetParent(sonTranform.transform) ;
 
             }
             if(!holding)
             {
-                grablable.transform.parent = null;
+                grabbable.transform.SetParent (null);
             }
 
         }
@@ -175,7 +176,7 @@ public class MoveChanPhisical : MonoBehaviour
             {
                 closeThing = new GameObject("Handpos");
                 canhold = true;
-                grablable = collision.gameObject;
+                grabbable = collision.gameObject;
 
             }
 

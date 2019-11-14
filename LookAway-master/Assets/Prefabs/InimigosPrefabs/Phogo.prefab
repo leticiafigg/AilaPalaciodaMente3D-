@@ -76,19 +76,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 4299636626108162085}
-  pvTotal: 0
-  pvAtual: 0
+  pvTotal: 150
+  pvAtual: 150
   stunTotal: 100
   stunAtual: 0
+  Nome: Pogo
   maxlvl: 4
   poder: 10
-  imaginacao: 12
-  resistencia: 6
-  determinacao: 6
+  imaginacao: 10
+  resistencia: 10
+  determinacao: 10
   armadura: 1
-  sorte: 9
+  sorte: 10
   moveList: []
-  PosInList: 0
+  PosInList: 2
   derrotado: 0
   inimigoobj: {fileID: 9067631881081883298}
 --- !u!1001 &6299107031663315579

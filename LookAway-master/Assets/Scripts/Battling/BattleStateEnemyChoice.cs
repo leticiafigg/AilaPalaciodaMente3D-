@@ -42,7 +42,7 @@ public class BattleStateEnemyChoice
 
              //Atualizar a ação feita no text log e pausar o game state para então quando o gamestate voltar a rodar ele ler o CALCDAMAGE, que diz o dano causado
              BattleHandler.waitActive = true;
-             BattleHandler.turnLogText = BattleHandler.inimigodavez.name + " usou " + BattleHandler.enemyUsedAction; 
+             BattleHandler.turnLogText = BattleHandler.inimigodavez.Nome + " usou " + BattleHandler.enemyUsedAction.ActionName; 
 
              BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;              
     }

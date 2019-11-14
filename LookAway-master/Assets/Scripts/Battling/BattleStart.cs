@@ -28,15 +28,15 @@ public class BattleStart
         for(int i = 0 ; i < 3; i++)
         {
             rdn = Random.Range(0, inims.Length);
-            inimigos[i] = inims[rdn];
+              inimigos[i] = inims[rdn];
 
             if(inimigos[i].GetComponent<Inimigo>() != null)
             {
                 inimstats = inimigos[i].GetComponent<Inimigo>();
                 inimstats.PosInList = i;
-
+               
                 CreateNewEnemy();
-                
+
                 
                 //inimstats.totalHp = inimstats.Enemylvl * 10;
             }
@@ -62,6 +62,8 @@ public class BattleStart
         {
             inimstats.EnemyLevel = inimstats.maxlvl;
         }
+
+        //inimstats.Nome = inimstats.Nome + "(" + inimstats.PosInList + ")";
 
         inimstats.poder = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
         inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);

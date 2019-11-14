@@ -256,6 +256,9 @@ MonoBehaviour:
   cameraPos: {fileID: 4630519741184259510}
   pvTotal: 0
   pvAtual: 0
+  stunTotal: 0
+  stunAtual: 0
+  Nome: Coxinha
   maxlvl: 4
   poder: 8
   imaginacao: 6
