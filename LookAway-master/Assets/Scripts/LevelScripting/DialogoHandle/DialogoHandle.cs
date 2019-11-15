@@ -15,8 +15,8 @@ public class DialogoHandle : MonoBehaviour
 
     public Texture locutor1FileImg;
     public Texture locutor2FileImg;
-    private GameObject locutor1GameObj; 
-    private GameObject locutor2GameObj; 
+    public GameObject locutor1GameObj; 
+    public GameObject locutor2GameObj; 
     public string Locutor1Name;
     public string Locutor2Name;
 
@@ -40,8 +40,7 @@ public class DialogoHandle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        locutor1GameObj = GameObject.FindGameObjectWithTag("Locutor1ImgObj");
-        locutor2GameObj = GameObject.FindGameObjectWithTag("Locutor2ImgObj");
+        
         locutor1GameObj.GetComponent<RawImage>().texture = locutor1FileImg;
         locutor2GameObj.GetComponent<RawImage>().texture = locutor2FileImg;
 
@@ -72,8 +71,7 @@ public class DialogoHandle : MonoBehaviour
 
         if(hudHandleScript.interactOn || dialogoOpen)
         {
-            hudHandleScript.interactionName = intrName;
-
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 pressedBtn = true;
@@ -103,13 +101,13 @@ public class DialogoHandle : MonoBehaviour
         if (falaIndex + 1 < ConjuntoFalas[locutor].Count) //se o indexador for menor que o total, podemos aumentá-lo e utilizá-lo normalmente
         {
             falaIndex++;
-            falatual = ConjuntoFalas[locutor][falaIndex];
+            
         }
         else if(locutor + 1 < ConjuntoFalas.Count) //se o indexador da fala era maior ou igual, mas ainda tem um locutor, passamos para o próximo locutor
         {
             locutor++;
             falaIndex = 0;
-            falatual = ConjuntoFalas[locutor][falaIndex];
+            
         }
         else
         {
@@ -123,14 +121,17 @@ public class DialogoHandle : MonoBehaviour
         else
         textBoxLocutorAtual.text = Locutor2Name;
 
-       
+        if(locutor < ConjuntoFalas.Count && falaIndex < ConjuntoFalas[locutor].Count )
+        falatual = ConjuntoFalas[locutor][falaIndex];
+
     }
 
     private void FimdeTexto()
     {
+        locutor = 0;
+        falaIndex = 0;
         TextBoxObj.SetActive(false);
         dialogoOpen = false;
-
         if(oneTimeEvent)
         {
             this.enabled = false;
