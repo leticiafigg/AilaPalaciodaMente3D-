@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoadInformation : MonoBehaviour
 {
-    private static BasePlayer playerLoad;
+     private static BasePlayer playerLoad;
 
      public static void LoadAll() //Apenas carrega os parâmetros que copõem um player do disco, se player name não for nulo.
      {
@@ -38,5 +38,17 @@ public class LoadInformation : MonoBehaviour
             GameInformation.AcoesAprendidas = AcoesSave;
             
         }
+     }
+
+     public static void LoadOptions()
+     {
+        if (PlayerPrefs.HasKey("PLAYEROPTIONS"))
+        {
+
+            OptionsInformation.MasterVol = PlayerPrefs.GetFloat("MASTERVOLUME");
+
+
+        }
+
      }
 }

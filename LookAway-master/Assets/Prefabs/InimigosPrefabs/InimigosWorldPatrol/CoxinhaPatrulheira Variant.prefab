@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  chaseSpeed: 6
+  chaseSpeed: 4
   startWaitTime: 3
   startChaseTime: 2
   pontosDePatrulha:
@@ -118,16 +118,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CoxinhaPatrulheira Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066202112318232598, guid: 3cc7b2237ee3ff3458cc56b094c2aa78,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: bfed7b011a2eab346a14e46988dd1cf2, type: 2}
-    - target: {fileID: 4066202112318232598, guid: 3cc7b2237ee3ff3458cc56b094c2aa78,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cc7b2237ee3ff3458cc56b094c2aa78,
         type: 3}
@@ -198,6 +188,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066202112318232598, guid: 3cc7b2237ee3ff3458cc56b094c2aa78,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfed7b011a2eab346a14e46988dd1cf2, type: 2}
+    - target: {fileID: 4066202112318232598, guid: 3cc7b2237ee3ff3458cc56b094c2aa78,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc7b2237ee3ff3458cc56b094c2aa78, type: 3}

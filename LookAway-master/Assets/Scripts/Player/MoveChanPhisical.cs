@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoveChanPhisical : MonoBehaviour
 {
@@ -9,16 +10,23 @@ public class MoveChanPhisical : MonoBehaviour
     public Animator anim;
     Vector3 movaxis, turnaxis;
     public GameObject currentCamera;
-    public float jumpspeed = 8;
+    public GameObject jumpBuffSlider;
+    private float maxsliderVal;
+
+    public float jumpspeed;
     public float gravity = 20;
-    
-    
 
     private float jumptime;
     private bool jumpbtn = false;
     private bool jumpbtndown = false;
     private bool grounded = true;
 
+    //variáveis para pulos melhorados
+    private float normalJumpspeed;
+    private bool jumpbuffOn;
+    public float startingBuffTime;
+    private float buffTime;
+    
     //Variáveis para agarragens
     public Transform sonTranform;
     GameObject closeThing;
@@ -30,14 +38,23 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        maxsliderVal = startingBuffTime;
+
+        jumpBuffSlider.GetComponent<Slider>().minValue = 0;
+        jumpBuffSlider.GetComponent<Slider>().maxValue = maxsliderVal;
+
+
+
         Cursor.lockState = CursorLockMode.Locked;
+        jumpbuffOn = false;
+        normalJumpspeed = jumpspeed;
+        buffTime = startingBuffTime;
 
         if (GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
         {
-       
             transform.position = GameInformation.LastPos;
-            GameInformation.returningFromBattle = false;
-       
+            GameInformation.returningFromBattle = false;      
         }
       
         currentCamera = Camera.main.gameObject;
@@ -57,11 +74,26 @@ public class MoveChanPhisical : MonoBehaviour
         }
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+        if (jumpbuffOn)
+        {
+            buffTime -= Time.deltaTime;
+
+            if (buffTime<=0) //Se acabar o tempo de buff, retorna o jump para o original
+            {
+               jumpBuffSlider.SetActive(false);
+               jumpbuffOn = false;
+               buffTime = startingBuffTime;
+               jumpspeed = normalJumpspeed;
+            }
+        }
+
+        jumpBuffSlider.GetComponent<Slider>().value = buffTime;
+
     }
 
     void FixedUpdate()
     {
-   
+
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis);
         relativedirection = new Vector3(relativedirection.x, jumptime, relativedirection.z);
 
@@ -194,6 +226,13 @@ public class MoveChanPhisical : MonoBehaviour
     {
 
 
+    }
+
+    public void SuperJumpEnabled(int superJump)
+    {
+       jumpspeed = superJump;
+       jumpBuffSlider.SetActive(true);
+       jumpbuffOn = true;
     }
 
     public Vector3 GetPlayerPos()

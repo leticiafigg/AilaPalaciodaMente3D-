@@ -2198,8 +2198,10 @@ MonoBehaviour:
   rdb: {fileID: 5806257229435160611}
   anim: {fileID: 8891037091917188700}
   currentCamera: {fileID: 0}
+  jumpBuffSlider: {fileID: 0}
   jumpspeed: 10000
   gravity: 1000
+  startingBuffTime: 10
   sonTranform: {fileID: 1578877675544470310}
 --- !u!135 &7192289746575469702
 SphereCollider:
