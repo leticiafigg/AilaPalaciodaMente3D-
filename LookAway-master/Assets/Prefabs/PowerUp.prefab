@@ -108,5 +108,5 @@ MonoBehaviour:
   HealthPU: 0
   JumpPU: 1
   player: {fileID: 0}
-  jumpspeedTemp: 10000
+  jumpspeedTemp: 11000
   coletado: 0

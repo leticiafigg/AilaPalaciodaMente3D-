@@ -5,42 +5,36 @@ using UnityEngine.UI;
 
 public class OptionsInformation : MonoBehaviour
 {
+    public static Slider Masterslider;
+    public static bool FullscreenSetting;
+    public static float MasterVol;
+    
+
     private void Awake()
     {
-        LoadInformation.LoadOptions(); 
+        Masterslider = GameObject.FindGameObjectWithTag("MasterVolSlider").GetComponent<Slider>();
+        MasterVol = 1;
+        LoadInformation.LoadOptions();
+        Masterslider.value = MasterVol;
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
-    public static float MasterVol;
-    public static float MasterDesejado;
-    public static Slider Masterslider;
 
     public void Masterchange()
     {
-        MasterDesejado = Masterslider.value;
-        AudioListener.volume = MasterDesejado;
+        MasterVol = Masterslider.value;
+        AudioListener.volume = MasterVol;
+    }
+
+    public void FullscreenToggle()
+    {
+        FullscreenSetting = !FullscreenSetting;
+        Screen.fullScreen = FullscreenSetting;
     }
 
     public void SalvarOptions()
     {
-        MasterVol = MasterDesejado;
-        AudioListener.volume = MasterVol;
-
         SaveInformation.SaveOptions();
     }
 
-    public void DiscardChanges()
-    {
-        AudioListener.volume = MasterVol;
-    }
-    
-
-
-
-
+     
 
 }

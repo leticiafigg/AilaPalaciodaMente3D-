@@ -42,11 +42,11 @@ public class LoadInformation : MonoBehaviour
 
      public static void LoadOptions()
      {
-        if (PlayerPrefs.HasKey("PLAYEROPTIONS"))
+        if (PlayerPrefs.HasKey("MASTERVOLUME"))
         {
 
             OptionsInformation.MasterVol = PlayerPrefs.GetFloat("MASTERVOLUME");
-
+            OptionsInformation.FullscreenSetting = PlayerPrefsX.GetBool("FULLSCREEN");
 
         }
 
