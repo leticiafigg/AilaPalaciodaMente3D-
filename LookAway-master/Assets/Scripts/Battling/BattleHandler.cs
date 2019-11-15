@@ -31,14 +31,18 @@ public class BattleHandler : MonoBehaviour
     public static bool jogadorTerminouTurno;
     public static bool inimigoTerminouTurno;
     public static bool waitActive;
+    public static bool jogPassouNivel;  // será usado para avisar se o jogador passou algum nível ao receber xp
     
 
     public GameObject inimigo1start;
     public GameObject inimigo2start;
     public GameObject inimigo3start;
 
+    public TextMeshProUGUI expPointsDados; //
+    public GameObject battleResultsPanel;  // Aviso de vitória e resultados de batalha (Exp recebido)
+    public GameObject lvlupwarnTxt;        //
     public GameObject turnLogBox;
-    public static string turnLogText; //alterar essa string para cada coisa que acontecer nos turnos do inimigos
+    public static string turnLogText; //alterar essa string para cada coisa que acontecer entre os estados
     public float startWaitTime;
     private float waitTime;
 
@@ -71,12 +75,18 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCamera.enabled = true;
-        enemyActionCamera.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+
+        playerCamera.enabled = true;        // Torna a camera ativa a do Jogador, por padrão, ao começar a batalha
+        enemyActionCamera.enabled = false;  //
+
+        battleResultsPanel.SetActive(false);     //
+        jogPassouNivel = false;                 // desativam o aviso no começo da cena
+        lvlupwarnTxt.SetActive(false);          //
 
         inimigosList = new List<Inimigo>();
         inimObjList = new List<GameObject>();
-
+        
         waitActive = false;
         waitTime = startWaitTime;
         xprecebido = false;
@@ -118,11 +128,35 @@ public class BattleHandler : MonoBehaviour
               case (BattleStates.ENEMYCHOICE):
                   //colocar IA aqui
                   currentActor = BattleStates.ENEMYCHOICE;
-          
-                  battleStateEnemyChoicescript.EnemyCompleteTurn();
-                  
-                  //DecidirProximoAtor();
-                  break;
+
+                    //checa cada inimigo na lista para ver se ele já agiu
+                    int inimIndex = 0; //sempre reseta para o primeiro, porém ...
+                    foreach (Inimigo inimstat in inimigosList)
+                    {
+                        if (inimstat.Agiu)
+                        {
+                            inimIndex++; //...sempre que encontra um inimigo que já agiu ele adiciona 1 no indexador
+                           inimigoTerminouTurno = true;
+                        }
+                        else
+                        {
+                            //e quando encontra um que não agiu, significa que o turno dos inimigos ainda não acabou
+                           inimigoTerminouTurno = false;
+                        }
+                    }
+
+                    if (inimigoTerminouTurno == false) //só entra aqui se cada inimigo na lista ainda não agiu
+                    {
+                        battleStateEnemyChoicescript.EnemyCompleteTurn(inimIndex);
+                        enemyActionCamera.transform.position = inimigodavez.cameraPos.transform.position;
+                        CameraParaInimigo();
+                    }
+                    else
+                    {
+                        DecidirProximoAtor();
+                    }
+                    
+                    break;
           
               case (BattleStates.ENEMYANIM):
                   //faz os paranaue de animar la
@@ -132,18 +166,14 @@ public class BattleHandler : MonoBehaviour
                   Debug.Log("CALCULANDO DANO");
                     if (currentActor == BattleStates.PLAYERCHOICE) //se é o turno do jogador e ele escolheu alguma ação
                     {
-                        battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction, inimAlvo);
-                        turnLogText = "Aila usou " + playerUsedAction.ActionName ;
+                        battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction, inimAlvo);             
                     }
 
                     if (currentActor == BattleStates.ENEMYCHOICE && inimigodavez != null) //calcula o dano se o inimigo ainda não agiu
-                    {
-                        battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction, inimigodavez);
-                        turnLogText = inimigodavez.name + " usou " + enemyUsedAction.ActionName;
-                        enemyActionCamera.transform.position = inimigodavez.cameraPos.transform.position;
-                        CameraParaInimigo();
+                    { 
+                        battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction, inimigodavez);  
+                        
                         inimigodavez.Agiu = true;
-                        waitActive = true;
                     }
                   DecidirProximoAtor(); // Depois de calcular todo o dano, vai retornar para o turno dos inimigos se algum deles não terminou o turno;
                   break;
@@ -171,11 +201,17 @@ public class BattleHandler : MonoBehaviour
           
                   if (!xprecebido)
                   {
-                      IncreaseExperience.AddExperience(cd);
-                      xprecebido = true;
+                        battleResultsPanel.SetActive(true);
+                        int xpDado = IncreaseExperience.AddExperience(cd);
+                        xprecebido = true;
+                        expPointsDados.text = " " + xpDado;
+
+                        if(jogPassouNivel)
+                        {
+                            lvlupwarnTxt.SetActive(true);
+                        }
                   }
-                  GameInformation.returningFromBattle = true;
-                  SceneManager.LoadScene(GameInformation.LastScene);
+                 
                   break;
           
               case (BattleStates.LOSE):
@@ -257,7 +293,13 @@ public class BattleHandler : MonoBehaviour
             BattleUICursor.SetCursorEnemies();
         }      
     }
-  
+
+    public void BattleReturn()
+    {
+        GameInformation.returningFromBattle = true;
+        SceneManager.LoadScene(GameInformation.LastScene);
+    }
+
     public void Fuga()
     {
         SceneManager.LoadScene(GameInformation.LastScene);

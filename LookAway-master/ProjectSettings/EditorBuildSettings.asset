@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mapa2.unity
     guid: 8972a73f4321b7f47bcff19ecd13e867
+  - enabled: 1
+    path: Assets/Scenes/corredor.unity
+    guid: d6bfa55e7ea03a84eb9f439fd92e6d7d
   m_configObjects: {}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoveChanPhisical : MonoBehaviour
 {
@@ -9,17 +10,27 @@ public class MoveChanPhisical : MonoBehaviour
     public Animator anim;
     Vector3 movaxis, turnaxis;
     public GameObject currentCamera;
-    public float jumpspeed = 8;
+    public GameObject jumpBuffSlider;
+    private float maxsliderVal;
+
+    public float jumpspeed;
     public float gravity = 20;
 
-    float jumptime;
-    bool jumpbtn = false;
-    bool jumpbtndown = false;
-    bool jumpbtnrelease = false;
+    private float jumptime;
+    private bool jumpbtn = false;
+    private bool jumpbtndown = false;
+    private bool grounded = true;
 
-    public Transform rightHandObj, leftHandObj;
+    //variáveis para pulos melhorados
+    private float normalJumpspeed;
+    private bool jumpbuffOn;
+    public float startingBuffTime;
+    private float buffTime;
+    
+    //Variáveis para agarragens
+    public Transform sonTranform;
     GameObject closeThing;
-    GameObject grablable;
+    GameObject grabbable;
     float weight;
     bool canhold;
     bool holding;
@@ -27,22 +38,25 @@ public class MoveChanPhisical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
+        
+        maxsliderVal = startingBuffTime;
+
+        jumpBuffSlider.GetComponent<Slider>().minValue = 0;
+        jumpBuffSlider.GetComponent<Slider>().maxValue = maxsliderVal;
+
+
+
+        Cursor.lockState = CursorLockMode.Locked;
+        jumpbuffOn = false;
+        normalJumpspeed = jumpspeed;
+        buffTime = startingBuffTime;
+
+        if (GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
         {
-       
             transform.position = GameInformation.LastPos;
-            GameInformation.returningFromBattle = false;
-       
+            GameInformation.returningFromBattle = false;      
         }
       
-        //if (SceneManager.GetActiveScene().name.Equals("mapa1"))     //maneira antiga de carregar a posição anterior
-        //{
-        //   if (PlayerPrefs.HasKey("OldPlayerPosition"))
-        //   {
-        //     print("movendo "+ PlayerPrefsX.GetVector3("OldPlayerPosition"));
-        //     transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");       
-        //   }
-        // }
         currentCamera = Camera.main.gameObject;
        
     }
@@ -51,21 +65,35 @@ public class MoveChanPhisical : MonoBehaviour
         if(Input.GetButtonDown("Jump") && !holding)
         {
             jumpbtn = true;
-            jumpbtndown = true;
         }
         if (Input.GetButtonUp("Jump"))
         {
             jumpbtn = false;
-            jumptime = 0;
+           
+            jumptime = 0;     
         }
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        if (jumpbuffOn)
+        {
+            buffTime -= Time.deltaTime;
+
+            if (buffTime<=0) //Se acabar o tempo de buff, retorna o jump para o original
+            {
+               jumpBuffSlider.SetActive(false);
+               jumpbuffOn = false;
+               buffTime = startingBuffTime;
+               jumpspeed = normalJumpspeed;
+            }
+        }
+
+        jumpBuffSlider.GetComponent<Slider>().value = buffTime;
 
     }
 
     void FixedUpdate()
     {
 
-   
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis);
         relativedirection = new Vector3(relativedirection.x, jumptime, relativedirection.z);
 
@@ -76,7 +104,6 @@ public class MoveChanPhisical : MonoBehaviour
         anim.SetFloat("Speed", rdb.velocity.magnitude);
 
        
-        
             rdb.velocity = relativeDirectionWOy*5 + new Vector3(0,rdb.velocity.y,0);
             //rdb.AddForce(relativeDirectionWOy * 1000);
             Quaternion rottogo = Quaternion.LookRotation(relativeDirectionWOy * 2 + transform.forward);
@@ -84,7 +111,6 @@ public class MoveChanPhisical : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-
             //anim.SetTrigger("PunchA");
             holding = true;
         }
@@ -121,7 +147,10 @@ public class MoveChanPhisical : MonoBehaviour
             jumptime -= Time.fixedDeltaTime;
             jumptime = Mathf.Clamp01(jumptime);
             rdb.AddForce(Vector3.up * jumptime * jumpspeed);
-
+        }
+        if(jumptime<=0)
+        {
+            rdb.AddForce(Vector3.down * gravity);
         }
 
         jumpbtndown = false;
@@ -154,18 +183,18 @@ public class MoveChanPhisical : MonoBehaviour
             if (weight <= 0)
             {
                 canhold = false;
-                grablable.transform.parent = null;
+                grabbable.transform.SetParent(null);
                 Destroy(closeThing);
             }
 
             if (canhold && holding)
             {
-                grablable.transform.parent = rightHandObj.transform;
+                grabbable.transform.SetParent(sonTranform.transform) ;
 
             }
             if(!holding)
             {
-                grablable.transform.parent = null;
+                grabbable.transform.SetParent (null);
             }
 
         }
@@ -179,7 +208,7 @@ public class MoveChanPhisical : MonoBehaviour
             {
                 closeThing = new GameObject("Handpos");
                 canhold = true;
-                grablable = collision.gameObject;
+                grabbable = collision.gameObject;
 
             }
 
@@ -197,6 +226,13 @@ public class MoveChanPhisical : MonoBehaviour
     {
 
 
+    }
+
+    public void SuperJumpEnabled(int superJump)
+    {
+       jumpspeed = superJump;
+       jumpBuffSlider.SetActive(true);
+       jumpbuffOn = true;
     }
 
     public Vector3 GetPlayerPos()
