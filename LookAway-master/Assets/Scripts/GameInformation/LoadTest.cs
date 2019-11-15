@@ -17,13 +17,14 @@ public class LoadTest : MonoBehaviour
         
     }
 
-    public void OutraCena()
+    public void NovoJogo()
     {
+       
         SceneManager.LoadScene("AilaIsBorn");
 
     }
 
-    public void LoadGame()
+    public void LoadGame(string cena)
     {
 
         LoadInformation.LoadAll();
@@ -33,9 +34,13 @@ public class LoadTest : MonoBehaviour
         Debug.Log("Player Power: " + GameInformation.Aila.Poder);
         Debug.Log("Player Determination: " + GameInformation.Aila.Determinacao);
 
+        SceneManager.LoadScene(cena);
+
+        /*
         if (GameInformation.LastScene != null && GameInformation.LastScene != "")
         {
             SceneManager.LoadScene(GameInformation.LastScene);
         }
+        */
     }
 }

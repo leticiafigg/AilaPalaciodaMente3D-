@@ -151,6 +151,6 @@ public class BaseHUDHandler : MonoBehaviour
     {
        interactOn = false;
 
-       interactionNameText.GetComponent<Text>().text = " ";
+       interactionNameText.GetComponent<TextMeshProUGUI>().text = " ";
     }
 }
