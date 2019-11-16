@@ -47,6 +47,8 @@ public class MoveChanPhisical : MonoBehaviour
 
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         jumpbuffOn = false;
         normalJumpspeed = jumpspeed;
         buffTime = startingBuffTime;

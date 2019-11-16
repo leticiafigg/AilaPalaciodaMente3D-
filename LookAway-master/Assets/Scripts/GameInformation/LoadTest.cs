@@ -24,7 +24,7 @@ public class LoadTest : MonoBehaviour
 
     }
 
-    public void LoadGame(string cena)
+    public void LoadGame()
     {
 
         LoadInformation.LoadAll();
@@ -34,13 +34,11 @@ public class LoadTest : MonoBehaviour
         Debug.Log("Player Power: " + GameInformation.Aila.Poder);
         Debug.Log("Player Determination: " + GameInformation.Aila.Determinacao);
 
-        SceneManager.LoadScene(cena);
-
-        /*
+        
         if (GameInformation.LastScene != null && GameInformation.LastScene != "")
         {
             SceneManager.LoadScene(GameInformation.LastScene);
         }
-        */
+        
     }
 }

@@ -16,7 +16,8 @@ public class DialogoHandle : MonoBehaviour
     public Texture locutor1FileImg;
     public Texture locutor2FileImg;
     public GameObject locutor1GameObj; 
-    public GameObject locutor2GameObj; 
+    public GameObject locutor2GameObj;
+    private GameObject Player;
     public string Locutor1Name;
     public string Locutor2Name;
 
@@ -40,7 +41,8 @@ public class DialogoHandle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         locutor1GameObj.GetComponent<RawImage>().texture = locutor1FileImg;
         locutor2GameObj.GetComponent<RawImage>().texture = locutor2FileImg;
 
@@ -136,6 +138,8 @@ public class DialogoHandle : MonoBehaviour
         {
             this.enabled = false;
         }
+        Player.GetComponent<MoveChanPhisical>().enabled = true;
+
     }
 
     private void OpenDialogo()       //liga a caixa de texto, desliga o prompt, mas avisa que o dialogo esta ligado
@@ -143,6 +147,7 @@ public class DialogoHandle : MonoBehaviour
         TextBoxObj.SetActive(true);
         hudHandleScript.DesativarPrompt();
         dialogoOpen = true;
+        Player.GetComponent<MoveChanPhisical>().enabled = false;
     }
 
     public void DialogoTrigger()  //será utilizado para forçar a iniciação de uma conversa, sem input do jogador.

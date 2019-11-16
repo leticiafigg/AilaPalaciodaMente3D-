@@ -1487,12 +1487,12 @@ PrefabInstance:
     - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 232
+      value: 231.9
       objectReference: {fileID: 0}
     - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
@@ -1513,6 +1513,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2248
+      objectReference: {fileID: 0}
+    - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2248
+      objectReference: {fileID: 0}
+    - target: {fileID: 156307148779211945, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2248
       objectReference: {fileID: 0}
     - target: {fileID: 690924588401867475, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
@@ -1653,6 +1668,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952619320784035875, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.247633
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952619320784035875, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.247633
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952619320784035875, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.247633
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952619320784035875, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -132
       objectReference: {fileID: 0}
     - target: {fileID: 851397347582579302, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
@@ -1909,6 +1944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameEndPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275206367296833939, guid: 2da22ec670cd1224f966772bbe938066,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6275206367296833938, guid: 2da22ec670cd1224f966772bbe938066,
         type: 3}
