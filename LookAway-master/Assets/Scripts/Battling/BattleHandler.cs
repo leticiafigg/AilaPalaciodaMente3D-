@@ -76,6 +76,7 @@ public class BattleHandler : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         playerCamera.enabled = true;        // Torna a camera ativa a do Jogador, por padrão, ao começar a batalha
         enemyActionCamera.enabled = false;  //
