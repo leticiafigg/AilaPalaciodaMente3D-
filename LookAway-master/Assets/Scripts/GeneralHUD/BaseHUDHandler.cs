@@ -64,10 +64,10 @@ public class BaseHUDHandler : MonoBehaviour
     {
         //atualiza os valores máximos e atuais
         pvMinMaxstrg = "PV: " + GameInformation.AilaPVatual + "/" + GameInformation.AilaPV;
-        pvText.GetComponent<Text>().text = pvMinMaxstrg;
+        pvText.GetComponent<TextMeshProUGUI>().text = pvMinMaxstrg;
 
-        pfMinMaxstrg = "PV: " + GameInformation.AilaPFatual + "/" + GameInformation.AilaPF;
-        pfText.GetComponent<Text>().text = pfMinMaxstrg;
+        pfMinMaxstrg = "PF: " + GameInformation.AilaPFatual + "/" + GameInformation.AilaPF;
+        pfText.GetComponent<TextMeshProUGUI>().text = pfMinMaxstrg;
 
         //atualiza a posição da barra do slider de acordo com a vida total (Calculado automáticamente pelo Slider)
         sliderPvObj.GetComponent<Slider>().value = GameInformation.AilaPVatual;
