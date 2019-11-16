@@ -36,4 +36,10 @@ public class LoadSpecificScene : MonoBehaviour
            
         }
     }
+
+    public void LoadMenu()
+    {
+
+        SceneManager.LoadScene("Menu");
+    }
 }
