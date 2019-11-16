@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grabbable
+  - Locutor1ImgObj
+  - Locutor2ImgObj
+  - MasterVolSlider
   layers:
   - Default
   - TransparentFX

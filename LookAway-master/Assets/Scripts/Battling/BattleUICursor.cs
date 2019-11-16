@@ -49,12 +49,12 @@ public class BattleUICursor : MonoBehaviour
             sliderInimPvObj.GetComponent<Slider>().maxValue = inimDestacado.GetComponent<Inimigo>().pvTotal;
 
             sliderInimStunObj.GetComponent<Slider>().minValue = 0;
-            sliderInimStunObj.GetComponent<Slider>().maxValue = inimDestacado.GetComponent<Inimigo>().StunTotal;
+            sliderInimStunObj.GetComponent<Slider>().maxValue = inimDestacado.GetComponent<Inimigo>().stunTotal;
 
 
             //atualiza a posição da barra do slider de acordo com a vida total (Calculado automaticamente pelo Slider)
             sliderInimPvObj.GetComponent<Slider>().value = inimDestacado.GetComponent<Inimigo>().pvAtual;
-            sliderInimStunObj.GetComponent<Slider>().value = inimDestacado.GetComponent<Inimigo>().StunAtual;
+            sliderInimStunObj.GetComponent<Slider>().value = inimDestacado.GetComponent<Inimigo>().stunAtual;
 
             Cursor.transform.position = inimDestacado.transform.position;
         }

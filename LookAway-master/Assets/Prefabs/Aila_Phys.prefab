@@ -1498,6 +1498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3322024565060635066}
+  - component: {fileID: 1045086487733256712}
   m_Layer: 0
   m_Name: Aila_pulso_E_jnt
   m_TagString: Untagged
@@ -1524,6 +1525,19 @@ Transform:
   m_Father: {fileID: 3981849098280107430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1045086487733256712
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057520354304827660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.007230957
+  m_Center: {x: -0.0012621845, y: 0.0098959645, z: -4.3103948e-10}
 --- !u!1 &2059942488150637490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2108,7 @@ GameObject:
   - component: {fileID: 5806257229435160611}
   - component: {fileID: 5806257229435160610}
   - component: {fileID: 5806257229435160608}
+  - component: {fileID: 7192289746575469702}
   m_Layer: 0
   m_Name: Aila_Phys
   m_TagString: Player
@@ -2183,10 +2198,24 @@ MonoBehaviour:
   rdb: {fileID: 5806257229435160611}
   anim: {fileID: 8891037091917188700}
   currentCamera: {fileID: 0}
+  jumpBuffSlider: {fileID: 0}
   jumpspeed: 10000
-  gravity: 20
-  rightHandObj: {fileID: 0}
-  leftHandObj: {fileID: 0}
+  gravity: 1000
+  startingBuffTime: 10
+  sonTranform: {fileID: 1578877675544470310}
+--- !u!135 &7192289746575469702
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572141674373943605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.039023113
+  m_Center: {x: 0, y: 0.15491953, z: 0.014903927}
 --- !u!1 &2576337494474386181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,6 +4760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6698373909972821828}
+  - component: {fileID: 765564462147175645}
   m_Layer: 0
   m_Name: Aila_pulso_D_jnt
   m_TagString: Untagged
@@ -4757,6 +4787,19 @@ Transform:
   m_Father: {fileID: 4492495402452565288}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &765564462147175645
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6063299402734644679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.008129042
+  m_Center: {x: 0.00057020783, y: -0.009975526, z: -6.327048e-10}
 --- !u!1 &6102895408310869947
 GameObject:
   m_ObjectHideFlags: 0

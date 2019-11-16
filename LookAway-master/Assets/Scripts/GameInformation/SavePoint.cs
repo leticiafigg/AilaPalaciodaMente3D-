@@ -61,7 +61,6 @@ public class SavePoint : MonoBehaviour
         //Quando o Player sair, a interação se torna vazia e o prompt deve ser desativado
         if (other.gameObject.CompareTag("Player"))
         {
-
             hudHandleScript.DesativarPrompt();
         }
     }

@@ -26,4 +26,10 @@ public class SaveInformation
         Debug.Log("Saved All Information!");
     }
 
+    public static void SaveOptions()
+    {
+        PlayerPrefs.SetFloat("MASTERVOLUME", OptionsInformation.MasterVol);
+        PlayerPrefsX.SetBool("FULLSCREEN", OptionsInformation.FullscreenSetting);
+    }
+
 }

@@ -7,46 +7,45 @@ public class PowerUps : MonoBehaviour
 {
     public bool HealthPU;
     public bool JumpPU;
+    
     public GameObject player;
-    public int PontosDeVida;
+    public int jumpspeedTemp; //A força adicional temporária adicionada ao jogador
+    public bool coletado;
+
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        coletado = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        if(collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             PlayerEnhance(); //método a ser usado para mudar valores e buffar/ debuffar o player (Especialmente em movimentação livre)
-
-           Destroy(this.gameObject);
-            
-
+            coletado = true;
         }
-
-
     }
 
-    private void PlayerEnhance()
+    private void PlayerEnhance() //Aprimora status diversos do player dependendo de qual booleana é verdadeira
     {
         if(JumpPU)
         {
-            player.GetComponent<MoveChanPhisical>().jumpspeed = 20000;
+            player.GetComponent<MoveChanPhisical>().SuperJumpEnabled(jumpspeedTemp);
         }
 
         if(HealthPU)
         {
-            GameInformation.AilaPVatual += PontosDeVida;
+            GameInformation.AilaPVatual += (int)(GameInformation.AilaPV * 0.15f);
+
+            if(GameInformation.AilaPVatual > GameInformation.AilaPV)
+            {
+                GameInformation.AilaPVatual = GameInformation.AilaPV;
+            }
         }
+
     }
+
 }

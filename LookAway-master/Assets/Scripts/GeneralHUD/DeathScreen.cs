@@ -20,6 +20,7 @@ public class DeathScreen : MonoBehaviour
         if(GameInformation.AilaPVatual <= 0)
         {
             deathScreenObj.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
             playerObj.SetActive(false); //desativa o jogador para que ele não possa fazer mais nada 
             baseHudObj.SetActive(false);
         }
