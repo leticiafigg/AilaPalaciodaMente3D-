@@ -29,7 +29,7 @@ public class EnemyPatrol : MonoBehaviour
         PERSEGUINDO
     }
 
-    private EstadoDePatrulha estadoatual;
+    public EstadoDePatrulha estadoatual;
 
     // Start is called before the first frame update
     void Start()

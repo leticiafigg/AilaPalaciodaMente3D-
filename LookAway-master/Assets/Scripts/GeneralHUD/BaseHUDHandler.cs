@@ -9,7 +9,10 @@ using UnityEngine.UI;
 public class BaseHUDHandler : MonoBehaviour
 {
     public float hudSpeed;
+    public float savePopUpStartTime;
+    private float savetime;
     private bool statMenuligado;
+    private static bool savePopUpligado;
     private bool pressedBtn;
 
     public GameObject sliderPvObj;
@@ -28,6 +31,10 @@ public class BaseHUDHandler : MonoBehaviour
     public GameObject interactionNameText;
     public string interactionName;
     public bool interactOn;
+
+    public GameObject savePopUpObj;
+    public GameObject saveTraslateTransform;
+    public GameObject saveOriginalPoint;
 
     public GameObject tabMenuPanel;
     public GameObject tabTraslatePoint;
@@ -101,8 +108,29 @@ public class BaseHUDHandler : MonoBehaviour
         {
             tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position, tabOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
         }
-        
 
+        if (savePopUpligado)
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveTraslateTransform.transform.position, hudSpeed * Time.deltaTime);
+
+            savetime -= Time.deltaTime;
+        }
+        else
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
+        }
+
+        if(savetime <= 0)
+        {
+            ToggleSavePopUp();
+            savetime = savePopUpStartTime;
+        }
+        
+    }
+
+    public static void ToggleSavePopUp()
+    {
+        savePopUpligado = !savePopUpligado;
     }
 
     private void ToggleUpMenu() //alternar entre ligar e desligar o menu de status

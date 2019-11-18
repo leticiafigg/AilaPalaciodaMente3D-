@@ -94,6 +94,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  estadoatual: 0
 --- !u!114 &6508337870138335157
 MonoBehaviour:
   m_ObjectHideFlags: 0

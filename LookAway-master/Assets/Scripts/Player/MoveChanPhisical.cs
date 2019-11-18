@@ -44,8 +44,6 @@ public class MoveChanPhisical : MonoBehaviour
         jumpBuffSlider.GetComponent<Slider>().minValue = 0;
         jumpBuffSlider.GetComponent<Slider>().maxValue = maxsliderVal;
 
-
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -74,6 +72,7 @@ public class MoveChanPhisical : MonoBehaviour
            
             jumptime = 0;     
         }
+
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         if (jumpbuffOn)
@@ -133,16 +132,11 @@ public class MoveChanPhisical : MonoBehaviour
                 jumptime = 0.25f;
             }
             if (hit.distance>0.5f && jumpbtndown)
-            {
-                
-                
+            {             
                 jumpbtndown = false;
                 return;
-            }
-            
-        }
-
-        
+            }         
+        }    
 
         if (jumpbtn)
         {
@@ -230,7 +224,7 @@ public class MoveChanPhisical : MonoBehaviour
 
     }
 
-    public void SuperJumpEnabled(int superJump)
+    public void SuperJumpEnabled(int superJump) //ativa o buff de pulo adicional
     {
        jumpspeed = superJump;
        jumpBuffSlider.SetActive(true);
