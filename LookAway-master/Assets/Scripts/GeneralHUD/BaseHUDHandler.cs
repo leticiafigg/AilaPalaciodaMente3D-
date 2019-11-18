@@ -52,7 +52,7 @@ public class BaseHUDHandler : MonoBehaviour
     void Start()
     {
         interactOn = false;
-
+        savePopUpligado = false;
         pvMax = GameInformation.AilaPV;
         pvMin = 0;
 
@@ -114,17 +114,18 @@ public class BaseHUDHandler : MonoBehaviour
             savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveTraslateTransform.transform.position, hudSpeed * Time.deltaTime);
 
             savetime -= Time.deltaTime;
+            if (savetime <= 0)
+            {
+              ToggleSavePopUp();
+              savetime = savePopUpStartTime;
+            }
         }
         else
         {
             savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
         }
 
-        if(savetime <= 0)
-        {
-            ToggleSavePopUp();
-            savetime = savePopUpStartTime;
-        }
+       
         
     }
 
