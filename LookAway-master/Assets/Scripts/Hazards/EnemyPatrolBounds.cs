@@ -14,10 +14,12 @@ public class EnemyPatrolBounds : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(patrulheiro.gameObject.name ==other.gameObject.name) //se quem saiu da area do trigger/patrulha foi o próprio inimigo (Especificamente por perseguir o player) ele retorna ao estado de patrulha
+        if (patrulheiro != null)
         {
-            patrulheiro.estadoatual = EnemyPatrol.EstadoDePatrulha.PATRULHANDO;
+            if (patrulheiro.gameObject.name == other.gameObject.name) //se quem saiu da area do trigger/patrulha foi o próprio inimigo (Especificamente por perseguir o player) ele retorna ao estado de patrulha
+            {
+                patrulheiro.estadoatual = EnemyPatrol.EstadoDePatrulha.PATRULHANDO;
+            }
         }
-
     }
 }

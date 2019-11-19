@@ -19,7 +19,7 @@ public class battlerender : MonoBehaviour
             PlayerPrefsX.SetVector3("OldPlayerPosition", collision.transform.position - collision.transform.forward * 2);
 
             GameInformation.LastPos = PlayerPrefsX.GetVector3("OldPlayerPosition");
-
+            GameInformation.LastEnemy = this.gameObject.name;
             SceneManager.LoadScene(EnemyType);
         }
     }
