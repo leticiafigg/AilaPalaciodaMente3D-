@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125d02dd13a913644a132f8975c5f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: Inimigo1
+  EnemyType: InimigoCena1
 --- !u!1001 &7790592217816719591
 PrefabInstance:
   m_ObjectHideFlags: 0

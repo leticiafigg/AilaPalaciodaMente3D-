@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatCalc 
 {
-    private float poderModifier = 0.25f; //25%
+    private float poderModifier = 0.2f; //25%
     private float imaginacaoModifier = 0.25f;
     private float resistenciaModifier = 0.1f;
     private float determinacaoModifier = 0.1f; // 20%
@@ -27,22 +27,22 @@ public class StatCalc
         if(statType == StatType.PODER)
         {
             modifier = poderModifier;
-            return (statVal +(int)((statVal * modifier) * (level * 0.3)));
+            return (statVal +(int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.IMAGINACAO)
         {
             modifier = imaginacaoModifier;
-            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
+            return (statVal + (int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.RESISTENCIA)
         {
             modifier = resistenciaModifier;
-            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
+            return (statVal + (int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.DETERMINACAO)
         {
             modifier = determinacaoModifier;
-            return (statVal + (int)((statVal * modifier) * (level * 0.3)));
+            return (statVal + (int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.SORTE)
         {
@@ -75,7 +75,7 @@ public class StatCalc
 
     public float GetActionAffinity(StatType statAff)
     {
-        float Affnitymodifier = 0.6f;
+        float Affnitymodifier = 0.5f;
 
         if (statAff == StatType.PODER)
         {          

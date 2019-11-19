@@ -185,12 +185,12 @@ public class MoveChanPhisical : MonoBehaviour
 
             if (canhold && holding)
             {
-                grabbable.transform.SetParent(sonTranform.transform) ;
+                //grabbable.transform.SetParent(sonTranform.transform) ;
 
             }
             if(!holding)
             {
-                grabbable.transform.SetParent (null);
+               // grabbable.transform.SetParent (null);
             }
 
         }
@@ -210,9 +210,7 @@ public class MoveChanPhisical : MonoBehaviour
 
             weight = 1;
             closeThing.transform.parent = collision.gameObject.transform;
-            closeThing.transform.position= collision.GetContact(0).point;
-
-           
+            closeThing.transform.position= collision.GetContact(0).point;         
 
         }
 

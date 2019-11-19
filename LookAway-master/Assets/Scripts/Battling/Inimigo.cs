@@ -15,6 +15,7 @@ public class Inimigo : MonoBehaviour
 
     public string Nome;
     private int enemylvl;
+    public int minlvl;
     public int maxlvl;     //Status gerais (Exceto a Armadura) mudarão de acordo com o nível do inimigo,
     public int poder;      // - mas serão baseados numa predefinição dada no prefab, para facilitar implementação
     public int imaginacao;
