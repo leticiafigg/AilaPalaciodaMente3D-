@@ -10,8 +10,8 @@ public class GameInformation : MonoBehaviour
     }
 
     //public static List<BaseAction> playerActions;
-   
 
+    public static string LastEnemy;
     public static Vector3 LastPos;
     public static string  LastScene;
 

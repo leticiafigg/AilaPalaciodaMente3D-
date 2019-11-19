@@ -8,7 +8,7 @@ public class PowerUps : MonoBehaviour
     public bool HealthPU;
     public bool JumpPU;
     
-    public GameObject player;
+    private GameObject player;
     public int jumpspeedTemp; //A força adicional temporária adicionada ao jogador
     public bool coletado;
 
@@ -17,6 +17,7 @@ public class PowerUps : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         coletado = false;
     }
 

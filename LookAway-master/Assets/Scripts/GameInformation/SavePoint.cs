@@ -33,8 +33,7 @@ public class SavePoint : MonoBehaviour
                 GameInformation.LastPos = playerPhisical.GetPlayerPos();
 
                 SaveInformation.SaveAll();
-
-                Debug.Log("Saved!");
+                BaseHUDHandler.ToggleSavePopUp();
 
                 pressedBtn = false;
             }

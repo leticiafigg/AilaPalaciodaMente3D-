@@ -9,7 +9,10 @@ using UnityEngine.UI;
 public class BaseHUDHandler : MonoBehaviour
 {
     public float hudSpeed;
+    public float savePopUpStartTime;
+    private float savetime;
     private bool statMenuligado;
+    private static bool savePopUpligado;
     private bool pressedBtn;
 
     public GameObject sliderPvObj;
@@ -29,6 +32,10 @@ public class BaseHUDHandler : MonoBehaviour
     public string interactionName;
     public bool interactOn;
 
+    public GameObject savePopUpObj;
+    public GameObject saveTraslateTransform;
+    public GameObject saveOriginalPoint;
+
     public GameObject tabMenuPanel;
     public GameObject tabTraslatePoint;
     public GameObject tabOriginalPoint;
@@ -45,7 +52,7 @@ public class BaseHUDHandler : MonoBehaviour
     void Start()
     {
         interactOn = false;
-
+        savePopUpligado = false;
         pvMax = GameInformation.AilaPV;
         pvMin = 0;
 
@@ -101,8 +108,30 @@ public class BaseHUDHandler : MonoBehaviour
         {
             tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position, tabOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
         }
-        
 
+        if (savePopUpligado)
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveTraslateTransform.transform.position, hudSpeed * Time.deltaTime);
+
+            savetime -= Time.deltaTime;
+            if (savetime <= 0)
+            {
+              ToggleSavePopUp();
+              savetime = savePopUpStartTime;
+            }
+        }
+        else
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
+        }
+
+       
+        
+    }
+
+    public static void ToggleSavePopUp()
+    {
+        savePopUpligado = !savePopUpligado;
     }
 
     private void ToggleUpMenu() //alternar entre ligar e desligar o menu de status

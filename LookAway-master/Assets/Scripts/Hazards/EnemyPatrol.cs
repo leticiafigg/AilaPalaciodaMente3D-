@@ -29,11 +29,16 @@ public class EnemyPatrol : MonoBehaviour
         PERSEGUINDO
     }
 
-    private EstadoDePatrulha estadoatual;
+    public EstadoDePatrulha estadoatual;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(GameInformation.LastEnemy == this.gameObject.name)
+        {
+            Destroy(this.gameObject);
+        }
+
         estadoatual = EstadoDePatrulha.PATRULHANDO;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         waitTime = startWaitTime;
