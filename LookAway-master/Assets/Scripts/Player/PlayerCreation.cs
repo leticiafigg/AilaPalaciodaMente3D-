@@ -41,15 +41,8 @@ public class PlayerCreation : MonoBehaviour
         actionsToAdd.Add(new ToqueChocante());
 
         GameInformation.AcoesAprendidas = actionsToAdd;
+        GameInformation.coxinhabossWon = false;
 
-    }
-
-    private void FixedUpdate()
-    {
-         
-        
-                                                    
-        
     }
 
     public void EscolherDestemida()
@@ -62,7 +55,7 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.Sorte = 9;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.DESTEMIDA;
 
         GameInformation.Aila = newPlayer;
@@ -74,7 +67,7 @@ public class PlayerCreation : MonoBehaviour
 
 
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Destemida";
-        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propões a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
+        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propõe a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
 
         AtualizarHUDInfo();
     }
@@ -89,7 +82,7 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.Sorte = 10;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.CRIATIVA;
 
         GameInformation.Aila = newPlayer;
@@ -100,11 +93,9 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Criativa";
-        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrado soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
+        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrando soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
 
-        AtualizarHUDInfo();
-
-        
+        AtualizarHUDInfo();       
     }
 
     public void EscolherAvoada()
@@ -117,7 +108,7 @@ public class PlayerCreation : MonoBehaviour
         newPlayer.Sorte = 20;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.AVOADA;
 
         GameInformation.Aila = newPlayer;
@@ -130,14 +121,12 @@ public class PlayerCreation : MonoBehaviour
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Avoada";
         classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado (Maior Sorte e status equilibrados) ";
 
-        AtualizarHUDInfo();
-
-        
+        AtualizarHUDInfo();      
     }
 
     public void ConfirmarDefinitivo(string primeiracena)
     {
-
+        GameInformation.LastScene = primeiracena;
         SaveInformation.SaveAll();
 
         SceneManager.LoadScene(primeiracena);
