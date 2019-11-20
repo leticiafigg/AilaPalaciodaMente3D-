@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -661,31 +661,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp
       objectReference: {fileID: 0}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 833099913}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: jumpspeedTemp
-      value: 27000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: HealthPU
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: JumpPU
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6686331741123747888, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 25ef37b4d0f227c46acd94c2cf1026b8, type: 2}
     - target: {fileID: 6686331741123747894, guid: 49ee64cb84ac603498627c7ba7303831,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -741,6 +716,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 833099913}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: jumpspeedTemp
+      value: 27000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: HealthPU
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: JumpPU
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686331741123747888, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25ef37b4d0f227c46acd94c2cf1026b8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49ee64cb84ac603498627c7ba7303831, type: 3}
 --- !u!114 &374297631 stripped
@@ -1075,6 +1075,11 @@ PrefabInstance:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 833099913}
+    - target: {fileID: 2182073398179206286, guid: 1d5bcd32266e67444b1623cd9c15d685,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2182073397615528453, guid: 1d5bcd32266e67444b1623cd9c15d685,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2967,16 +2972,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp
       objectReference: {fileID: 0}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 833099913}
-    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
-        type: 3}
-      propertyPath: jumpspeedTemp
-      value: 27000
-      objectReference: {fileID: 0}
     - target: {fileID: 6686331741123747894, guid: 49ee64cb84ac603498627c7ba7303831,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3031,6 +3026,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 833099913}
+    - target: {fileID: 6686331741123747890, guid: 49ee64cb84ac603498627c7ba7303831,
+        type: 3}
+      propertyPath: jumpspeedTemp
+      value: 27000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49ee64cb84ac603498627c7ba7303831, type: 3}
@@ -4415,13 +4420,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265168004}
-  m_LocalRotation: {x: -0.48469082, y: 0.48469082, z: -0.5148542, w: 0.5148542}
-  m_LocalPosition: {x: 3.01, y: 0.52, z: 21.62}
+  m_LocalRotation: {x: -0.5007495, y: 0.5007495, z: -0.4992494, w: 0.4992494}
+  m_LocalPosition: {x: 3.1425805, y: 0.79999983, z: 20.81664}
   m_LocalScale: {x: 1.3301939, y: 1.0394268, z: 1.3301939}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 50
-  m_LocalEulerAnglesHint: {x: 0, y: 86.54301, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.172005, z: -90.00001}
 --- !u!65 &1265168008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4433,8 +4438,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7755233, y: 2.81689, z: 2.378462}
-  m_Center: {x: -0.38776106, y: 1.842437, z: -0.3820556}
+  m_Size: {x: 3.7910652, y: 0.8897227, z: 5.699283}
+  m_Center: {x: -0.5947001, y: 2.9185145, z: -1.117039}
 --- !u!114 &1265168009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4464,8 +4469,8 @@ MonoBehaviour:
   TextBoxObj: {fileID: 435427564}
   TextBoxText: {fileID: 435427563}
   textBoxLocutorAtual: {fileID: 435427562}
-  locutor1FileImg: {fileID: 0}
-  locutor2FileImg: {fileID: 0}
+  locutor1FileImg: {fileID: 2800000, guid: 1aa793ce49156bf4baea4d02f30f93eb, type: 3}
+  locutor2FileImg: {fileID: 2800000, guid: 63c76890d2c72b440bdd9d58acc2457b, type: 3}
   locutor1GameObj: {fileID: 435427566}
   locutor2GameObj: {fileID: 435427565}
   Locutor1Name: Aila

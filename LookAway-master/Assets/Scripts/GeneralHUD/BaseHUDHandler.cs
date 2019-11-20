@@ -82,7 +82,7 @@ public class BaseHUDHandler : MonoBehaviour
         sliderPvObj.GetComponent<Slider>().value = GameInformation.AilaPVatual;
         sliderPfObj.GetComponent<Slider>().value = GameInformation.AilaPFatual;
 
-        if(interactOn)
+        if(interactOn || interactSave)
         {
             interactPrompt.SetActive(true);
         }
@@ -91,6 +91,7 @@ public class BaseHUDHandler : MonoBehaviour
             interactPrompt.SetActive(false);
         }
 
+        
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {

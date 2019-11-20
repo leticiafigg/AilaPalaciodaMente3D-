@@ -8,7 +8,7 @@ public class BarreiraImpedimento : MonoBehaviour
     public DialogoHandle coxinhaBossDefeatDialogue;
     public BoxCollider eventCollider;
     public GameObject Barreiravestigio;
-
+    public GameObject CoxinhaBoss;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,12 @@ public class BarreiraImpedimento : MonoBehaviour
 
         if (GameInformation.coxinhabossWon)
         {
+            
             eventCollider.enabled = true;
             coxinhaBossDefeated.enabled = true;
             coxinhaBossDefeatDialogue.enabled = true;
             Barreiravestigio.SetActive(false);
+            CoxinhaBoss.SetActive(false);
         }
     }
 
