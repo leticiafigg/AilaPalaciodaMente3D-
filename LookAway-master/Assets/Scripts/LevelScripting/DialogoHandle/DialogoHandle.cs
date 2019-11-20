@@ -31,6 +31,7 @@ public class DialogoHandle : MonoBehaviour
     private string falatual;
     public string intrName;
     public bool oneTimeEvent;
+    public bool ativadoPorPrompt;  //bool usada no editor para difinir se este dialogo deve ser acionado pelo jogador, que entrou no collider em questão, ou é ativado por outrso meios
     private bool pressedBtn;
     private bool dialogoOpen;  
 
@@ -71,7 +72,7 @@ public class DialogoHandle : MonoBehaviour
 
         TextBoxText.text = falatual;
 
-        if(hudHandleScript.interactOn || dialogoOpen)
+        if(hudHandleScript.interactOn && !hudHandleScript.interactSave || dialogoOpen)
         {
             
             if (Input.GetKeyDown(KeyCode.E))
@@ -157,7 +158,7 @@ public class DialogoHandle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && ativadoPorPrompt) //Feito para apenas ativer o prompt para eventos de diálogo ativáveis pelo jogador
         {
             hudHandleScript.AtivarPrompt(intrName);
         }

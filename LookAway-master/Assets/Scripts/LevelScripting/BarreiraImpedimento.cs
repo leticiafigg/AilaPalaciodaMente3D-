@@ -6,16 +6,19 @@ public class BarreiraImpedimento : MonoBehaviour
 {
     public EnterEvent coxinhaBossDefeated;
     public DialogoHandle coxinhaBossDefeatDialogue;
+    public BoxCollider eventCollider;
     public GameObject Barreiravestigio;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         coxinhaBossDefeated.enabled = false;
         coxinhaBossDefeatDialogue.enabled = false;
+        eventCollider.enabled = false;
 
         if (GameInformation.coxinhabossWon)
         {
+            eventCollider.enabled = true;
             coxinhaBossDefeated.enabled = true;
             coxinhaBossDefeatDialogue.enabled = true;
             Barreiravestigio.SetActive(false);

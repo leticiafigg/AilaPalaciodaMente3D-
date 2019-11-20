@@ -31,6 +31,7 @@ public class BaseHUDHandler : MonoBehaviour
     public GameObject interactionNameText;
     public string interactionName;
     public bool interactOn;
+    public bool interactSave;
 
     public GameObject savePopUpObj;
     public GameObject saveTraslateTransform;
@@ -52,6 +53,7 @@ public class BaseHUDHandler : MonoBehaviour
     void Start()
     {
         interactOn = false;
+        interactSave = false;
         savePopUpligado = false;
         pvMax = GameInformation.AilaPV;
         pvMin = 0;
@@ -182,4 +184,19 @@ public class BaseHUDHandler : MonoBehaviour
 
        interactionNameText.GetComponent<TextMeshProUGUI>().text = " ";
     }
+
+    public void AtivarSavePrompt(String interactionName)
+    {
+        interactSave = true;
+
+        interactionNameText.GetComponent<TextMeshProUGUI>().text = interactionName;
+    }
+
+    public void DesativarSavePrompt()
+    {
+        interactSave = false;
+
+        interactionNameText.GetComponent<TextMeshProUGUI>().text = " ";
+    }
+
 }
