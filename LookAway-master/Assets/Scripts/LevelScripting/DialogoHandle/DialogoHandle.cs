@@ -136,7 +136,7 @@ public class DialogoHandle : MonoBehaviour
         dialogoOpen = false;
         if(oneTimeEvent)
         {
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         Player.GetComponent<MoveChanPhisical>().enabled = true;
 

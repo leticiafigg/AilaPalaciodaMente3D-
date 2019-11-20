@@ -126,7 +126,7 @@ public class PlayerCreation : MonoBehaviour
 
     public void ConfirmarDefinitivo(string primeiracena)
     {
-        GameInformation.LastScene = primeiracena;
+        GameInformation.loadingSave = false;
         SaveInformation.SaveAll();
 
         SceneManager.LoadScene(primeiracena);

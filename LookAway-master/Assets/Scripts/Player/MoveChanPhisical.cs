@@ -51,12 +51,19 @@ public class MoveChanPhisical : MonoBehaviour
         normalJumpspeed = jumpspeed;
         buffTime = startingBuffTime;
 
-        if (GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
+        if (GameInformation.returningFromBattle)
         {
             transform.position = GameInformation.LastPos;
             GameInformation.returningFromBattle = false;      
         }
-      
+        else if(SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene) && GameInformation.loadingSave)
+        {
+            transform.position = GameInformation.LastPos;
+            GameInformation.loadingSave = false;
+        }
+       
+
+
         currentCamera = Camera.main.gameObject;
        
     }

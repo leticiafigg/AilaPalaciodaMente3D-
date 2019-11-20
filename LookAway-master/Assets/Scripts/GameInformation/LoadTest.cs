@@ -35,8 +35,9 @@ public class LoadTest : MonoBehaviour
         Debug.Log("Player Determination: " + GameInformation.Aila.Determinacao);
 
         
-        if (GameInformation.LastScene != null && GameInformation.LastScene != "")
+        if (GameInformation.LastScene != null)
         {
+            GameInformation.loadingSave = true;
             SceneManager.LoadScene(GameInformation.LastScene);
         }
         

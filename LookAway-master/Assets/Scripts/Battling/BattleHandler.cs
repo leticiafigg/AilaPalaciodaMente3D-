@@ -314,6 +314,7 @@ public class BattleHandler : MonoBehaviour
     public void Fuga()
     {
         SceneManager.LoadScene(GameInformation.LastScene);
+        GameInformation.returningFromBattle = true;
     }
     
 
