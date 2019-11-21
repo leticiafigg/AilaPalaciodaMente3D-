@@ -148,7 +148,7 @@ public class DialogoHandle : MonoBehaviour
         TextBoxObj.SetActive(true);
         hudHandleScript.DesativarPrompt();
         dialogoOpen = true;
-        Player.GetComponent<MoveChanPhisical>().enabled = false;
+        Player.GetComponent<MoveChanPhisical>().stopAndDisable();
     }
 
     public void DialogoTrigger()  //será utilizado para forçar a iniciação de uma conversa, sem input do jogador.

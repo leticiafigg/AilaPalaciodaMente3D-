@@ -239,6 +239,12 @@ public class MoveChanPhisical : MonoBehaviour
        jumpbuffOn = true;
     }
 
+    public void stopAndDisable()
+    {
+        rdb.velocity = new Vector3(0, 0, 0);
+        this.enabled = false;
+    }
+
     public Vector3 GetPlayerPos()
     {
         return transform.position;

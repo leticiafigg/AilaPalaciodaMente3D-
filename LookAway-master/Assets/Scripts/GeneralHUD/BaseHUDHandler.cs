@@ -160,7 +160,7 @@ public class BaseHUDHandler : MonoBehaviour
 
     private void PauseOpen()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>().stopAndDisable();
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     } //Abre as opções ingame.
