@@ -31,7 +31,6 @@ public class SaveInformation
     public static void SaveOptions()
     {
         PlayerPrefs.SetFloat("MASTERVOLUME", OptionsInformation.MasterVol);
-        PlayerPrefsX.SetBool("FULLSCREEN", OptionsInformation.FullscreenSetting);
     }
 
 }

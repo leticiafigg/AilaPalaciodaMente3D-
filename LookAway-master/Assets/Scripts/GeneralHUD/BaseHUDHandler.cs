@@ -36,6 +36,7 @@ public class BaseHUDHandler : MonoBehaviour
     public GameObject savePopUpObj;
     public GameObject saveTraslateTransform;
     public GameObject saveOriginalPoint;
+    public GameObject pauseMenu;
 
     public GameObject tabMenuPanel;
     public GameObject tabTraslatePoint;
@@ -55,6 +56,7 @@ public class BaseHUDHandler : MonoBehaviour
         interactOn = false;
         interactSave = false;
         savePopUpligado = false;
+        pauseMenu.SetActive(false);
         pvMax = GameInformation.AilaPV;
         pvMin = 0;
 
@@ -99,11 +101,22 @@ public class BaseHUDHandler : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Tab) && pressedBtn)
         { 
-            ToggleUpMenu();
+            ToggleTabUpMenu();
             pressedBtn = false;
         }
-       
-        if(statMenuligado)
+
+        if (Input.GetKeyDown(KeyCode.P))                     // Pressionar este botão para abrir o Pause Menu
+        {
+            pressedBtn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.P) && pressedBtn)
+        {
+            PauseOpen();
+            pressedBtn = false;
+        }
+
+
+        if (statMenuligado)
         {
             tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position,tabTraslatePoint.transform.position , hudSpeed * Time.deltaTime);
         }
@@ -132,16 +145,25 @@ public class BaseHUDHandler : MonoBehaviour
         
     }
 
+    
+
     public static void ToggleSavePopUp()
     {
         savePopUpligado = !savePopUpligado;
     }
 
-    private void ToggleUpMenu() //alternar entre ligar e desligar o menu de status
+    private void ToggleTabUpMenu() //alternar entre ligar e desligar o menu de status
     {
         statMenuligado = !statMenuligado;
         AtualizarTabBox();       
     }
+
+    private void PauseOpen()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>().enabled = false;
+        pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    } //Abre as opções ingame.
 
     private void AtualizarTabBox() //Sempre que for chamado atualiza o que deve estar escrito
     {

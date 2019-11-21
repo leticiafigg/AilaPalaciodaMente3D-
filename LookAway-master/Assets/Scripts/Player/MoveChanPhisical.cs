@@ -18,7 +18,7 @@ public class MoveChanPhisical : MonoBehaviour
 
     private float jumptime;
     private bool jumpbtn = false;
-    private bool jumpbtndown = false;
+   
     private bool grounded = true;
 
     //variáveis para pulos melhorados
@@ -134,13 +134,18 @@ public class MoveChanPhisical : MonoBehaviour
         if (Physics.Raycast(transform.position-(transform.forward*0.1f)+transform.up*0.3f, Vector3.down,out hit, 1000))
         {
             anim.SetFloat("JumpHeight", hit.distance);
-            if (hit.distance < 0.5f && jumpbtn)
+
+            if (hit.distance < 0.5f && !jumpbtn && !grounded)
+            {
+                grounded = true;
+            }
+            if (hit.distance < 0.5f && jumpbtn && grounded)
             {
                 jumptime = 0.25f;
             }
-            if (hit.distance>0.5f && jumpbtndown)
-            {             
-                jumpbtndown = false;
+            if (hit.distance >= 0.5f)
+            {                  
+                grounded = false;
                 return;
             }         
         }    
@@ -155,8 +160,6 @@ public class MoveChanPhisical : MonoBehaviour
         {
             rdb.AddForce(Vector3.down * gravity);
         }
-
-        jumpbtndown = false;
 
     }
 

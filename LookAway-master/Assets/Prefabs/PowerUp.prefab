@@ -107,6 +107,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPU: 0
   JumpPU: 1
-  player: {fileID: 0}
-  jumpspeedTemp: 11000
+  jumpspeedTemp: 35000
   coletado: 0
