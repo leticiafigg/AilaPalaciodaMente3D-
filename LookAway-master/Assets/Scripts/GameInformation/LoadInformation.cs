@@ -8,10 +8,12 @@ public class LoadInformation : MonoBehaviour
 
      public static void LoadAll() //Apenas carrega os parâmetros que copõem um player do disco, se player name não for nulo.
      {
-        playerLoad = new BasePlayer();
+        
 
         if (PlayerPrefs.HasKey("PLAYERLEVEL"))
         {
+            playerLoad = new BasePlayer();
+
             GameInformation.Aila = playerLoad;
 
             GameInformation.Aila.PlayerLevel = PlayerPrefs.GetInt("PLAYERLEVEL");
@@ -28,6 +30,7 @@ public class LoadInformation : MonoBehaviour
             GameInformation.LastScene = PlayerPrefs.GetString("LASTSCENE");
             GameInformation.LastPos = PlayerPrefsX.GetVector3("SavePlayerPos");
 
+            GameInformation.coxinhabossWon = PlayerPrefsX.GetBool("COXINHABOSSDEFEATED");
 
             List<BaseAction> AcoesSave = new List<BaseAction>(); //Estamos carregando uma lista específica manualmente por enquanto
             AcoesSave.Add(new AttackAction());
@@ -44,10 +47,8 @@ public class LoadInformation : MonoBehaviour
      {
         if (PlayerPrefs.HasKey("MASTERVOLUME"))
         {
-
             OptionsInformation.MasterVol = PlayerPrefs.GetFloat("MASTERVOLUME");
             OptionsInformation.FullscreenSetting = PlayerPrefsX.GetBool("FULLSCREEN");
-
         }
 
      }

@@ -18,6 +18,8 @@ public class GameInformation : MonoBehaviour
     public static BasePlayer Aila { get; set;}
 
     public static bool returningFromBattle;
+    public static bool loadingSave;
+    public static bool coxinhabossWon;
 
     public static int AilaPV { get; set; }
     public static int AilaPF { get; set; }

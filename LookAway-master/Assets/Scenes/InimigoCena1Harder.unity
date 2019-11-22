@@ -28413,6 +28413,7 @@ MonoBehaviour:
   enemyFabs:
   - {fileID: 9067631881081883298, guid: def97f42c0078464696314d011c95f40, type: 3}
   - {fileID: 1296172488930988459, guid: b888495b05fc12c45a333a330832373d, type: 3}
+  - {fileID: 1296172488930988459, guid: b888495b05fc12c45a333a330832373d, type: 3}
   playerCamera: {fileID: 1424995891}
   enemyActionCamera: {fileID: 1896928936}
   inimigo1start: {fileID: 1575148945}
@@ -28423,7 +28424,7 @@ MonoBehaviour:
   lvlupwarnTxt: {fileID: 126240735}
   turnLogBox: {fileID: 1676945415}
   startWaitTime: 3
-  cd: 1
+  cd: 2
   cenaACarregar: mapa1
 --- !u!1001 &1905470815
 PrefabInstance:

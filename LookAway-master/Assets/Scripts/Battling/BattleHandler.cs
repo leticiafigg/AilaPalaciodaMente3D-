@@ -278,18 +278,28 @@ public class BattleHandler : MonoBehaviour
 
     private void SetEnemies() //chama o método que cria os inimigos no Script BattleStart e então os armazena na lista de objetos e na lista de inimigos 
     {
-        GameObject[] inims = battleStartscript.PrepareEnemies(enemyFabs);
+        List <GameObject> inims = battleStartscript.PrepareEnemies(enemyFabs);
         
 
         if (inims != null)
-        {           
-            inimObjList.Add(Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity));
-            inimObjList.Add(Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity));
-            inimObjList.Add(Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity));
+        {     
+            if(inims.Count >= 1)
+            {
+                inimObjList.Add(Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[0].GetComponent<Inimigo>());
+            }
+                
+            if (inims.Count >= 2)
+            {
+                inimObjList.Add(Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[1].GetComponent<Inimigo>());
+            }
 
-            inimigosList.Add(inimObjList[0].GetComponent<Inimigo>());
-            inimigosList.Add(inimObjList[1].GetComponent<Inimigo>());
-            inimigosList.Add(inimObjList[2].GetComponent<Inimigo>());
+            if (inims.Count >= 3)
+            {
+                inimObjList.Add(Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[2].GetComponent<Inimigo>());
+            }     
 
             BattleUICursor.SetCursorEnemies();
         }      
@@ -303,6 +313,7 @@ public class BattleHandler : MonoBehaviour
 
     public void Fuga()
     {
+        GameInformation.returningFromBattle = true;
         SceneManager.LoadScene(GameInformation.LastScene);
     }
     
