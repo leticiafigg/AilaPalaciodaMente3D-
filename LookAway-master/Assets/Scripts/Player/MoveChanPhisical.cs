@@ -241,7 +241,7 @@ public class MoveChanPhisical : MonoBehaviour
 
     public void stopAndDisable()
     {
-        rdb.velocity = new Vector3(0, 0, 0);
+        anim.SetFloat("Speed", 0.0f);
         this.enabled = false;
     }
 

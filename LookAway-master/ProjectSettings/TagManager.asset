@@ -8,6 +8,7 @@ TagManager:
   - Locutor1ImgObj
   - Locutor2ImgObj
   - MasterVolSlider
+  - Patrulheiro
   layers:
   - Default
   - TransparentFX

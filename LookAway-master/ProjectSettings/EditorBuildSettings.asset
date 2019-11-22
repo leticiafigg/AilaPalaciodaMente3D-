@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Salao.unity
     guid: 6b7bd01505d45d042ae2b1dc598cda6e
   - enabled: 1
-    path: Assets/Scenes/InimigoCena1.unity
+    path: Assets/Scenes/inimigoCena1.unity
     guid: 3da69c28baee5d54a86ba8d1c55a0d6d
   - enabled: 1
     path: Assets/Scenes/InimigoCena1Harder.unity

@@ -1604,7 +1604,7 @@ GameObject:
   - component: {fileID: 3619970055063606788}
   m_Layer: 0
   m_Name: CoxinhaPatrulha1KG
-  m_TagString: Untagged
+  m_TagString: Patrulheiro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

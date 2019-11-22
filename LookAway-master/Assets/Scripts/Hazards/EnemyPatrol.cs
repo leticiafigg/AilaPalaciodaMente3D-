@@ -20,6 +20,7 @@ public class EnemyPatrol : MonoBehaviour
 
     public Transform[] pontosDePatrulha; //Pontos no espaço em que a IA vai tentar alcançar
     private Transform target;
+    private float permanentY;
 
     private int randomPonto;
 
@@ -39,6 +40,8 @@ public class EnemyPatrol : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+
+        permanentY = transform.position.y;
         estadoatual = EstadoDePatrulha.PATRULHANDO;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         waitTime = startWaitTime;
@@ -67,8 +70,13 @@ public class EnemyPatrol : MonoBehaviour
 
     private void PatrulharPontos()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pontosDePatrulha[randomPonto].position, speed * Time.deltaTime);
-        transform.LookAt(pontosDePatrulha[randomPonto]);
+        target = pontosDePatrulha[randomPonto];
+       
+
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, permanentY, transform.position.z);
+        transform.LookAt(target.position);
+
         if (Vector3.Distance(transform.position, pontosDePatrulha[randomPonto].position) < 0.3f)
         {
             if (waitTime <= 0)
@@ -88,8 +96,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         speed = chaseSpeed;
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, permanentY, transform.position.z);
+
         transform.LookAt(target);
-        if (foraDeAlcance) //
+
+        if (foraDeAlcance) //Se o jogador fica fora do trigger que detecta sua presença por um certo tempo, o inimigo volta a patrulhar
         {
             if (chaseTime <= 0)
             {
@@ -109,6 +120,7 @@ public class EnemyPatrol : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             foraDeAlcance = false;
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             estadoatual = EstadoDePatrulha.PERSEGUINDO;
             chaseTime = startChaseTime; //Sempre que o jogador entrar no "Campo de visão" reseta o chase time para o inicial
         }
