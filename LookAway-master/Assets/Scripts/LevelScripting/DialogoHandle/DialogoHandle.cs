@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class DialogoHandle : MonoBehaviour
 {
+    public AudioSource textAdvanceSoundFX;
     public BaseHUDHandler hudHandleScript;
     public GameObject TextBoxObj;
     public TextMeshProUGUI TextBoxText;
-
     public TextMeshProUGUI textBoxLocutorAtual;
 
     public Texture locutor1FileImg;
@@ -101,6 +101,8 @@ public class DialogoHandle : MonoBehaviour
 
     private void AvancarTexto()
     {
+        textAdvanceSoundFX.Play();
+
         if (falaIndex + 1 < ConjuntoFalas[locutor].Count) //se o indexador for menor que o total, podemos aumentá-lo e utilizá-lo normalmente
         {
             falaIndex++;
