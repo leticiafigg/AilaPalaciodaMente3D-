@@ -9,7 +9,10 @@ using UnityEngine.UI;
 public class BaseHUDHandler : MonoBehaviour
 {
     public float hudSpeed;
+    public float savePopUpStartTime;
+    private float savetime;
     private bool statMenuligado;
+    private static bool savePopUpligado;
     private bool pressedBtn;
 
     public GameObject sliderPvObj;
@@ -28,6 +31,12 @@ public class BaseHUDHandler : MonoBehaviour
     public GameObject interactionNameText;
     public string interactionName;
     public bool interactOn;
+    public bool interactSave;
+
+    public GameObject savePopUpObj;
+    public GameObject saveTraslateTransform;
+    public GameObject saveOriginalPoint;
+    public GameObject pauseMenu;
 
     public GameObject tabMenuPanel;
     public GameObject tabTraslatePoint;
@@ -45,7 +54,9 @@ public class BaseHUDHandler : MonoBehaviour
     void Start()
     {
         interactOn = false;
-
+        interactSave = false;
+        savePopUpligado = false;
+        pauseMenu.SetActive(false);
         pvMax = GameInformation.AilaPV;
         pvMin = 0;
 
@@ -73,7 +84,7 @@ public class BaseHUDHandler : MonoBehaviour
         sliderPvObj.GetComponent<Slider>().value = GameInformation.AilaPVatual;
         sliderPfObj.GetComponent<Slider>().value = GameInformation.AilaPFatual;
 
-        if(interactOn)
+        if(interactOn || interactSave)
         {
             interactPrompt.SetActive(true);
         }
@@ -82,6 +93,7 @@ public class BaseHUDHandler : MonoBehaviour
             interactPrompt.SetActive(false);
         }
 
+        
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -89,11 +101,22 @@ public class BaseHUDHandler : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Tab) && pressedBtn)
         { 
-            ToggleUpMenu();
+            ToggleTabUpMenu();
             pressedBtn = false;
         }
-       
-        if(statMenuligado)
+
+        if (Input.GetKeyDown(KeyCode.P))                     // Pressionar este botão para abrir o Pause Menu
+        {
+            pressedBtn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.P) && pressedBtn)
+        {
+            PauseOpen();
+            pressedBtn = false;
+        }
+
+
+        if (statMenuligado)
         {
             tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position,tabTraslatePoint.transform.position , hudSpeed * Time.deltaTime);
         }
@@ -101,15 +124,46 @@ public class BaseHUDHandler : MonoBehaviour
         {
             tabMenuPanel.transform.position = Vector3.MoveTowards(tabMenuPanel.transform.position, tabOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
         }
-        
 
+        if (savePopUpligado)
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveTraslateTransform.transform.position, hudSpeed * Time.deltaTime);
+
+            savetime -= Time.deltaTime;
+            if (savetime <= 0)
+            {
+              ToggleSavePopUp();
+              savetime = savePopUpStartTime;
+            }
+        }
+        else
+        {
+            savePopUpObj.transform.position = Vector3.MoveTowards(savePopUpObj.transform.position, saveOriginalPoint.transform.position, hudSpeed * Time.deltaTime);
+        }
+
+       
+        
     }
 
-    private void ToggleUpMenu() //alternar entre ligar e desligar o menu de status
+    
+
+    public static void ToggleSavePopUp()
+    {
+        savePopUpligado = !savePopUpligado;
+    }
+
+    private void ToggleTabUpMenu() //alternar entre ligar e desligar o menu de status
     {
         statMenuligado = !statMenuligado;
         AtualizarTabBox();       
     }
+
+    private void PauseOpen()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>().stopAndDisable();
+        pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    } //Abre as opções ingame.
 
     private void AtualizarTabBox() //Sempre que for chamado atualiza o que deve estar escrito
     {
@@ -153,4 +207,19 @@ public class BaseHUDHandler : MonoBehaviour
 
        interactionNameText.GetComponent<TextMeshProUGUI>().text = " ";
     }
+
+    public void AtivarSavePrompt(String interactionName)
+    {
+        interactSave = true;
+
+        interactionNameText.GetComponent<TextMeshProUGUI>().text = interactionName;
+    }
+
+    public void DesativarSavePrompt()
+    {
+        interactSave = false;
+
+        interactionNameText.GetComponent<TextMeshProUGUI>().text = " ";
+    }
+
 }

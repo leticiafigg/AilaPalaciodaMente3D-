@@ -259,7 +259,8 @@ MonoBehaviour:
   stunTotal: 0
   stunAtual: 0
   Nome: Coxinha
-  maxlvl: 4
+  minlvl: 1
+  maxlvl: 3
   poder: 8
   imaginacao: 6
   resistencia: 14

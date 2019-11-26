@@ -10,14 +10,16 @@ public class GameInformation : MonoBehaviour
     }
 
     //public static List<BaseAction> playerActions;
-   
 
+    public static string LastEnemy;
     public static Vector3 LastPos;
     public static string  LastScene;
 
     public static BasePlayer Aila { get; set;}
 
     public static bool returningFromBattle;
+    public static bool loadingSave;
+    public static bool coxinhabossWon;
 
     public static int AilaPV { get; set; }
     public static int AilaPF { get; set; }

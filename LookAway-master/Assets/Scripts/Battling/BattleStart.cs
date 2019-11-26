@@ -20,26 +20,25 @@ public class BattleStart
         DeterminarVitalidade(); // determina os pontos de vida 
     }
 
-    public GameObject[] PrepareEnemies(GameObject[] inims)
+    public List<GameObject> PrepareEnemies(GameObject[] inims)
     {
-        GameObject[] inimigos = new GameObject[3];
+        List<GameObject> inimigos = new List<GameObject>();
         int rdn;
 
-        for(int i = 0 ; i < 3; i++)
+        for(int i = 0 ; i < inims.Length; i++)
         {
             rdn = Random.Range(0, inims.Length);
-              inimigos[i] = inims[rdn];
+            GameObject inimstatsObj = new GameObject();
+            inimstatsObj = inims[rdn];
+            
+            inimstats = inimstatsObj.GetComponent<Inimigo>();
+            inimstats.PosInList = i;
 
-            if(inimigos[i].GetComponent<Inimigo>() != null)
-            {
-                inimstats = inimigos[i].GetComponent<Inimigo>();
-                inimstats.PosInList = i;
-               
-                CreateNewEnemy();
+            CreateNewEnemy();
+            //inimstats.totalHp = inimstats.Enemylvl * 10;
 
-                
-                //inimstats.totalHp = inimstats.Enemylvl * 10;
-            }
+
+            inimigos.Add(inimstatsObj);
         }
 
 
@@ -52,18 +51,12 @@ public class BattleStart
     {
         if(GameInformation.Aila.PlayerLevel <= inimstats.maxlvl) // caso o nível do jogador não seja maior que o nível máximo do inimigo, ele escolhe u nível aleatório.
         { 
-            inimstats.EnemyLevel = Random.Range(GameInformation.Aila.PlayerLevel - 2, inimstats.maxlvl);
-            if(inimstats.EnemyLevel <=0)
-            {
-                inimstats.EnemyLevel = 1;
-            }
+            inimstats.EnemyLevel = Random.Range(inimstats.minlvl, inimstats.maxlvl);
         }
         else //se não, o inimigo sempre estará no nível máximo
         {
             inimstats.EnemyLevel = inimstats.maxlvl;
         }
-
-        //inimstats.Nome = inimstats.Nome + "(" + inimstats.PosInList + ")";
 
         inimstats.poder = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.PODER, inimstats.EnemyLevel);
         inimstats.imaginacao = statCalculations.CalcularInimStats(inimstats.poder, StatCalc.StatType.IMAGINACAO, inimstats.EnemyLevel);

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class DialogoHandle : MonoBehaviour
 {
+    public AudioSource textAdvanceSoundFX;
     public BaseHUDHandler hudHandleScript;
     public GameObject TextBoxObj;
     public TextMeshProUGUI TextBoxText;
-
     public TextMeshProUGUI textBoxLocutorAtual;
 
     public Texture locutor1FileImg;
@@ -31,6 +31,7 @@ public class DialogoHandle : MonoBehaviour
     private string falatual;
     public string intrName;
     public bool oneTimeEvent;
+    public bool ativadoPorPrompt;  //bool usada no editor para difinir se este dialogo deve ser acionado pelo jogador, que entrou no collider em questão, ou é ativado por outrso meios
     private bool pressedBtn;
     private bool dialogoOpen;  
 
@@ -71,7 +72,7 @@ public class DialogoHandle : MonoBehaviour
 
         TextBoxText.text = falatual;
 
-        if(hudHandleScript.interactOn || dialogoOpen)
+        if(hudHandleScript.interactOn && !hudHandleScript.interactSave || dialogoOpen)
         {
             
             if (Input.GetKeyDown(KeyCode.E))
@@ -100,6 +101,8 @@ public class DialogoHandle : MonoBehaviour
 
     private void AvancarTexto()
     {
+        textAdvanceSoundFX.Play();
+
         if (falaIndex + 1 < ConjuntoFalas[locutor].Count) //se o indexador for menor que o total, podemos aumentá-lo e utilizá-lo normalmente
         {
             falaIndex++;
@@ -116,13 +119,18 @@ public class DialogoHandle : MonoBehaviour
             FimdeTexto();
         }
 
-        if(locutor%2 == 0)              //Se a posição na lista for par, quem está falando é o primeiro locutor, se não, o segundo 
+        if (locutor % 2 == 0)              //Se a posição na lista for par, quem está falando é o primeiro locutor, se não, o segundo 
         {
-           textBoxLocutorAtual.text = Locutor1Name;
+            textBoxLocutorAtual.text = Locutor1Name;
+            locutor1GameObj.GetComponent<RawImage>().color = new Color32(255, 255, 255, 255);
+            locutor2GameObj.GetComponent<RawImage>().color = new Color32(70, 70, 70, 215);
         }
         else
-        textBoxLocutorAtual.text = Locutor2Name;
-
+        {
+            textBoxLocutorAtual.text = Locutor2Name;
+            locutor1GameObj.GetComponent<RawImage>().color = new Color32(70, 70, 70, 215);
+            locutor2GameObj.GetComponent<RawImage>().color = new Color32(255, 255, 255, 255);
+        }
         if(locutor < ConjuntoFalas.Count && falaIndex < ConjuntoFalas[locutor].Count )
         falatual = ConjuntoFalas[locutor][falaIndex];
 
@@ -136,7 +144,7 @@ public class DialogoHandle : MonoBehaviour
         dialogoOpen = false;
         if(oneTimeEvent)
         {
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         Player.GetComponent<MoveChanPhisical>().enabled = true;
 
@@ -147,7 +155,7 @@ public class DialogoHandle : MonoBehaviour
         TextBoxObj.SetActive(true);
         hudHandleScript.DesativarPrompt();
         dialogoOpen = true;
-        Player.GetComponent<MoveChanPhisical>().enabled = false;
+        Player.GetComponent<MoveChanPhisical>().stopAndDisable();
     }
 
     public void DialogoTrigger()  //será utilizado para forçar a iniciação de uma conversa, sem input do jogador.
@@ -157,7 +165,7 @@ public class DialogoHandle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && ativadoPorPrompt) //Feito para apenas ativer o prompt para eventos de diálogo ativáveis pelo jogador
         {
             hudHandleScript.AtivarPrompt(intrName);
         }

@@ -3,7 +3,17 @@ guid: b1d391da3bcfa4748ada14e935636ea8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - textAdvanceSoundFX: {fileID: 910076062512162456, guid: 01b4d1e3409a5a94abcd236177e80ecb,
+      type: 3}
+  - hudHandleScript: {instanceID: 0}
+  - TextBoxObj: {instanceID: 0}
+  - TextBoxText: {instanceID: 0}
+  - textBoxLocutorAtual: {instanceID: 0}
+  - locutor1FileImg: {instanceID: 0}
+  - locutor2FileImg: {instanceID: 0}
+  - locutor1GameObj: {instanceID: 0}
+  - locutor2GameObj: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

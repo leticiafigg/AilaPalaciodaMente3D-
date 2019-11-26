@@ -18,7 +18,7 @@ public class MoveChanPhisical : MonoBehaviour
 
     private float jumptime;
     private bool jumpbtn = false;
-    private bool jumpbtndown = false;
+   
     private bool grounded = true;
 
     //variáveis para pulos melhorados
@@ -44,8 +44,6 @@ public class MoveChanPhisical : MonoBehaviour
         jumpBuffSlider.GetComponent<Slider>().minValue = 0;
         jumpBuffSlider.GetComponent<Slider>().maxValue = maxsliderVal;
 
-
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -53,12 +51,19 @@ public class MoveChanPhisical : MonoBehaviour
         normalJumpspeed = jumpspeed;
         buffTime = startingBuffTime;
 
-        if (GameInformation.returningFromBattle || SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene))
+        if (GameInformation.returningFromBattle)
         {
             transform.position = GameInformation.LastPos;
             GameInformation.returningFromBattle = false;      
         }
-      
+        else if(SceneManager.GetActiveScene().name.Equals(GameInformation.LastScene) && GameInformation.loadingSave)
+        {
+            transform.position = GameInformation.LastPos;
+            GameInformation.loadingSave = false;
+        }
+       
+
+
         currentCamera = Camera.main.gameObject;
        
     }
@@ -74,6 +79,7 @@ public class MoveChanPhisical : MonoBehaviour
            
             jumptime = 0;     
         }
+
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         if (jumpbuffOn)
@@ -128,21 +134,21 @@ public class MoveChanPhisical : MonoBehaviour
         if (Physics.Raycast(transform.position-(transform.forward*0.1f)+transform.up*0.3f, Vector3.down,out hit, 1000))
         {
             anim.SetFloat("JumpHeight", hit.distance);
-            if (hit.distance < 0.5f && jumpbtn)
+
+            if (hit.distance < 0.5f && !jumpbtn && !grounded)
+            {
+                grounded = true;
+            }
+            if (hit.distance < 0.5f && jumpbtn && grounded)
             {
                 jumptime = 0.25f;
             }
-            if (hit.distance>0.5f && jumpbtndown)
-            {
-                
-                
-                jumpbtndown = false;
+            if (hit.distance >= 0.5f)
+            {                  
+                grounded = false;
                 return;
-            }
-            
-        }
-
-        
+            }         
+        }    
 
         if (jumpbtn)
         {
@@ -154,8 +160,6 @@ public class MoveChanPhisical : MonoBehaviour
         {
             rdb.AddForce(Vector3.down * gravity);
         }
-
-        jumpbtndown = false;
 
     }
 
@@ -191,12 +195,12 @@ public class MoveChanPhisical : MonoBehaviour
 
             if (canhold && holding)
             {
-                grabbable.transform.SetParent(sonTranform.transform) ;
+                //grabbable.transform.SetParent(sonTranform.transform) ;
 
             }
             if(!holding)
             {
-                grabbable.transform.SetParent (null);
+               // grabbable.transform.SetParent (null);
             }
 
         }
@@ -216,9 +220,7 @@ public class MoveChanPhisical : MonoBehaviour
 
             weight = 1;
             closeThing.transform.parent = collision.gameObject.transform;
-            closeThing.transform.position= collision.GetContact(0).point;
-
-           
+            closeThing.transform.position= collision.GetContact(0).point;         
 
         }
 
@@ -230,11 +232,17 @@ public class MoveChanPhisical : MonoBehaviour
 
     }
 
-    public void SuperJumpEnabled(int superJump)
+    public void SuperJumpEnabled(int superJump) //ativa o buff de pulo adicional
     {
        jumpspeed = superJump;
        jumpBuffSlider.SetActive(true);
        jumpbuffOn = true;
+    }
+
+    public void stopAndDisable()
+    {
+        anim.SetFloat("Speed", 0.0f);
+        this.enabled = false;
     }
 
     public Vector3 GetPlayerPos()

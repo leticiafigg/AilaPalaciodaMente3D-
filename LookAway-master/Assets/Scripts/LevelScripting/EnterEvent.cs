@@ -9,7 +9,7 @@ public class EnterEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogoEvent.enabled = false;
     }
 
     // Update is called once per frame
@@ -24,6 +24,7 @@ public class EnterEvent : MonoBehaviour
         
         if(other.CompareTag("Player"))
         {
+            dialogoEvent.enabled = true;
             dialogoEvent.DialogoTrigger();
 
         }

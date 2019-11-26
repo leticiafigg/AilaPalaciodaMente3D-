@@ -26,19 +26,19 @@ public class LoadTest : MonoBehaviour
 
     public void LoadGame()
     {
-
-        LoadInformation.LoadAll();
-
-        Debug.Log("Player name: " + GameInformation.Aila.PlayerName);
-        Debug.Log("Player lvl: " + GameInformation.Aila.PlayerLevel);
-        Debug.Log("Player Power: " + GameInformation.Aila.Poder);
-        Debug.Log("Player Determination: " + GameInformation.Aila.Determinacao);
-
-        
-        if (GameInformation.LastScene != null && GameInformation.LastScene != "")
+        if (PlayerPrefs.HasKey("LASTSCENE"))
         {
-            SceneManager.LoadScene(GameInformation.LastScene);
+            LoadInformation.LoadAll();
+
+            if (GameInformation.LastScene != null)
+            {
+                GameInformation.loadingSave = true;
+                SceneManager.LoadScene(GameInformation.LastScene);
+            }
         }
-        
+        else
+        {
+
+        }
     }
 }

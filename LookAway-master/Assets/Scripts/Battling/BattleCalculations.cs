@@ -31,6 +31,8 @@ public class BattleCalculations
 
     public void CalculateTotalPlayerDMG(BaseAction usedAction, Inimigo inimAlvo)
     {
+        totalActionDMG = 0;
+
         playerusedAction = usedAction;
         Debug.Log("Aila usou " + usedAction.ActionName);
         
@@ -39,12 +41,8 @@ public class BattleCalculations
         totalEffectDMG = CalculateStatusEffectDMG();
 
         totalPlayerDMG = totalActionDMG + totalCriticalDMG + totalEffectDMG; //Dano combinado do ataque em si, + o crítico, mais o status.
-
-        totalPlayerDMG += (int)(Random.Range(-(totalPlayerDMG * dmgVariator), totalPlayerDMG * dmgVariator)); // adiciona uma variaçãod e 5% entre danos, afinal raramente um ataque de uma mesma pessoa causa exatamente o mesmo dano 
-
-       
-
         totalPlayerDMG = calculateEnemyResistance(inimAlvo);
+        totalPlayerDMG += (int)(Random.Range(-(totalPlayerDMG * dmgVariator), totalPlayerDMG * dmgVariator)); // adiciona uma variaçãod e 5% entre danos, afinal raramente um ataque de uma mesma pessoa causa exatamente o mesmo dano 
 
         inimAlvo.TakeDamage((int)totalPlayerDMG , totalStunDMG); //Chama o método de tomar dano dentro do script do inimigo alvo
 
@@ -62,6 +60,8 @@ public class BattleCalculations
 
     public void CalculateTotalEnemyDMG(BaseAction usedAction , Inimigo inim)
     {
+        totalActionDMG = 0;
+
         inimigoAgindo = inim;
         enemyusedAction = usedAction;
 
@@ -141,9 +141,9 @@ public class BattleCalculations
         if(DecidirActionCriticalHit())
         {
             //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
-            criticalDMG = (int)(totalActionDMG + (totalActionDMG * (0.1f + (GameInformation.Aila.Determinacao * 0.1f))));
+            criticalDMG = (int)((totalActionDMG + (GameInformation.Aila.Determinacao * 0.1f) ));
             totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
-            Debug.Log("Uau! Um ataque crítico!");
+           
             return criticalDMG;
         }
 
@@ -158,9 +158,9 @@ public class BattleCalculations
         if (DecidirEnemyActionCriticalHit())
         {
             //Crítico adiciona dano ao dano total = 100% + uma porcentagem retirada da determinação de dano extra
-            criticalDMG = (int)(totalActionDMG + totalActionDMG);
+            criticalDMG = (int)(totalActionDMG);
             totalStunDMG = totalStunDMG * 2; //Stun sempre é dobrado.
-            Debug.Log("Ouch! Um golpe crítico do inimigo!");
+           
             return criticalDMG;
         }
 
@@ -222,6 +222,10 @@ public class BattleCalculations
 
         resistedDMG = totalPlayerDMG - (int)((inim.determinacao * 0.25) + (inim.resistencia * 0.50 + inim.armadura));
         Debug.Log("Dano total  depois da defesa " + resistedDMG);
+
+        if (resistedDMG <= 0)
+            resistedDMG = 0;
+
         return resistedDMG;
     
    }
