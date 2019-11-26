@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 public class SavePoint : MonoBehaviour
 {
     public BaseHUDHandler hudHandleScript;
-    public MoveChanPhisical playerPhisical;
+    public AudioSource saveSoundFX;
+
+    private MoveChanPhisical playerPhisical;
     private string intrName;
     private bool pressedBtn;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerPhisical = GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>();
         pressedBtn = false;
         intrName = "Salvar";
     }
@@ -34,14 +37,13 @@ public class SavePoint : MonoBehaviour
 
                 SaveInformation.SaveAll();
                 BaseHUDHandler.ToggleSavePopUp();
+                saveSoundFX.Play();
 
                 pressedBtn = false;
             }
 
 
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,9 +52,7 @@ public class SavePoint : MonoBehaviour
        if(other.gameObject.CompareTag("Player"))
        {
             hudHandleScript.AtivarSavePrompt(intrName);      
-       }
-        
-
+       }      
     }
 
     private void OnTriggerExit(Collider other)

@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class OptionsInformation : MonoBehaviour
 {
-    public static Slider Masterslider;
     public static bool FullscreenSetting;
     public static float MasterVol;
-    
+    public GameObject MasterSlider;
 
-    private void Awake()
-    {
-        Masterslider = GameObject.FindGameObjectWithTag("MasterVolSlider").GetComponent<Slider>();
+    private void Start()
+    {  
         MasterVol = 1;
-        LoadInformation.LoadOptions();
-        Masterslider.value = MasterVol;
+        LoadInformation.LoadOptions();   
     }
 
     public void Masterchange()
     {
-        MasterVol = Masterslider.value;
+        MasterSlider = GameObject.FindGameObjectWithTag("MasterVolSlider");
+
+        MasterVol = MasterSlider.GetComponent<Slider>().value;
         AudioListener.volume = MasterVol;
     }
 

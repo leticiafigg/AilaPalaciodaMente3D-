@@ -11,10 +11,10 @@ public class PlayerCreation : MonoBehaviour
 {
 
     private BasePlayer newPlayer;
-    public GameObject informationStore;
+    //public GameObject informationStore;
     public GameObject classTitleGameObj;
     public GameObject classDescGameObj;
-
+    public GameObject classMainStatsObj;
     public GameObject classStartStats;
     
 
@@ -25,6 +25,7 @@ public class PlayerCreation : MonoBehaviour
     private StatCalc statCalcScript = new StatCalc();
    
     private static string classDesc;
+    private static string classMainStats;
 
     private void Start()
     {
@@ -67,7 +68,8 @@ public class PlayerCreation : MonoBehaviour
 
 
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Destemida";
-        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propõe a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
+        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propõe a encontrar de frente com problemas e inimigos";
+        classMainStats = "Poder e Resistência";
 
         AtualizarHUDInfo();
     }
@@ -93,7 +95,8 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Criativa";
-        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrando soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
+        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrando soluções menos óbvias para seus problemas";
+        classMainStats ="Imaginação e Determinação";
 
         AtualizarHUDInfo();       
     }
@@ -119,7 +122,8 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
         classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Avoada";
-        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado (Maior Sorte e status equilibrados) ";
+        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado ";
+        classMainStats = "Sorte e atributos equilibrados";
 
         AtualizarHUDInfo();      
     }
@@ -135,6 +139,8 @@ public class PlayerCreation : MonoBehaviour
     private void AtualizarHUDInfo()
     {
         classDescGameObj.GetComponent<TextMeshProUGUI>().text = classDesc;
+
+        classMainStatsObj.GetComponent<TextMeshProUGUI>().text = "Atributos principais: " + classMainStats;
 
         classStartStats.GetComponent<TextMeshProUGUI>().text =
             " Poder: " + GameInformation.Aila.Poder + " " +

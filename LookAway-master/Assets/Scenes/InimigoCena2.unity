@@ -5483,22 +5483,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6631919289788357763, guid: 4770c74c43b9f0a43949091ea33f6866,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6631919289780944598, guid: 4770c74c43b9f0a43949091ea33f6866,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6631919289846219841, guid: 4770c74c43b9f0a43949091ea33f6866,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6631919289004089165, guid: 4770c74c43b9f0a43949091ea33f6866,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631919289788357763, guid: 4770c74c43b9f0a43949091ea33f6866,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631919289780944598, guid: 4770c74c43b9f0a43949091ea33f6866,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5686,6 +5686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameEndPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275206367296833939, guid: 2da22ec670cd1224f966772bbe938066,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6275206367296833938, guid: 2da22ec670cd1224f966772bbe938066,
         type: 3}

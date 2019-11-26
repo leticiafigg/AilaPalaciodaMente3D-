@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class DialogoHandle : MonoBehaviour
 {
+    public AudioSource textAdvanceSoundFX;
     public BaseHUDHandler hudHandleScript;
     public GameObject TextBoxObj;
     public TextMeshProUGUI TextBoxText;
-
     public TextMeshProUGUI textBoxLocutorAtual;
 
     public Texture locutor1FileImg;
@@ -101,6 +101,8 @@ public class DialogoHandle : MonoBehaviour
 
     private void AvancarTexto()
     {
+        textAdvanceSoundFX.Play();
+
         if (falaIndex + 1 < ConjuntoFalas[locutor].Count) //se o indexador for menor que o total, podemos aumentá-lo e utilizá-lo normalmente
         {
             falaIndex++;
@@ -117,13 +119,18 @@ public class DialogoHandle : MonoBehaviour
             FimdeTexto();
         }
 
-        if(locutor%2 == 0)              //Se a posição na lista for par, quem está falando é o primeiro locutor, se não, o segundo 
+        if (locutor % 2 == 0)              //Se a posição na lista for par, quem está falando é o primeiro locutor, se não, o segundo 
         {
-           textBoxLocutorAtual.text = Locutor1Name;
+            textBoxLocutorAtual.text = Locutor1Name;
+            locutor1GameObj.GetComponent<RawImage>().color = new Color32(255, 255, 255, 255);
+            locutor2GameObj.GetComponent<RawImage>().color = new Color32(70, 70, 70, 215);
         }
         else
-        textBoxLocutorAtual.text = Locutor2Name;
-
+        {
+            textBoxLocutorAtual.text = Locutor2Name;
+            locutor1GameObj.GetComponent<RawImage>().color = new Color32(70, 70, 70, 215);
+            locutor2GameObj.GetComponent<RawImage>().color = new Color32(255, 255, 255, 255);
+        }
         if(locutor < ConjuntoFalas.Count && falaIndex < ConjuntoFalas[locutor].Count )
         falatual = ConjuntoFalas[locutor][falaIndex];
 
