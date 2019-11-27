@@ -5520,7 +5520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301951406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 945.56, y: 308.3, z: -122.229996}
+  m_LocalPosition: {x: 944.42, y: 308.3, z: -122.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19460,7 +19460,7 @@ PrefabInstance:
     - target: {fileID: 846943930603625883, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
       propertyPath: pontosDePatrulha.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 846943930603625883, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
@@ -21427,17 +21427,17 @@ PrefabInstance:
         type: 3}
       propertyPath: pontosDePatrulha.Array.data[0]
       value: 
-      objectReference: {fileID: 1090159100}
+      objectReference: {fileID: 1331372709}
     - target: {fileID: 846943930603625883, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
       propertyPath: pontosDePatrulha.Array.data[1]
       value: 
-      objectReference: {fileID: 616216092}
+      objectReference: {fileID: 1090159100}
     - target: {fileID: 846943930603625883, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
       propertyPath: pontosDePatrulha.Array.data[2]
       value: 
-      objectReference: {fileID: 862190972}
+      objectReference: {fileID: 616216092}
     - target: {fileID: 846943930603625883, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
       propertyPath: pontosDePatrulha.Array.data[3]
@@ -21518,6 +21518,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6508337870138335157, guid: 5c6d76353e90a6a448bea679e286cf31,
+        type: 3}
+      propertyPath: EnemyType
+      value: InimigoCena1
+      objectReference: {fileID: 0}
     - target: {fileID: 5182809018316252807, guid: 5c6d76353e90a6a448bea679e286cf31,
         type: 3}
       propertyPath: m_Enabled
@@ -21540,11 +21545,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.4516929
-      objectReference: {fileID: 0}
-    - target: {fileID: 6508337870138335157, guid: 5c6d76353e90a6a448bea679e286cf31,
-        type: 3}
-      propertyPath: EnemyType
-      value: InimigoCena1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c6d76353e90a6a448bea679e286cf31, type: 3}
@@ -21829,6 +21829,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1331372709}
+  - component: {fileID: 1331372711}
+  - component: {fileID: 1331372710}
   m_Layer: 0
   m_Name: Patrulha (3)
   m_TagString: Untagged
@@ -21844,12 +21846,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331372708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 940.21, y: 312, z: -126.92}
+  m_LocalPosition: {x: 931.4, y: 312, z: -82.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1331372710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331372708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.008728, y: 2.3070679, z: 16.317139}
+  m_Center: {x: -0.23678589, y: 0.65353394, z: -0.5616379}
+--- !u!114 &1331372711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331372708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde09ffec0d9721458b48cf51845312b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrulheiro: {fileID: 1319531786}
 --- !u!1001 &1333707710
 PrefabInstance:
   m_ObjectHideFlags: 0
