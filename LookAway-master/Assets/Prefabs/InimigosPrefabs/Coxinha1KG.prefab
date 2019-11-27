@@ -638,10 +638,10 @@ MonoBehaviour:
   Nome: Coxinha de 1kg
   minlvl: 4
   maxlvl: 5
-  poder: 10
-  imaginacao: 10
-  resistencia: 12
-  determinacao: 10
+  poder: 12
+  imaginacao: 12
+  resistencia: 14
+  determinacao: 14
   armadura: 5
   sorte: 8
   moveList: []

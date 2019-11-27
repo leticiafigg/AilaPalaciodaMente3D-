@@ -83,14 +83,14 @@ MonoBehaviour:
   Nome: Tomato
   minlvl: 1
   maxlvl: 3
-  poder: 10
-  imaginacao: 15
-  resistencia: 8
-  determinacao: 10
-  armadura: 1
-  sorte: 6
+  poder: 5
+  imaginacao: 5
+  resistencia: 15
+  determinacao: 15
+  armadura: 2
+  sorte: 10
   moveList: []
-  PosInList: 0
+  PosInList: 1
   derrotado: 0
   inimigoobj: {fileID: 9067631881081883298}
 --- !u!1001 &6299107031663315579
@@ -113,7 +113,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 34afc8e1abcaf6843b15035f4209bafc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 34afc8e1abcaf6843b15035f4209bafc,
         type: 3}
