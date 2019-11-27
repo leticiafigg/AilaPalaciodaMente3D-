@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -375,7 +375,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98415341}
-  m_LocalRotation: {x: 0.06286817, y: -0.76421267, z: 0.07537065, w: 0.6374527}
+  m_LocalRotation: {x: 0.062868185, y: -0.76421267, z: 0.07537067, w: 0.6374527}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2043,7 +2043,7 @@ MonoBehaviour:
   TextBoxText: {fileID: 435427563}
   textBoxLocutorAtual: {fileID: 435427562}
   locutor1FileImg: {fileID: 2800000, guid: 1aa793ce49156bf4baea4d02f30f93eb, type: 3}
-  locutor2FileImg: {fileID: 2800000, guid: 63c76890d2c72b440bdd9d58acc2457b, type: 3}
+  locutor2FileImg: {fileID: 2800000, guid: c85380a011324414b8b1d405e77e6749, type: 3}
   locutor1GameObj: {fileID: 435427566}
   locutor2GameObj: {fileID: 435427565}
   Locutor1Name: Aila
@@ -3698,7 +3698,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063068744}
-  m_LocalRotation: {x: 0.06286819, y: -0.7642126, z: 0.07537067, w: 0.63745266}
+  m_LocalRotation: {x: 0.0628682, y: -0.7642126, z: 0.075370684, w: 0.63745266}
   m_LocalPosition: {x: 7.9201765, y: 2.18, z: 19.952663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4732,7 +4732,7 @@ MonoBehaviour:
   TextBoxText: {fileID: 435427563}
   textBoxLocutorAtual: {fileID: 435427562}
   locutor1FileImg: {fileID: 2800000, guid: 1aa793ce49156bf4baea4d02f30f93eb, type: 3}
-  locutor2FileImg: {fileID: 2800000, guid: 63c76890d2c72b440bdd9d58acc2457b, type: 3}
+  locutor2FileImg: {fileID: 2800000, guid: c85380a011324414b8b1d405e77e6749, type: 3}
   locutor1GameObj: {fileID: 435427566}
   locutor2GameObj: {fileID: 435427565}
   Locutor1Name: Aila
@@ -7558,7 +7558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090651478}
-  m_LocalRotation: {x: 0.062868275, y: -0.76421267, z: 0.07537057, w: 0.63745266}
+  m_LocalRotation: {x: 0.06286829, y: -0.76421267, z: 0.07537059, w: 0.63745266}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
