@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    public Animator anim;
+    private float animspeed;
 
     public float speed;
     public float chaseSpeed;
@@ -56,11 +58,14 @@ public class EnemyPatrol : MonoBehaviour
         switch(estadoatual)
         {
             case (EstadoDePatrulha.PATRULHANDO):
+                animspeed = 1.0f;
+                anim.SetFloat("animSpeed", animspeed);
                 PatrulharPontos();
                 break;
 
             case (EstadoDePatrulha.PERSEGUINDO):
-
+                animspeed = 2.0f;
+                anim.SetFloat("animSpeed", animspeed) ;
                 PerseguirJogador();
                 break;
 
@@ -77,6 +82,8 @@ public class EnemyPatrol : MonoBehaviour
         transform.position = new Vector3(transform.position.x, permanentY, transform.position.z);
         transform.LookAt(target.position);
 
+        anim.SetBool("walking", true);
+
         if (Vector3.Distance(transform.position, pontosDePatrulha[randomPonto].position) < 0.3f)
         {
             if (waitTime <= 0)
@@ -87,6 +94,7 @@ public class EnemyPatrol : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                anim.SetBool("walking", false);
             }
 
         }
@@ -95,6 +103,7 @@ public class EnemyPatrol : MonoBehaviour
     private void PerseguirJogador()
     {
         speed = chaseSpeed;
+        anim.SetBool("walking", true);
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, permanentY, transform.position.z);
 

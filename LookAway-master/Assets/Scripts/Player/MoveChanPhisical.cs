@@ -174,7 +174,7 @@ public class MoveChanPhisical : MonoBehaviour
             //verifica se o objeto ta na frente do personagem >0
             float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
             //calcula e interpola o peso pela formula (l*3)/distancia^3
-            weight=Mathf.Lerp(weight,(lookto*3 / (Mathf.Pow(handDirection.magnitude,3))),Time.fixedDeltaTime*2);
+            weight=Mathf.Lerp(weight,(lookto*3 / (Mathf.Pow(handDirection.magnitude,4))),Time.fixedDeltaTime*2);
            
             anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
             anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
@@ -189,7 +189,7 @@ public class MoveChanPhisical : MonoBehaviour
             if (weight <= 0)
             {
                 canhold = false;
-                grabbable.transform.SetParent(null);
+                //grabbable.transform.SetParent(null);
                 Destroy(closeThing);
             }
 

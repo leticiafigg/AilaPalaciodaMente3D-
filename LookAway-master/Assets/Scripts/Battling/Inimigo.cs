@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
 
-
+    public Animator inimAnim;
     public GameObject cameraPos;
 
     public int pvTotal; //cada inimigo tem um nome para identificá-lo, uma quantidade de vida e de stun
@@ -130,11 +130,14 @@ public class Inimigo : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        inimAnim.SetTrigger("attacked");
         this.pvAtual = pvAtual - dmg; 
     }
 
     public void TakeDamage(int dmg , int stun)
     {
+        this.inimAnim.SetTrigger("attacked");
+
         this.pvAtual = this.pvAtual - dmg;
 
         this.stunAtual = this.stunAtual + stun;
