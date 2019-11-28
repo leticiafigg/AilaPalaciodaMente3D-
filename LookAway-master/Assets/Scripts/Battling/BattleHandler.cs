@@ -78,6 +78,9 @@ public class BattleHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        inimigoTerminouTurno= false;
+        jogadorTerminouTurno= false;
+
         playerCamera.enabled = true;        // Torna a camera ativa a do Jogador, por padrão, ao começar a batalha
         enemyActionCamera.enabled = false;  //
 
@@ -111,8 +114,9 @@ public class BattleHandler : MonoBehaviour
           
                     battleStartscript.PrepareBattle();
                     //A CD aumenta para cada inimigo na lista. por enquanto sempre vai ser 3
-                    cd = inimigosList.Count;
+                   
                     turnLogText = "Falsas memórias foram encontradas!";
+                    cd = cd * inimigosList.Count;
                     waitActive = true;
                   break;
           

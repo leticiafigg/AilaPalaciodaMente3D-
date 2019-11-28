@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    public float distance;
-    public float velocity;
+    public Transform destino;
+
+    private Vector3 target;
+    private Vector3 origem;
+
+    public float startWaitTime;
+    private float waitTime;
+    public float speed;
     public bool move = true;
-    Vector3 position;
+   
     Rigidbody rdb;
     // Start is called before the first frame update
     void Start()
     {
-        position = transform.position;
+        origem = transform.position;
+        target = destino.position;
         rdb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
@@ -20,12 +27,37 @@ public class Platform : MonoBehaviour
     {
         if (move)
         {
-            transform.position = position +
-                new Vector3(0, 0, Mathf.Sin(Time.time * velocity) * distance);
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, destino.position) < 0.3f)
+            {
+               if (waitTime <= 0)
+               {
+                   waitTime = startWaitTime;
+                   target = origem; 
+               }
+               else
+               waitTime -= Time.deltaTime;
+            }
+
+            if (Vector3.Distance(transform.position, origem) < 0.3f)
+            {
+                if (waitTime <= 0)
+                {
+                    waitTime = startWaitTime;
+                    target = destino.position;
+                }
+                else
+                waitTime -= Time.deltaTime;
+            }
+
         }
 
-
+       
+     
     }
+
+
     private void OnTriggerEnter(Collider col)
     {
       
