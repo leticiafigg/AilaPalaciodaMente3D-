@@ -114,8 +114,9 @@ public class BattleHandler : MonoBehaviour
           
                     battleStartscript.PrepareBattle();
                     //A CD aumenta para cada inimigo na lista. por enquanto sempre vai ser 3
-                    cd = inimigosList.Count;
+                   
                     turnLogText = "Falsas memórias foram encontradas!";
+                    cd = cd * inimigosList.Count;
                     waitActive = true;
                   break;
           

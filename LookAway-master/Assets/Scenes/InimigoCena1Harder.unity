@@ -10452,11 +10452,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3345850294861174252, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 247018071}
     - target: {fileID: 3345850295069870309, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
       propertyPath: m_IsActive
@@ -10527,11 +10522,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3345850295844844114, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
-        type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2096312932000796344, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
         type: 3}
       propertyPath: m_Sprite
@@ -10554,6 +10544,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 39643771203d7c041b10437e7ea2cbb4,
         type: 3}
+    - target: {fileID: 3345850294861174252, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 247018071}
+    - target: {fileID: 3345850295844844114, guid: a4db4fcfa94e2e44b9ae3414ae72a7df,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4db4fcfa94e2e44b9ae3414ae72a7df, type: 3}
 --- !u!1 &660368404 stripped
@@ -29048,7 +29048,7 @@ MonoBehaviour:
   lvlupwarnTxt: {fileID: 126240735}
   turnLogBox: {fileID: 1676945415}
   startWaitTime: 3
-  cd: 2
+  cd: 3
   cenaACarregar: mapa1
 --- !u!1001 &1905470815
 PrefabInstance:
@@ -32471,11 +32471,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6631919288287009155, guid: 4770c74c43b9f0a43949091ea33f6866,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1424995891}
     - target: {fileID: 6631919289846219841, guid: 4770c74c43b9f0a43949091ea33f6866,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -32496,5 +32491,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6631919288287009155, guid: 4770c74c43b9f0a43949091ea33f6866,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1424995891}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4770c74c43b9f0a43949091ea33f6866, type: 3}

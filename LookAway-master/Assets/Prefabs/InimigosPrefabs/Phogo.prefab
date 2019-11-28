@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9067631881081883299}
   - component: {fileID: 3020276906770202916}
+  - component: {fileID: 6727067962853913481}
   m_Layer: 0
   m_Name: Phogo
   m_TagString: Untagged
@@ -75,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c650bfbaec53e42b22f94debacc7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inimAnim: {fileID: 8978589376191138843}
   cameraPos: {fileID: 4299636626108162085}
   pvTotal: 0
   pvAtual: 0
@@ -93,6 +95,44 @@ MonoBehaviour:
   PosInList: 1
   derrotado: 0
   inimigoobj: {fileID: 9067631881081883298}
+--- !u!23 &6727067962853913481
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067631881081883298}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1001 &6299107031663315579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,11 +215,27 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 34afc8e1abcaf6843b15035f4209bafc,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bb46e349bb30da540bf7d0923a4f68f5, type: 2}
+    - target: {fileID: -5036612152930976156, guid: 34afc8e1abcaf6843b15035f4209bafc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34afc8e1abcaf6843b15035f4209bafc, type: 3}
 --- !u!4 &1301637831586521441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 34afc8e1abcaf6843b15035f4209bafc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6299107031663315579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8978589376191138843 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 34afc8e1abcaf6843b15035f4209bafc,
     type: 3}
   m_PrefabInstance: {fileID: 6299107031663315579}
   m_PrefabAsset: {fileID: 0}
