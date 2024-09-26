@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class SavePoint : MonoBehaviour
 {
     public BaseHUDHandler hudHandleScript;
+    public AudioSource saveSoundFX;
+
+    private MoveChanPhisical playerPhisical;
     private string intrName;
     private bool pressedBtn;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerPhisical = GameObject.FindGameObjectWithTag("Player").GetComponent<MoveChanPhisical>();
         pressedBtn = false;
         intrName = "Salvar";
     }
@@ -19,7 +23,7 @@ public class SavePoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hudHandleScript.interactOn)
+        if (hudHandleScript.interactSave)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
@@ -29,19 +33,17 @@ public class SavePoint : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E) && pressedBtn)
             {
                 GameInformation.LastScene = SceneManager.GetActiveScene().name;
-
+                GameInformation.LastPos = playerPhisical.GetPlayerPos();
 
                 SaveInformation.SaveAll();
-
-                Debug.Log("Saved!");
+                BaseHUDHandler.ToggleSavePopUp();
+                saveSoundFX.Play();
 
                 pressedBtn = false;
             }
 
 
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,11 +51,8 @@ public class SavePoint : MonoBehaviour
         //Ao ativar o trigger, (o jogador está perto) mudar o nome da interação a ser feita para Salvar
        if(other.gameObject.CompareTag("Player"))
        {
-            hudHandleScript.AtivarPrompt(intrName);
-            
-       }
-        
-
+            hudHandleScript.AtivarSavePrompt(intrName);      
+       }      
     }
 
     private void OnTriggerExit(Collider other)
@@ -61,8 +60,7 @@ public class SavePoint : MonoBehaviour
         //Quando o Player sair, a interação se torna vazia e o prompt deve ser desativado
         if (other.gameObject.CompareTag("Player"))
         {
-
-            hudHandleScript.DesativarPrompt();
+            hudHandleScript.DesativarSavePrompt();
         }
     }
 }

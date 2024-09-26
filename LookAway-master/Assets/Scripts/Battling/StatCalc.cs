@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class StatCalc 
 {
-    private float poderModifier = 0.25f; //25%
+    private float poderModifier = 0.2f; //25%
     private float imaginacaoModifier = 0.25f;
-    private float determinacaoModifier = 0.2f; // 20%
-    private float sorteModifier = 0.2f;
-
+    private float resistenciaModifier = 0.1f;
+    private float determinacaoModifier = 0.1f; // 20%
+    private float sorteModifier = 0.1f;
+    
     //private BaseAction baseactionScript;
 
     public enum StatType
@@ -20,39 +21,35 @@ public class StatCalc
         SORTE
     }
 
-    
-
-   /* public enum AilaArchetype // Estes arquétipos irão determinar os modificadores do jogador
-    {
-        CONSCIENTE,
-        IMAGINATIVA,
-        AVOADA
-    }*/
-
     public int CalcularInimStats(int statVal, StatType statType, int level) //Modifica os status pessoais fornecidos de acordo com o nível e o modificador atribuído
     {
         float modifier;
         if(statType == StatType.PODER)
         {
             modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            return (statVal +(int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.IMAGINACAO)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = imaginacaoModifier;
+            return (statVal + (int)((statVal * modifier) * (level)));
+        }
+        if (statType == StatType.RESISTENCIA)
+        {
+            modifier = resistenciaModifier;
+            return (statVal + (int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.DETERMINACAO)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = determinacaoModifier;
+            return (statVal + (int)((statVal * modifier) * (level)));
         }
         if (statType == StatType.SORTE)
         {
-            modifier = poderModifier;
-            return (statVal + (int)(statVal + modifier * level));
+            modifier = sorteModifier;
+            return (statVal + (int)((statVal * modifier) * level * 0.5));
         }
-        return 0;
+            return 0;
     }
 
 
@@ -60,7 +57,7 @@ public class StatCalc
     {
         int resultPV;
 
-        resultPV = (int)(statValue * 10); //simplesmente usando o valor do status e multiplicando por 10 
+        resultPV = (int)(statValue * 15); //simplesmente usando o valor do status e multiplicando por 10 
 
         return resultPV;
 
@@ -78,7 +75,7 @@ public class StatCalc
 
     public float GetActionAffinity(StatType statAff)
     {
-        float Affnitymodifier = 0.6f;
+        float Affnitymodifier = 0.5f;
 
         if (statAff == StatType.PODER)
         {          
@@ -87,6 +84,10 @@ public class StatCalc
         if (statAff == StatType.IMAGINACAO)
         {    
             return (GameInformation.Aila.Imaginacao * Affnitymodifier);
+        }
+        if (statAff == StatType.RESISTENCIA)
+        {
+            return (GameInformation.Aila.Resistencia * Affnitymodifier);
         }
         if (statAff == StatType.DETERMINACAO)
         {        

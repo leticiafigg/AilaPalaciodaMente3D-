@@ -5,22 +5,34 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ad72e218a4cb7cc4ebceeaa0c1dffbcd
   - enabled: 1
     path: Assets/Scenes/AilaIsBorn.unity
     guid: daeafefb2289a6743ba800355b49e698
+  - enabled: 1
+    path: Assets/Scenes/Salao.unity
+    guid: 6b7bd01505d45d042ae2b1dc598cda6e
+  - enabled: 1
+    path: Assets/Scenes/inimigoCena1.unity
+    guid: 3da69c28baee5d54a86ba8d1c55a0d6d
+  - enabled: 1
+    path: Assets/Scenes/InimigoCena1Harder.unity
+    guid: ed5b02874d80c06499b22b62dd597c80
+  - enabled: 1
+    path: Assets/Scenes/InimigoCena1Coxinha1kg.unity
+    guid: 6966e6499546eac409b1babafd40ac27
+  - enabled: 1
+    path: Assets/Scenes/padariac3.unity
+    guid: 2ac81ad73b10c47468ec6b081e9497c8
+  - enabled: 1
+    path: Assets/Scenes/InimigoCena2.unity
+    guid: 2f9351f0f98244241a7f326ea80710a1
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 9abdb1ce29e13404b93bd208fd5bda59
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/Inimigo1.unity
-    guid: 2f9351f0f98244241a7f326ea80710a1
-  - enabled: 1
-    path: Assets/Scenes/mapa1.unity
-    guid: 47a3457b9c1241e49858da48ae2d01e0
-  - enabled: 1
-    path: Assets/Scenes/mapa2.unity
-    guid: 8972a73f4321b7f47bcff19ecd13e867
   m_configObjects: {}

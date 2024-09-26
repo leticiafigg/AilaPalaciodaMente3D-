@@ -12,17 +12,19 @@ public class EnemyActionChoice
         {
             case (Inimigo.EnemyState.BEM):
                 AcaoEscolhida = new AttackAction();
+                inim.inimAnim.SetTrigger("attacks");
                 break;
             case (Inimigo.EnemyState.AGRESSIVO):
                 AcaoEscolhida = new AttackAction();
+                inim.inimAnim.SetTrigger("attacks");
                 break;
             case (Inimigo.EnemyState.MORRENDO):
                 AcaoEscolhida = new Defender(inim);
                 break;
         }
 
-        inim.agiu = true;
-        Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
+        inim.Agiu = true;
+       //Debug.Log(inim.name + " usou " + AcaoEscolhida.ActionName);
         return AcaoEscolhida;
     }
 }

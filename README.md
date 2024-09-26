@@ -1,2 +1,2 @@
 # AilaPalaciodaMente3D-
-Nova iteração de Aila no Palácio da Mente
+Nova iteração de Aila no Palácio da Memória

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,52 +11,52 @@ public class PlayerCreation : MonoBehaviour
 {
 
     private BasePlayer newPlayer;
-    public GameObject informationStore;
+    //public GameObject informationStore;
     public GameObject classTitleGameObj;
     public GameObject classDescGameObj;
-
+    public GameObject classMainStatsObj;
     public GameObject classStartStats;
     
 
 
     public GameObject confirmButton;
     private GameInformation informationAdd;
-
+    private List<BaseAction> actionsToAdd;
     private StatCalc statCalcScript = new StatCalc();
+   
     private static string classDesc;
+    private static string classMainStats;
 
     private void Start()
     {
         newPlayer = new BasePlayer();
         newPlayer.PlayerName = "Aila";
         newPlayer.PlayerLevel = 1;
-
         classDesc = " ";
 
+        actionsToAdd = new List<BaseAction>(); // estão sendo adicionados manualmente, então por ora devem ser carregados manualmente, também
 
+        actionsToAdd.Add(new AttackAction());
+        actionsToAdd.Add(new Shove());
+        actionsToAdd.Add(new Pat());
+        actionsToAdd.Add(new ToqueChocante());
 
-        
-    }
+        GameInformation.AcoesAprendidas = actionsToAdd;
+        GameInformation.coxinhabossWon = false;
 
-    private void FixedUpdate()
-    {
-         
-        
-                                                    
-        
     }
 
     public void EscolherDestemida()
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
-        newPlayer.Poder = 15;   
-        newPlayer.Imaginacao = 8;
-        newPlayer.Resistencia = 13;
+        newPlayer.Poder = 18;   
+        newPlayer.Imaginacao = 9;
+        newPlayer.Resistencia = 15;
         newPlayer.Determinacao = 10;
-        newPlayer.Sorte = 4;
+        newPlayer.Sorte = 9;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.DESTEMIDA;
 
         GameInformation.Aila = newPlayer;
@@ -65,8 +66,10 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
-        classTitleGameObj.GetComponent<Text>().text = "Destemida";
-        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propões a encontrar de frente com problemas e inimigos (Maior Poder e Resistência)";
+
+        classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Destemida";
+        classDesc = "Aila é especialmente corajosa e resistente a adversões. Ela se propõe a encontrar de frente com problemas e inimigos";
+        classMainStats = "Poder e Resistência";
 
         AtualizarHUDInfo();
     }
@@ -74,14 +77,14 @@ public class PlayerCreation : MonoBehaviour
     public void EscolherCriativa()
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
-        newPlayer.Poder = 8;
-        newPlayer.Imaginacao = 16;
-        newPlayer.Resistencia = 6;
-        newPlayer.Determinacao = 12;
-        newPlayer.Sorte = 6;
+        newPlayer.Poder = 9;
+        newPlayer.Imaginacao = 18;
+        newPlayer.Resistencia = 10;
+        newPlayer.Determinacao = 15;
+        newPlayer.Sorte = 10;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.CRIATIVA;
 
         GameInformation.Aila = newPlayer;
@@ -91,25 +94,24 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
-        classTitleGameObj.GetComponent<Text>().text = "Criativa";
-        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrado soluções menos óbvias para seus problemas (Maior Imaginação e Determinação) ";
+        classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Criativa";
+        classDesc = "Com o poder imaginativo da juventude, Aila é especialmente criativa, encontrando soluções menos óbvias para seus problemas";
+        classMainStats ="Imaginação e Determinação";
 
-        AtualizarHUDInfo();
-
-        
+        AtualizarHUDInfo();       
     }
 
     public void EscolherAvoada()
     {
         //usamos um new player temporário para depois salvá-lo no gameinformation
-        newPlayer.Poder = 9;
-        newPlayer.Imaginacao = 9;
+        newPlayer.Poder = 12;
+        newPlayer.Imaginacao = 12;
         newPlayer.Resistencia = 10;
         newPlayer.Determinacao = 10;
-        newPlayer.Sorte = 16;
+        newPlayer.Sorte = 20;
         newPlayer.Armadura = 0;
         newPlayer.XPAtual = 0;
-        newPlayer.XPNecessario = 300;
+        newPlayer.XPNecessario = 500;
         newPlayer.AilaClass = BasePlayer.AilaArchetype.AVOADA;
 
         GameInformation.Aila = newPlayer;
@@ -119,27 +121,28 @@ public class PlayerCreation : MonoBehaviour
         GameInformation.AilaPVatual = GameInformation.AilaPV;
         GameInformation.AilaPFatual = GameInformation.AilaPF;
 
-        classTitleGameObj.GetComponent<Text>().text = "Avoada";
-        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado (Maior Sorte e status equilibrados) ";
+        classTitleGameObj.GetComponent<TextMeshProUGUI>().text = "Avoada";
+        classDesc = "Aila permite que alguns pontos mais banais sejam decididos pelo destino, não se abala demais quando as coisas dão errado ";
+        classMainStats = "Sorte e atributos equilibrados";
 
-        AtualizarHUDInfo();
-
-        
+        AtualizarHUDInfo();      
     }
 
-    public void ConfirmarDefinitivo()
+    public void ConfirmarDefinitivo(string primeiracena)
     {
-
+        GameInformation.loadingSave = false;
         SaveInformation.SaveAll();
 
-        SceneManager.LoadScene("mapa1");
+        SceneManager.LoadScene(primeiracena);
     }
 
     private void AtualizarHUDInfo()
     {
-        classDescGameObj.GetComponent<Text>().text = classDesc;
+        classDescGameObj.GetComponent<TextMeshProUGUI>().text = classDesc;
 
-        classStartStats.GetComponent<Text>().text =
+        classMainStatsObj.GetComponent<TextMeshProUGUI>().text = "Atributos principais: " + classMainStats;
+
+        classStartStats.GetComponent<TextMeshProUGUI>().text =
             " Poder: " + GameInformation.Aila.Poder + " " +
             " " +
             " Imaginacao: " + GameInformation.Aila.Imaginacao + " " +

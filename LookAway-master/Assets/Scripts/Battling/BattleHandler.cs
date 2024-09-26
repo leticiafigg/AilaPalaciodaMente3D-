@@ -1,44 +1,54 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleHandler : MonoBehaviour
 {
 
     public GameObject[] enemyFabs; // Possíveis inimigos a serem encontrados
-   
+    public Camera playerCamera;
+    public Camera enemyActionCamera;
+    //private Camera activeCamera;
 
     private BattleStart battleStartscript = new BattleStart();
     private BattleCalculations battleCalcScript = new BattleCalculations();
     private BaseAction baseActscript = new BaseAction();
     private BattleStateAddStatusEffect battleAddEffectscript = new BattleStateAddStatusEffect();
     private BattleStateEnemyChoice battleStateEnemyChoicescript = new BattleStateEnemyChoice();
-    
+   
     public static BaseAction playerUsedAction;
     public static BaseAction enemyUsedAction;
+    public static Inimigo inimAlvo;
     public static Inimigo inimigodavez;
 
     public static int statusEffectBaseDamage;
     public static int totalRoundCounter; //Total de rodadas deste o primeiro turno.
+
     public static bool jogadorTerminouTurno;
     public static bool inimigoTerminouTurno;
+    public static bool waitActive;
+    public static bool jogPassouNivel;  // será usado para avisar se o jogador passou algum nível ao receber xp
+    
 
-    private GameObject inimigo1obj;   // ter até 3 inimigos, às vezes menos
-    private Inimigo inim1Stats;
     public GameObject inimigo1start;
-  
-    private GameObject inimigo2obj;
-    private Inimigo inim2Stats;
     public GameObject inimigo2start;
-
-    private GameObject inimigo3obj;
-    private Inimigo inim3Stats;
     public GameObject inimigo3start;
 
-    public List<Inimigo> inimStatsList;
-    
+    public TextMeshProUGUI expPointsDados; //
+    public GameObject battleResultsPanel;  // Aviso de vitória e resultados de batalha (Exp recebido)
+    public GameObject lvlupwarnTxt;        //
+    public GameObject turnLogBox;
+    public static string turnLogText; //alterar essa string para cada coisa que acontecer entre os estados
+    public float startWaitTime;
+    private float waitTime;
+
+    public static List<GameObject> inimObjList;
+    public static List<Inimigo> inimigosList;
+
 
     bool xprecebido;
     public int cd; //Classe de dificuldade
@@ -65,6 +75,24 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        inimigoTerminouTurno= false;
+        jogadorTerminouTurno= false;
+
+        playerCamera.enabled = true;        // Torna a camera ativa a do Jogador, por padrão, ao começar a batalha
+        enemyActionCamera.enabled = false;  //
+
+        battleResultsPanel.SetActive(false);     //
+        jogPassouNivel = false;                 // desativam o aviso no começo da cena
+        lvlupwarnTxt.SetActive(false);          //
+
+        inimigosList = new List<Inimigo>();
+        inimObjList = new List<GameObject>();
+        
+        waitActive = false;
+        waitTime = startWaitTime;
         xprecebido = false;
         totalRoundCounter = 1;
         SetEnemies(); //chama o PrepareEnemies do Battle Start para criá-los e então os associa pontos específicos do mapa 
@@ -77,146 +105,219 @@ public class BattleHandler : MonoBehaviour
     {
         Debug.Log(currentState);
 
-        switch (currentState) {
+        if(!waitActive) //Só lê o próximo estado estado, ou seja, só avança o game state se não tiver que esperar por algo, seja la o que for
+        { 
+          switch (currentState) {
+          
+              case (BattleStates.START):
+                    //Apresentar os inimigos, ativa o hud e tals
+          
+                    battleStartscript.PrepareBattle();
+                    //A CD aumenta para cada inimigo na lista. por enquanto sempre vai ser 3
+                   
+                    turnLogText = "Falsas memórias foram encontradas!";
+                    cd = cd * inimigosList.Count;
+                    waitActive = true;
+                  break;
+          
+              case (BattleStates.PLAYERCHOICE):
+                  CameraParaJogador();
+                  turnLogText = "Sua vez!";
+                  currentActor = BattleStates.PLAYERCHOICE; //armazenando que o ator é o jogador
+                  break;
+          
+              case (BattleStates.PLAYERANIM):
+          
+                  break;
+          
+              case (BattleStates.ENEMYCHOICE):
+                  //colocar IA aqui
+                  currentActor = BattleStates.ENEMYCHOICE;
 
-            case (BattleStates.START):
-                //Apresentar os inimigos, ativa o hud e tals
+                    //checa cada inimigo na lista para ver se ele já agiu
+                    int inimIndex = 0; //sempre reseta para o primeiro, porém ...
+                    foreach (Inimigo inimstat in inimigosList)
+                    {
+                        if (inimstat.Agiu)
+                        {
+                            inimIndex++; //...sempre que encontra um inimigo que já agiu ele adiciona 1 no indexador
+                           inimigoTerminouTurno = true;
+                        }
+                        else
+                        {
+                            //e quando encontra um que não agiu, significa que o turno dos inimigos ainda não acabou
+                           inimigoTerminouTurno = false;
+                        }
+                    }
 
-                battleStartscript.PrepareBattle();
+                    if (inimigoTerminouTurno == false) //só entra aqui se cada inimigo na lista ainda não agiu
+                    {
+                        battleStateEnemyChoicescript.EnemyCompleteTurn(inimIndex);
+                        enemyActionCamera.transform.position = inimigodavez.cameraPos.transform.position;
+                        CameraParaInimigo();
+                    }
+                    else
+                    {
+                        DecidirProximoAtor();
+                    }
+                    
+                    break;
+          
+              case (BattleStates.ENEMYANIM):
+                  //faz os paranaue de animar la
+                  break;
+          
+              case (BattleStates.CALCDAMAGE):
+                  Debug.Log("CALCULANDO DANO");
+                    if (currentActor == BattleStates.PLAYERCHOICE) //se é o turno do jogador e ele escolheu alguma ação
+                    {
+                        battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction, inimAlvo);             
+                    }
 
-                break;
+                    if (currentActor == BattleStates.ENEMYCHOICE && inimigodavez != null) //calcula o dano se o inimigo ainda não agiu
+                    { 
+                        battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction, inimigodavez);  
+                        
+                        inimigodavez.Agiu = true;
+                    }
+                  DecidirProximoAtor(); // Depois de calcular todo o dano, vai retornar para o turno dos inimigos se algum deles não terminou o turno;
+                  break;
+          
+              case (BattleStates.ADDSTATUSEFFECT):
+                  //Adicionar status no alvo, se houver algum
+                  battleAddEffectscript.CheckActionStatus(playerUsedAction);
+                  break;
+          
+              case (BattleStates.ENDROUND):
+                  totalRoundCounter += 1;
+          
+                  jogadorTerminouTurno = false;
+                  inimigoTerminouTurno = false;
+                  DecidirProximoAtor();
+                  CameraParaJogador();
+                  turnLogText = "Fim da rodada";
+                    waitActive = true;
 
-            case (BattleStates.PLAYERCHOICE):
-                currentActor = BattleStates.PLAYERCHOICE; //armazenando que o ator é o jogador
-                break;
+                  break;
+          
+              case (BattleStates.WIN):
+          
+                  //Código que mostra resultados da batalha como XP e itens aqui
+          
+                  if (!xprecebido)
+                  {
+                        battleResultsPanel.SetActive(true);
+                        int xpDado = IncreaseExperience.AddExperience(cd);
+                        xprecebido = true;
+                        expPointsDados.text = " " + xpDado;
 
-            case (BattleStates.PLAYERANIM):
+                        if(jogPassouNivel)
+                        {
+                            lvlupwarnTxt.SetActive(true);
+                        }
+                  }
+                 
+                  break;
+          
+              case (BattleStates.LOSE):
+          
+                  break;
+          }
 
-                break;
-
-            case (BattleStates.ENEMYCHOICE):
-                //colocar IA aqui
-                currentActor = BattleStates.ENEMYCHOICE;
-
-                battleStateEnemyChoicescript.EnemyCompleteTurn(inimStatsList);
-                
-                //DecidirProximoAtor();
-                break;
-
-            case (BattleStates.ENEMYANIM):
-                //faz os paranaue de animar la
-                break;
-
-            case (BattleStates.CALCDAMAGE):
-                Debug.Log("CALCULANDO DANO");
-                if(currentActor == BattleStates.PLAYERCHOICE)
-                battleCalcScript.CalculateTotalPlayerDMG(playerUsedAction);
-
-                if(currentActor == BattleStates.ENEMYCHOICE)
-                battleCalcScript.CalculateTotalEnemyDMG(enemyUsedAction , inimigodavez);
-
-                DecidirProximoAtor();
-                break;
-
-            case (BattleStates.ADDSTATUSEFFECT):
-                //Adicionar status no alvo, se houver algum
-                battleAddEffectscript.CheckActionStatus(playerUsedAction);
-                break;
-
-            case (BattleStates.ENDROUND):
-                totalRoundCounter += 1;
-                jogadorTerminouTurno = false;
-                inimigoTerminouTurno = false;
-                DecidirProximoAtor();
-                break;
-
-            case (BattleStates.WIN):
-                if (!xprecebido)
-                {
-                    IncreaseExperience.AddExperience(cd);
-                    xprecebido = true;
-                }
-                SceneManager.LoadScene(cenaACarregar);
-                break;
-
-            case (BattleStates.LOSE):
-
-                break;
         }
+        else
+        {
+            waitTime -= Time.deltaTime;
+
+            if(waitTime <= 0)
+            {
+                waitActive = false;
+                waitTime = startWaitTime;
+            }
+        }
+
+        turnLogBox.GetComponent<TextMeshProUGUI>().text = turnLogText;
+    }
+
+    private void CameraParaJogador() //desativa a camera do inimigo e ativa a camera do jogador
+    {
+        playerCamera.enabled = true;
+        enemyActionCamera.enabled = false;
+    }
+
+    private void CameraParaInimigo() //desativa a camera do inimigo e ativa a camera do jogador
+    {
+        playerCamera.enabled = false;
+        enemyActionCamera.enabled = true;
+
     }
 
     private void DecidirProximoAtor()
     {
-        if(jogadorTerminouTurno && !inimigoTerminouTurno)
+        if(jogadorTerminouTurno && !inimigoTerminouTurno) //Se o jogador terminou  turno, mas o inimigo não... 
         {
-            //Vez do inimigo
-            currentState = BattleStates.ENEMYCHOICE;
+            //..vez do inimigo
+            currentState = BattleStates.ENEMYCHOICE;          
         }
-        if(!jogadorTerminouTurno && inimigoTerminouTurno)
+        if(!jogadorTerminouTurno && inimigoTerminouTurno) //Se o jogador não terminou o turno, mas o inimigo sim...
         {
-            //vez do jogador
-            currentState = BattleStates.PLAYERCHOICE;
+            //...vez do jogador
+            currentState = BattleStates.PLAYERCHOICE;           
         }
-        if(jogadorTerminouTurno && inimigoTerminouTurno)
+        if(jogadorTerminouTurno && inimigoTerminouTurno) //Se tanto o jogador quanto o inimigo terminaram seus turnos
         {
             //terminar a rodada
             currentState = BattleStates.ENDROUND;
-            foreach (Inimigo inim in inimStatsList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
+            foreach (Inimigo inim in inimigosList) //ao decidir que a rodada acabou cada inimigo pode agir de novo
             {
-                inim.agiu = false;
+                inim.Agiu = false;
             }
-
         }
-
         if(!jogadorTerminouTurno && !inimigoTerminouTurno)
         {
-           foreach(Inimigo inim in inimStatsList)
-            {
-                if(GameInformation.Aila.Sorte >= inim.sorte)
-                {
-                    currentState = BattleStates.PLAYERCHOICE;
-                }
-                else
-                {
-                    currentState = BattleStates.ENEMYCHOICE;
-                }
-
-            }
-
+            battleStartscript.EscolherOPrimeiro();
         }
 
     }
 
-    private void SetEnemies()
+    private void SetEnemies() //chama o método que cria os inimigos no Script BattleStart e então os armazena na lista de objetos e na lista de inimigos 
     {
-        GameObject[] inims = battleStartscript.PrepareEnemies(enemyFabs);
+        List <GameObject> inims = battleStartscript.PrepareEnemies(enemyFabs);
         
 
         if (inims != null)
-        {
+        {     
+            if(inims.Count >= 1)
+            {
+                inimObjList.Add(Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[0].GetComponent<Inimigo>());
+            }
+                
+            if (inims.Count >= 2)
+            {
+                inimObjList.Add(Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[1].GetComponent<Inimigo>());
+            }
 
+            if (inims.Count >= 3)
+            {
+                inimObjList.Add(Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity));
+                inimigosList.Add(inimObjList[2].GetComponent<Inimigo>());
+            }     
 
-            Instantiate(inims[0], inimigo1start.transform.position, Quaternion.identity);
-            Instantiate(inims[1], inimigo2start.transform.position, Quaternion.identity);
-            Instantiate(inims[2], inimigo3start.transform.position, Quaternion.identity);
-
-          //  myPrefabA.transform.position = inimigo1start.transform.position;
-          //  myPrefabB.transform.position = inimigo2start.transform.position;
-          //  myPrefabC.transform.position = inimigo3start.transform.position;
-
-            inim1Stats = inims[0].GetComponent<Inimigo>();
-            inim2Stats = inims[1].GetComponent<Inimigo>();
-            inim3Stats = inims[2].GetComponent<Inimigo>();
-
-            inimStatsList.Add(inim1Stats);
-            inimStatsList.Add(inim2Stats);
-            inimStatsList.Add(inim3Stats);
-        }
-        
+            BattleUICursor.SetCursorEnemies();
+        }      
     }
-  
+
+    public void BattleReturn()
+    {
+        GameInformation.returningFromBattle = true;
+        SceneManager.LoadScene(GameInformation.LastScene);
+    }
+
     public void Fuga()
     {
+        GameInformation.returningFromBattle = true;
         SceneManager.LoadScene(GameInformation.LastScene);
     }
     

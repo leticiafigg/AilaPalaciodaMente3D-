@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BattleUI : MonoBehaviour
 {
-    private string playerName;
-    private int playerLvl;
-    private int playerPV;
-    private int playerPE; //Ernergia, recurso usado para algumas ações
-    
+    private BaseAction standbyAction;
+    private bool pressedBtn;
+    private KeyCode pressedKey;
+
+    public static Inimigo inimigoAlvo;
+
     public GameObject panelActions;
-    public int adjustX = 0;
-    public int adjustY = 0;
+    public GameObject panelAttacks;
+    public GameObject panelFantasias;
+    public GameObject panelConfirmAttack;
+    public GameObject cancelPanelObj;
+    public GameObject descriptionTxtObj;
+    public BattleUICursor cursorUI;
 
     private enum ScreenDisplays
     {
@@ -31,92 +37,147 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerName = GameInformation.Aila.PlayerName;
-        playerLvl = GameInformation.Aila.PlayerLevel;
+        //playerName = GameInformation.Aila.PlayerName;
+        // playerLvl = GameInformation.Aila.PlayerLevel;
+        pressedBtn = false;
         currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
         //playerPV 
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+    { 
+        switch(currentDisplay)
+        {
+            case (ScreenDisplays.NEUTRALDISPLAY):
 
-        MainPanelHandle();     
-        
+                NeutralDisplayHandle();
+
+                break;
+
+            case (ScreenDisplays.TARGETDISPLAY):
+
+                TargetDisplayHandle();
+
+                break;
+        }
+
+        //procurar o que o jogador está pressionando
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            pressedBtn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.A) && pressedBtn)
+        {
+            cursorUI.SelecionarInimigo(KeyCode.A);
+            pressedBtn = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            pressedBtn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.D) && pressedBtn)
+        {
+            cursorUI.SelecionarInimigo(KeyCode.D);
+            pressedBtn = false;
+        }
     }
 
-    private void MainPanelHandle()
+    private void NeutralDisplayHandle()
     {
-        if (BattleHandler.currentState != BattleHandler.BattleStates.PLAYERCHOICE || currentDisplay != ScreenDisplays.NEUTRALDISPLAY) //usar isto no futuro para desabilitar todos os painéis juntos e mostrar apenas o que acontece na tela, para então... 
+        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE) //caso o display seja do menu neutro, *E* estamos no estado "escolha do jogador" ativa o painel neutro
         {
-            panelActions.SetActive(false);
-        }
-
-        if (BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.NEUTRALDISPLAY) // ... tornar aqueles inicialmente relevantes ativos quando for novamente o turno do jogador.
-        {
+            cursorUI.Cursor.SetActive(true);
             panelActions.SetActive(true);
         }
+        else
+        {
+            panelActions.SetActive(false);
+            cursorUI.Cursor.SetActive(false);
+        }
+
+        //desativar todos os outros painéis irrelevantes
+        cancelPanelObj.SetActive(false);
+        panelConfirmAttack.SetActive(false);
+        panelAttacks.SetActive(false);
+        panelFantasias.SetActive(false);
+    }
+
+    private void TargetDisplayHandle()
+    {
+        //Ativar painéis relevantes e desativar os irrelevantes
+        cursorUI.Cursor.SetActive(true);
+        panelConfirmAttack.SetActive(true);
+        cancelPanelObj.SetActive(true);
+        panelActions.SetActive(false);
+        panelAttacks.SetActive(false);
+        panelFantasias.SetActive(false);
+             
+    }
+
+    public void ConfirmaAtaque()
+    {
+        currentDisplay = ScreenDisplays.NEUTRALDISPLAY; //depois de confirmar um ataque, vamos direto ao calculo de dano e voltamos ao display neutro
+        GameInformation.AilaPFatual -= standbyAction.ActionCost;
+        inimigoAlvo = cursorUI.RetornarAlvo();          //adquire o status do inimigo destacado no momento da confirmação 
+
+        BattleHandler.playerUsedAction = standbyAction; //ação selecionada durante o showattacks
+
+        BattleHandler.inimAlvo = inimigoAlvo;
+        BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+
+        BattleHandler.waitActive = true;
+        BattleHandler.turnLogText = "Aila usou " + standbyAction.ActionName;
+
     }
 
     public void showAttacks()
     {
-        currentDisplay = ScreenDisplays.ATTACKSDISPLAY;
-    }
+        currentDisplay = ScreenDisplays.ATTACKSDISPLAY; //troca o estado de display para ATTACKDISPLAY (Acionado por via do botão "Ataque" no painel neutro) 
+        cancelPanelObj.SetActive(true);
+        panelAttacks.SetActive(true);
+        panelFantasias.SetActive(false);
+    } 
 
     public void showFantasia()
     {
         currentDisplay = ScreenDisplays.FANTASYDISPLAY;
-
+        cancelPanelObj.SetActive(true);
+        panelAttacks.SetActive(false);
+        panelFantasias.SetActive(true);
     }
 
-    private void OnGUI()
+    public void showNeutral()
     {
-
-        if(BattleHandler.currentState == BattleHandler.BattleStates.PLAYERCHOICE && currentDisplay == ScreenDisplays.ATTACKSDISPLAY)
-        {
-            PlayerAttackDisplay();
-        }
-
-
+        currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
+        cancelPanelObj.SetActive(false);
+        panelActions.SetActive(true);
     }
 
-    public void PlayerAttackDisplay() //cria os botõe em GUI de movimentos que o jogador pode usar
+    public void PlayerAttackChoice(string attackAction) //cria os botões em GUI de movimentos que o jogador pode usar
     {
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX , panelActions.transform.position.y + adjustY, 75, 30), GameInformation.playerActionUm.ActionName))
+        foreach (BaseAction learnedActions in GameInformation.AcoesAprendidas)
         {
-            //colocar os cálculos de dano e o movimento que está sendo usado
-            BattleHandler.playerUsedAction = GameInformation.playerActionUm;
+            if (learnedActions.ActionName == attackAction)
+            {
+                standbyAction = learnedActions;
 
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY; 
-
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
+                if(GameInformation.AilaPFatual - standbyAction.ActionCost >= 0) //Se o custo da ação não deixaria Aila com PF negativos, então ela executa normalmente
+                {
+                    
+                    descriptionTxtObj.GetComponent<TextMeshProUGUI>().text = standbyAction.ActionDesc;
+                    currentDisplay = ScreenDisplays.TARGETDISPLAY;
+                }
+                else
+                {
+                    BattleHandler.turnLogText = "PF insuficiente!";
+                }
+            }
         }
 
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 50, 75, 30), GameInformation.playerActionDois.ActionName))
-        {
-            //colocar os cálculos de dano aqui
-            BattleHandler.playerUsedAction = GameInformation.playerActionDois;
-
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
-        }
-
-        if (GUI.Button(new Rect(panelActions.transform.position.x + adjustX, panelActions.transform.position.y + adjustY + 100, 75, 30), GameInformation.playerActionTres.ActionName))
-        {
-            //colocar os cálculos de dano aqui
-            BattleHandler.playerUsedAction = GameInformation.playerActionTres;
-
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-
-            BattleHandler.currentState = BattleHandler.BattleStates.ADDSTATUSEFFECT;
-        }
-
-        if (GUI.Button(new Rect(Screen.width -1000, Screen.height - 50, 45, 45),"Volta"))
-        {
-            //colocar os cálculos de dano aqui
-
-            currentDisplay = ScreenDisplays.NEUTRALDISPLAY;
-        }
     }
+
+   
+
 }

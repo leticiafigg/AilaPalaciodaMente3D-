@@ -1,0 +1,454 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AilaMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Aila_geo1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_D_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_D_1_jnt/Aila_FK_perna_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_D_1_jnt/Aila_FK_perna_D_2_jnt/Aila_FK_perna_D_3_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_E_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_E_1_jnt/Aila_FK_perna_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_FK_perna_E_1_jnt/Aila_FK_perna_E_2_jnt/Aila_FK_perna_E_3_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_D_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_D_1_jnt/Aila_IK_perna_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_D_1_jnt/Aila_IK_perna_D_2_jnt/Aila_IK_pe_Dir_A_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_D_1_jnt/Aila_IK_perna_D_2_jnt/Aila_IK_pe_Dir_A_jnt/Aila_IK_pe_Dir_B_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_D_1_jnt/Aila_IK_perna_D_2_jnt/Aila_IK_pe_Dir_A_jnt/Aila_IK_pe_Dir_B_jnt/Aila_IK_pe_Dir_C_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_E_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_E_1_jnt/Aila_IK_perna_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_E_1_jnt/Aila_IK_perna_E_2_jnt/Aila_IK_pe_Esq_A_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_E_1_jnt/Aila_IK_perna_E_2_jnt/Aila_IK_pe_Esq_A_jnt/Aila_IK_pe_Esq_B_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_IK_perna_E_1_jnt/Aila_IK_perna_E_2_jnt/Aila_IK_pe_Esq_A_jnt/Aila_IK_pe_Esq_B_jnt/Aila_IK_pe_Esq_C_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_D_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_D_1_jnt/Aila_perna_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_D_1_jnt/Aila_perna_D_2_jnt/Aila_perna_D_3_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_D_1_jnt/Aila_perna_D_2_jnt/Aila_perna_D_3_jnt/Aila_pe_D_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_D_1_jnt/Aila_perna_D_2_jnt/Aila_perna_D_3_jnt/Aila_pe_D_1_jnt/Aila_pe_D_2_jnt1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_E_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_E_1_jnt/Aila_perna_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_E_1_jnt/Aila_perna_E_2_jnt/Aila_perna_E_3_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_E_1_jnt/Aila_perna_E_2_jnt/Aila_perna_E_3_jnt/Aila_pe_E_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_bacia_A_jnt/Aila_bacia_B_jnt/Aila_perna_E_1_jnt/Aila_perna_E_2_jnt/Aila_perna_E_3_jnt/Aila_pe_E_1_jnt/Aila_pe_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_FK_ombro_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_FK_ombro_D_2_jnt/Aila_FK_ctv_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_FK_ombro_D_2_jnt/Aila_FK_ctv_D_jnt/Aila_FK_pulso_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_IK_ombro_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_IK_ombro_D_2_jnt/Aila_IK_ctv_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_IK_ombro_D_2_jnt/Aila_IK_ctv_D_jnt/Aila_IK_pulso_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_anelar_a_D_jnt1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_anelar_a_D_jnt1/Aila_dedo_anelar_b_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_anelar_a_D_jnt1/Aila_dedo_anelar_b_D_jnt/Aila_dedo_anelar_c_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_anelar_a_D_jnt1/Aila_dedo_anelar_b_D_jnt/Aila_dedo_anelar_c_D_jnt/Aila_dedo_anelar_d_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_indicador_a_D_jnt1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_indicador_a_D_jnt1/Aila_dedo_indicador_b_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_indicador_a_D_jnt1/Aila_dedo_indicador_b_D_jnt/Aila_dedo_indicador_c_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_indicador_a_D_jnt1/Aila_dedo_indicador_b_D_jnt/Aila_dedo_indicador_c_D_jnt/Aila_dedo_indicador_d_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_medio_a_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_medio_a_D_jnt/Aila_dedo_medio_b_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_medio_a_D_jnt/Aila_dedo_medio_b_D_jnt/Aila_dedo_medio_c_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_medio_a_D_jnt/Aila_dedo_medio_b_D_jnt/Aila_dedo_medio_c_D_jnt/Aila_dedo_medio_d_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_minimo_a_D_jnt1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_minimo_a_D_jnt1/Aila_dedo_minimo_b_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_minimo_a_D_jnt1/Aila_dedo_minimo_b_D_jnt/Aila_dedo_minimo_c_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_minimo_a_D_jnt1/Aila_dedo_minimo_b_D_jnt/Aila_dedo_minimo_c_D_jnt/Aila_dedo_minimo_d_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_polegar_a_D_jnt1
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_polegar_a_D_jnt1/Aila_dedo_polegar_b_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_polegar_a_D_jnt1/Aila_dedo_polegar_b_D_jnt/Aila_dedo_polegar_c_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_D_1_jnt/Aila_ombro_D_2_jnt/Aila_ctv_D_jnt/Aila_pulso_D_jnt/Aila_dedo_polegar_a_D_jnt1/Aila_dedo_polegar_b_D_jnt/Aila_dedo_polegar_c_D_jnt/Aila_dedo_polegar_d_D_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_FK_ombro_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_FK_ombro_E_2_jnt/Aila_FK_ctv_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_FK_ombro_E_2_jnt/Aila_FK_ctv_E_jnt/Aila_FK_pulso_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_IK_ombro_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_IK_ombro_E_2_jnt/Aila_IK_ctv_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_IK_ombro_E_2_jnt/Aila_IK_ctv_E_jnt/Aila_IK_pulso_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_anelar_a_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_anelar_a_E_jnt/Aila_dedo_anelar_b_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_anelar_a_E_jnt/Aila_dedo_anelar_b_E_jnt/Aila_dedo_anelar_c_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_anelar_a_E_jnt/Aila_dedo_anelar_b_E_jnt/Aila_dedo_anelar_c_E_jnt/Aila_dedo_anelar_d_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_indicador_a_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_indicador_a_E_jnt/Aila_dedo_indicador_b_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_indicador_a_E_jnt/Aila_dedo_indicador_b_E_jnt/Aila_dedo_indicador_c_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_indicador_a_E_jnt/Aila_dedo_indicador_b_E_jnt/Aila_dedo_indicador_c_E_jnt/Aila_dedo_indicador_d_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_medio_a_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_medio_a_E_jnt/Aila_dedo_medio_b_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_medio_a_E_jnt/Aila_dedo_medio_b_E_jnt/Aila_dedo_medio_c_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_medio_a_E_jnt/Aila_dedo_medio_b_E_jnt/Aila_dedo_medio_c_E_jnt/Aila_dedo_medio_d_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_minimo_a_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_minimo_a_E_jnt/Aila_dedo_minimo_b_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_minimo_a_E_jnt/Aila_dedo_minimo_b_E_jnt/Aila_dedo_minimo_c_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_minimo_a_E_jnt/Aila_dedo_minimo_b_E_jnt/Aila_dedo_minimo_c_E_jnt/Aila_dedo_minimo_d_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_polegar_a_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_polegar_a_E_jnt/Aila_dedo_polegar_b_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_polegar_a_E_jnt/Aila_dedo_polegar_b_E_jnt/Aila_dedo_polegar_c_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_ombro_E_1_jnt/Aila_ombro_E_2_jnt/Aila_ctv_E_jnt/Aila_pulso_E_jnt/Aila_dedo_polegar_a_E_jnt/Aila_dedo_polegar_b_E_jnt/Aila_dedo_polegar_c_E_jnt/Aila_dedo_polegar_d_E_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabeca_c_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_copia_jnt/Aila_cabelo_D_b_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_copia_jnt/Aila_cabelo_D_b_copia_jnt/Aila_cabelo_D_c_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_jnt/Aila_cabelo_D_b_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_jnt/Aila_cabelo_D_b_jnt/Aila_cabelo_D_c_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_D_a_jnt/Aila_cabelo_D_b_jnt/Aila_cabelo_D_c_jnt/Aila_cabelo_D_d_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_copia_jnt/Aila_cabelo_E_b_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_copia_jnt/Aila_cabelo_E_b_copia_jnt/Aila_cabelo_E_c_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_jnt/Aila_cabelo_E_b_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_jnt/Aila_cabelo_E_b_jnt/Aila_cabelo_E_c_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_E_a_jnt/Aila_cabelo_E_b_jnt/Aila_cabelo_E_c_jnt/Aila_cabelo_E_d_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_copia_jnt/Aila_cabelo_F_b_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_copia_jnt/Aila_cabelo_F_b_copia_jnt/Aila_cabelo_F_c_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_jnt/Aila_cabelo_F_b_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_jnt/Aila_cabelo_F_b_jnt/Aila_cabelo_F_c_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_cabelo_F_a_jnt/Aila_cabelo_F_b_jnt/Aila_cabelo_F_c_jnt/Aila_cabelo_F_d_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_Cabelo_T_a_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_Cabelo_T_a_copia_jnt/Aila_Cabelo_T_b_copia_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_Cabelo_T_a_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_Cabelo_T_a_jnt/Aila_Cabelo_T_b_jnt
+    m_Weight: 1
+  - m_Path: Aila_rot_jnt/Aila_col_A_jnt/Aila_col_B_jnt/Aila_col_C_jnt/Aila_pescoco_jnt/Aila_cabeca_a_jnt/Aila_cabeca_b_jnt/Aila_Cabelo_T_a_jnt/Aila_Cabelo_T_b_jnt/Aila_Cabelo_T_c_jnt
+    m_Weight: 1
+  - m_Path: curvas
+    m_Weight: 1
+  - m_Path: curvas/Aila_braco_D_IK_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_braco_D_IK_crv_grp/Aila_braco_D_IK_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_braco_E_IK_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_braco_E_IK_crv_grp/Aila_braco_E_IK_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_IKHandles
+    m_Weight: 1
+  - m_Path: curvas/Aila_IKHandles/Aila_braco_D_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_IKHandles/Aila_braco_E_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp/Aila_perna_D_1_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp/Aila_perna_D_1_crv/Aila_perna_D_2_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp/Aila_perna_D_1_crv/Aila_perna_D_2_crv_grp/Aila_perna_D_2_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp/Aila_perna_D_1_crv/Aila_perna_D_2_crv_grp/Aila_perna_D_2_crv/Aila_perna_D_3_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_D_1_crv_grp/Aila_perna_D_1_crv/Aila_perna_D_2_crv_grp/Aila_perna_D_2_crv/Aila_perna_D_3_crv_grp/Aila_perna_D_3_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp/Aila_perna_E_1_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp/Aila_perna_E_1_crv/Aila_perna_E_2_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp/Aila_perna_E_1_crv/Aila_perna_E_2_crv_grp/Aila_perna_E_2_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp/Aila_perna_E_1_crv/Aila_perna_E_2_crv_grp/Aila_perna_E_2_crv/Aila_perna_E_3_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_bacia_crv_grp/Aila_bacia_crv/Aila_perna_E_1_crv_grp/Aila_perna_E_1_crv/Aila_perna_E_2_crv_grp/Aila_perna_E_2_crv/Aila_perna_E_3_crv_grp/Aila_perna_E_3_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_IK_cotovelo_D_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_IK_cotovelo_D_crv_grp/Aila_IK_cotovelo_D_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp/Aila_ombro_D_2_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp/Aila_ombro_D_2_crv/Aila_ctv_D_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp/Aila_ombro_D_2_crv/Aila_ctv_D_crv_grp/Aila_ctv_D_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp/Aila_ombro_D_2_crv/Aila_ctv_D_crv_grp/Aila_ctv_D_crv/Aila_pulso_D_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_D_1_crv_grp/Aila_ombro_D_1_crv/Aila_ombro_D_2_crv_grp/Aila_ombro_D_2_crv/Aila_ctv_D_crv_grp/Aila_ctv_D_crv/Aila_pulso_D_crv/Aila_pulso_D_crv
+      1
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_IK_cotovelo_E_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_IK_cotovelo_E_crv_grp/Aila_IK_cotovelo_E_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp/Aila_ombro_E_2_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp/Aila_ombro_E_2_crv/Aila_ctv_E_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp/Aila_ombro_E_2_crv/Aila_ctv_E_crv_grp/Aila_ctv_E_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp/Aila_ombro_E_2_crv/Aila_ctv_E_crv_grp/Aila_ctv_E_crv/Aila_pulso_E_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_ombro_E_1_crv_grp/Aila_ombro_E_1_crv/Aila_ombro_E_2_crv_grp/Aila_ombro_E_2_crv/Aila_ctv_E_crv_grp/Aila_ctv_E_crv/Aila_pulso_E_crv_grp/Aila_pulso_E_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp/Aila_cabelo_D_a_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp/Aila_cabelo_D_a_crv/Aila_cabelo_D_b_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp/Aila_cabelo_D_a_crv/Aila_cabelo_D_b_crv_grp/Aila_cabelo_D_b_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp/Aila_cabelo_D_a_crv/Aila_cabelo_D_b_crv_grp/Aila_cabelo_D_b_crv/Aila_cabelo_D_c_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_D_a_crv_grp/Aila_cabelo_D_a_crv/Aila_cabelo_D_b_crv_grp/Aila_cabelo_D_b_crv/Aila_cabelo_D_c_crv_grp/Aila_cabelo_D_c_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp/Aila_cabelo_E_a_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp/Aila_cabelo_E_a_crv/Aila_cabelo_E_b_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp/Aila_cabelo_E_a_crv/Aila_cabelo_E_b_crv_grp/Aila_cabelo_E_b_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp/Aila_cabelo_E_a_crv/Aila_cabelo_E_b_crv_grp/Aila_cabelo_E_b_crv/Aila_cabelo_E_c_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_E_a_crv_grp/Aila_cabelo_E_a_crv/Aila_cabelo_E_b_crv_grp/Aila_cabelo_E_b_crv/Aila_cabelo_E_c_crv_grp/Aila_cabelo_E_c_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp/Aila_cabelo_F_a_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp/Aila_cabelo_F_a_crv/Aila_cabelo_F_b_crgrp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp/Aila_cabelo_F_a_crv/Aila_cabelo_F_b_crgrp/Aila_cabelo_F_b_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp/Aila_cabelo_F_a_crv/Aila_cabelo_F_b_crgrp/Aila_cabelo_F_b_crv/Aila_cabelo_F_c_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_F_a_crv_grp/Aila_cabelo_F_a_crv/Aila_cabelo_F_b_crgrp/Aila_cabelo_F_b_crv/Aila_cabelo_F_c_crv_grp/Aila_cabelo_F_c_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_T_a_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_T_a_crv_grp/Aila_cabelo_T_a_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_T_a_crv_grp/Aila_cabelo_T_a_crv/Aila_cabelo_T_b_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_COG_crv_grp/Aila_COG_crv/Aila_col_A_crv_grp/Aila_col_A_crv/Aila_col_B_crv_grp/Aila_col_B_crv/Aila_col_C_crv_grp/Aila_col_C_crv/Aila_pescoco_crv_grp/Aila_pescoco_crv/Aila_cabelo_T_a_crv_grp/Aila_cabelo_T_a_crv/Aila_cabelo_T_b_crv_grp/Aila_cabelo_T_b_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_IK_joelho_D_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_IK_joelho_D_crv_grp/Aila_IK_joelho_D_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_IK_joelho_E_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_Master_crv/Aila_IK_joelho_E_crv_grp/Aila_IK_joelho_E_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp/Aila_pe_Dir_a_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp/Aila_pe_Dir_a_grp/Aila_pe_Dir_A_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp/Aila_pe_Dir_B_C_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp/Aila_pe_Dir_B_C_grp/Aila_pe_Dir_B_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_D_IK_crv_grp/Aila_perna_D_IK_crv/Aila_calcanhar_Dir_grp/Aila_ponta_pe_Dir_grp/Aila_pe_Dir_B_C_grp/Aila_pe_Dir_C_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp/Aila_pe_Esq_A_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp/Aila_pe_Esq_A_grp/Aila_pe_Esq_A_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp/Aila_pe_Esq_B_C_grp
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp/Aila_pe_Esq_B_C_grp/Aila_pe_Esq_B_IKHandle
+    m_Weight: 1
+  - m_Path: curvas/Aila_perna_E_IK_crv_grp/Aila_perna_E_IK_crv/Aila_Calcanhar_Esq_grp/Aila_ponta_pe_Esq_grp/Aila_pe_Esq_B_C_grp/Aila_pe_Esq_C_IKHandle
+    m_Weight: 1

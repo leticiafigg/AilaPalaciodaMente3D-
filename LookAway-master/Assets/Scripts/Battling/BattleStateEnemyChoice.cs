@@ -6,45 +6,45 @@ public class BattleStateEnemyChoice
 {
     private EnemyActionChoice enemyActionChooseScript = new EnemyActionChoice();
     public BaseAction acaoDoInimigo;
-    private int inimIndex;
-
-    
+    //private int inimIndex;
 
 
-    public void EnemyCompleteTurn(List<Inimigo> inimList)
-    {
-        inimIndex = 0; //sempre reseta para o primeiro, porém ...
+    public void EnemyCompleteTurn(int inimIndex)
+    {     
 
-        foreach (Inimigo inimstat in inimList)
+        if (BattleHandler.inimigosList.Count > 0)
         {
-            if (inimstat.agiu) 
+            //escolher uma ação
+            if (inimIndex < BattleHandler.inimigosList.Count)
             {
-                inimIndex++; //...sempre que encontra um inimigo que já agiu ele adiciona 1 no indexador
-                BattleHandler.inimigoTerminouTurno = true;
-            }
-            else
-            {
+                BattleHandler.inimigodavez = BattleHandler.inimigosList[inimIndex]; //Salva o inimigo que vai agir em "inimigodavez" do BattleHandler, o script central, que vai por sua vez mandar os status do inimigo junto com a ação escolhida 
+
                 
-                //e quando encontra um que não agiu, significa que o turno dos inimigos ainda não acabou
-                BattleHandler.inimigoTerminouTurno = false;
-            }
-        }
-        //escolher uma ação
-        if (inimIndex < inimList.Count)
-        {
-            BattleHandler.inimigodavez = inimList[inimIndex]; //Salva o inimigo que vai agir em "inimigodavez" do BattleHandler, o script central, que vai por sua vez mandar os status do inimigo junto com a ação escolhida 
+                    if (!BattleHandler.inimigodavez.Atordoado) //Apenas vai escolher uma ação se não estiver atordoado. Se estiver, não faz nada
+                    {
+                        acaoDoInimigo = enemyActionChooseScript.ChooseEnemyAction(BattleHandler.inimigodavez);
+                        BattleHandler.enemyUsedAction = acaoDoInimigo;
 
-            if (!BattleHandler.inimigodavez.atordoado) //Apenas vai escolher uma ação se não estiver atordoado. Se estiver, não faz nada
-            {
-                acaoDoInimigo = enemyActionChooseScript.ChooseEnemyAction(BattleHandler.inimigodavez);
-                BattleHandler.enemyUsedAction = acaoDoInimigo;
-            }
-        }
-        //calcular dano
-        BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;
-        //fim de turno
+                    }
+                    else
+                    {
 
+                        BattleHandler.inimigodavez.Atordoado = false;
+                        BattleHandler.inimigodavez.stunAtual = 0;
+                        BattleHandler.enemyUsedAction = new Zonzar();
+                    }
+                
         
+                BattleHandler.inimigodavez.Agiu = true;
+
+            }
+        }
+
+             //Atualizar a ação feita no text log e pausar o game state para então quando o gamestate voltar a rodar ele ler o CALCDAMAGE, que diz o dano causado
+             BattleHandler.waitActive = true;
+             BattleHandler.turnLogText = BattleHandler.inimigodavez.Nome + " usou " + BattleHandler.enemyUsedAction.ActionName; 
+
+             BattleHandler.currentState = BattleHandler.BattleStates.CALCDAMAGE;              
     }
 
 }

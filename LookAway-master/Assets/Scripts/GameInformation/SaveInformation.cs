@@ -19,10 +19,18 @@ public class SaveInformation
         PlayerPrefs.SetInt("PVATUAL", GameInformation.AilaPVatual);
         PlayerPrefs.SetInt("PFTOTAL", GameInformation.AilaPF);
         PlayerPrefs.SetInt("PFATUAL", GameInformation.AilaPFatual);
-
+        PlayerPrefs.SetInt("FRAGMENTOSDEMEMORIA", GameInformation.FragmentosDeMemoria);
         PlayerPrefs.SetString("LASTSCENE", GameInformation.LastScene);
+        PlayerPrefsX.SetVector3("SavePlayerPos", GameInformation.LastPos);
+
+        PlayerPrefsX.SetBool("COXINHABOSSDEFEATED", GameInformation.coxinhabossWon);
 
         Debug.Log("Saved All Information!");
+    }
+
+    public static void SaveOptions()
+    {
+        PlayerPrefs.SetFloat("MASTERVOLUME", OptionsInformation.MasterVol);
     }
 
 }
